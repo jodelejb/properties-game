@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dpfiv7lkgm073"]
+
+[node name="PhysicsObject" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]

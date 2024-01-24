@@ -1,11 +1,13 @@
 extends CharacterBody3D
 
 @onready var head = $Head
-@onready var standing_collider = $Standing
-@onready var crouching_collider = $Crouching
-@onready var height_check = $HeightCheck
+@onready var standing_collider: CollisionShape3D = $Standing
+@onready var crouching_collider: CollisionShape3D = $Crouching
+@onready var height_check: RayCast3D = $HeightCheck
 @onready var cam = $Head/Eyes/Camera3D
-@onready var eyes = $Head/Eyes
+@onready var eyes: Node3D = $Head/Eyes
+@onready var pickup: RayCast3D = $Head/Pickup
+@onready var holding = $Head/Holding
 
 var current_speed: float = 5.0
 const jump_vel: float = 8.0
@@ -21,6 +23,9 @@ var direction: Vector3 = Vector3.ZERO
 
 var head_height: float = 1.8
 var crouching_depth: float = -1.0
+
+var held_object: RigidBody3D = null
+var held_object_speed: float = 10.0
 
 #states
 enum state {walking, sprinting, crouching, sliding, NULL}
@@ -39,14 +44,6 @@ const head_bob_key: Array = [state.crouching, state.walking, state.sprinting]
 const head_bob_speeds: Array[float] = [10.0, 14.0, 22.0]
 const head_bob_intensity: Array[float] = [0.05, 0.1, 0.2]
 
-#const head_bob_sprint_speed: float = 22.0
-#const head_bob_walk_speed: float = 14.0
-#const head_bob_crouch_speed: float = 10.0
-#
-#const head_bob_sprint_intensity: float = 0.2
-#const head_bob_walk_intensity: float = 0.1
-#const head_bob_crouch_intensity: float = 0.05
-
 var head_bob_vec: Vector2 = Vector2.ZERO
 var head_bob_idx: float = 0.0
 
@@ -59,7 +56,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	print(str(gravity))
 	pass
 
 func _input(event):
@@ -72,6 +68,7 @@ func _input(event):
 func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	
+	#movement states
 	if Input.is_action_pressed("crouch"):
 		current_speed = lerp(current_speed, crouch_speed, lerp_speed*delta)
 		standing_collider.disabled = true
@@ -114,9 +111,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_vel
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	
+	#Apply movement
 	direction = lerp(direction,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
 	if direction:
 		velocity.x = direction.x * current_speed
@@ -124,5 +119,23 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
-
 	move_and_slide()
+	
+	#pickup
+	if Input.is_action_just_pressed("pick_up_object"):
+		pick_up()
+		
+	if held_object != null:
+		var a = held_object.global_position
+		var b = holding.global_position
+		held_object.linear_velocity = (b-a) * held_object_speed
+		pass
+	
+func pick_up():
+	if held_object != null:
+		held_object = null
+		return
+	var collider = pickup.get_collider()
+	if collider != null:
+		print("attempting to pick up " + collider.name)
+		held_object = collider
