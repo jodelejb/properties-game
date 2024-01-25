@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d12itapyfkqfo"]
+[gd_scene load_steps=4 format=3 uid="uid://d12itapyfkqfo"]
 
 [ext_resource type="PackedScene" uid="uid://bsk26snggm5fn" path="res://scenes/dev/test_stage.tscn" id="1_fefla"]
 [ext_resource type="PackedScene" uid="uid://b8fy34txeuvpw" path="res://scenes/player/player.tscn" id="2_s7vm7"]
+[ext_resource type="PackedScene" uid="uid://q6cw0b6ybd4k" path="res://scenes/ui/ui.tscn" id="3_m5qyl"]
 
 [node name="GameManager" type="Node"]
 
@@ -15,3 +16,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_s7vm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86909, 0, 0)
+
+[node name="UI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_m5qyl")]
+player = NodePath("../Player")

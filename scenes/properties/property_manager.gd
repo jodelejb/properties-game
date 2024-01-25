@@ -8,11 +8,12 @@ extends Node
 var base_collision_mask
 #enum properties {gravity, red, green, blue}
 
-var applied_properties: Array[Globals.properties] = [Globals.properties.red]:#[Globals.properties.red]:
+var applied_properties: Array[Globals.properties] = []:#[Globals.properties.red]:
 	get:
 		return applied_properties
 	set(value):
 		applied_properties = value
+		print(applied_properties)
 		set_properties()
 		
 func set_properties() -> void:
@@ -52,6 +53,7 @@ func _ready():
 	base_collision_mask = phys_body.collision_mask
 	phys_body.collision_mask += Globals.get_collision([Globals.red, Globals.blue, Globals.green])
 	set_properties()
+	phys_body.add_to_group("CanProperty")
 	
 func _process(delta):
 	property_rotation.position = phys_body.global_position + Vector3(0,0.8,0)

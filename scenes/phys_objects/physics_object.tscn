@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpfiv7lkgm073"]
+[gd_scene load_steps=3 format=3 uid="uid://dpfiv7lkgm073"]
 
 [ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="1_7kno0"]
+[ext_resource type="Script" path="res://scenes/phys_objects/physics_object.gd" id="1_whsrh"]
 
 [node name="PhysicsObject" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 15
+script = ExtResource("1_whsrh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 

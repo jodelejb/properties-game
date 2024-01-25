@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvof10yafjq07"]
+[gd_scene load_steps=7 format=3 uid="uid://dvof10yafjq07"]
 
 [ext_resource type="PackedScene" uid="uid://dpfiv7lkgm073" path="res://scenes/phys_objects/physics_object.tscn" id="1_x0ley"]
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="2_1u37m"]
+[ext_resource type="Script" path="res://scenes/phys_objects/ball.gd" id="2_o1tww"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8nqs"]
 render_priority = 0
@@ -18,6 +19,7 @@ material = SubResource("ShaderMaterial_v8nqs")
 [sub_resource type="SphereShape3D" id="SphereShape3D_7civc"]
 
 [node name="Ball" instance=ExtResource("1_x0ley")]
+script = ExtResource("2_o1tww")
 
 [node name="MeshInstance3D" parent="." index="0"]
 mesh = SubResource("SphereMesh_mrhq8")

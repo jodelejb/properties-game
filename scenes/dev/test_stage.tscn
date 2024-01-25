@@ -146,9 +146,11 @@ shape = SubResource("ConvexPolygonShape3D_l0tqn")
 
 [node name="Ball" parent="." instance=ExtResource("2_4qbnp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66236, 1.17995, 4.19823)
+script = null
 
 [node name="Box" parent="." instance=ExtResource("3_vv1is")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51053, 0.982486, 1.39152)
+script = null
 
 [node name="ColoredBarrier" parent="." instance=ExtResource("4_28jpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.70429, -2.38419e-07, 6.7483)

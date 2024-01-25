@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var eyes: Node3D = $Head/Eyes
 @onready var pickup: RayCast3D = $Head/Pickup
 @onready var holding = $Head/Holding
+@onready var property_cast = $Head/PropertyCast
 
 var current_speed: float = 5.0
 const jump_vel: float = 8.0
@@ -26,6 +27,17 @@ var crouching_depth: float = -1.0
 
 var held_object: RigidBody3D = null
 var held_object_speed: float = 10.0
+
+signal stored_properties_changed
+signal held_property_changed
+var stored_properties: Array[Globals.properties] = [Globals.properties.gravity, Globals.properties.red, Globals.properties.green, Globals.properties.blue]
+var held_property: Globals.properties:
+	get:
+		return held_property
+	set(value):
+		held_property = value
+		held_property_changed.emit(held_property)
+		
 
 #states
 enum state {walking, sprinting, crouching, sliding, NULL}
@@ -56,7 +68,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	pass
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -122,6 +133,12 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	#pickup
+	if Input.is_action_just_pressed("primary_action"):
+		primary_action()
+		
+	if Input.is_action_just_pressed("secondary_action"):
+		secondary_action()
+	
 	if Input.is_action_just_pressed("pick_up_object"):
 		pick_up()
 		
@@ -130,6 +147,21 @@ func _physics_process(delta):
 		var b = holding.global_position
 		held_object.linear_velocity = (b-a) * held_object_speed
 		pass
+		
+	#scroll through properties
+	var curridx = stored_properties.find(held_property,0)
+		
+	if Input.is_action_just_pressed("prop_rotate_forward"):
+		if curridx != len(stored_properties)-1:
+			held_property = stored_properties[curridx+1]
+		else:
+			held_property = stored_properties[0]
+			
+	if Input.is_action_just_pressed("prop_rotate_forward"):
+		if curridx != len(stored_properties)-1:
+			held_property = stored_properties[curridx+1]
+		else:
+			held_property = stored_properties[0]
 	
 func pick_up():
 	if held_object != null:
@@ -139,3 +171,16 @@ func pick_up():
 	if collider != null:
 		print("attempting to pick up " + collider.name)
 		held_object = collider
+		
+func primary_action():
+	var collider = property_cast.get_collider()
+	if collider in get_tree().get_nodes_in_group("CanProperty"):
+		print(collider.name + " can be propertied")
+		var col = collider as PhysObject
+		if "lol" in collider:
+			print(collider.lol)
+		#print(collider.pm)
+		#collider.pm.applied_properties.append(held_property)
+	
+func secondary_action():
+	pass
