@@ -1,7 +1,11 @@
-[gd_scene format=3 uid="uid://dpfiv7lkgm073"]
+[gd_scene load_steps=2 format=3 uid="uid://dpfiv7lkgm073"]
+
+[ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="1_7kno0"]
 
 [node name="PhysicsObject" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 15
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="PropertyManager" parent="." instance=ExtResource("1_7kno0")]
