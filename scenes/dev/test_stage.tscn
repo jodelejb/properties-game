@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bsk26snggm5fn"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_goxr4"]
-[ext_resource type="PackedScene" uid="uid://dvof10yafjq07" path="res://scenes/phys_objects/ball.tscn" id="2_4qbnp"]
+[ext_resource type="PackedScene" uid="uid://dpuif60enlfsp" path="res://scenes/phys_objects/ball.tscn" id="2_4qbnp"]
 [ext_resource type="PackedScene" uid="uid://dla2ibpjjj5va" path="res://scenes/phys_objects/box.tscn" id="3_vv1is"]
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="4_28jpm"]
 
@@ -58,7 +58,6 @@ points = PackedVector3Array(-5.07738, -0.579365, -0.579365, 4.78724, 0.5, 0.5, 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 collision_mask = 15
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_h210g")
@@ -144,14 +143,12 @@ mesh = SubResource("BoxMesh_km53i")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp3"]
 shape = SubResource("ConvexPolygonShape3D_l0tqn")
 
-[node name="Ball" parent="." instance=ExtResource("2_4qbnp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66236, 1.17995, 4.19823)
-script = null
-
-[node name="Box" parent="." instance=ExtResource("3_vv1is")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51053, 0.982486, 1.39152)
-script = null
-
 [node name="ColoredBarrier" parent="." instance=ExtResource("4_28jpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.70429, -2.38419e-07, 6.7483)
 active_colors = Array[int]([0])
+
+[node name="Box" parent="." instance=ExtResource("3_vv1is")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68188, 0.994679, 0.875084)
+
+[node name="ball" parent="." instance=ExtResource("2_4qbnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28383, 0.864208, 3.12058)

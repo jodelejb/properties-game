@@ -8,7 +8,7 @@ extends CharacterBody3D
 @onready var eyes: Node3D = $Head/Eyes
 @onready var pickup: RayCast3D = $Head/Pickup
 @onready var holding = $Head/Holding
-@onready var property_cast = $Head/PropertyCast
+@onready var property_cast: RayCast3D = $Head/PropertyCast
 
 var current_speed: float = 5.0
 const jump_vel: float = 8.0
@@ -157,11 +157,11 @@ func _physics_process(delta):
 		else:
 			held_property = stored_properties[0]
 			
-	if Input.is_action_just_pressed("prop_rotate_forward"):
-		if curridx != len(stored_properties)-1:
-			held_property = stored_properties[curridx+1]
+	if Input.is_action_just_pressed("prop_rotate_backwards"):
+		if curridx != 0:
+			held_property = stored_properties[curridx-1]
 		else:
-			held_property = stored_properties[0]
+			held_property = stored_properties[-1]
 	
 func pick_up():
 	if held_object != null:
@@ -175,12 +175,16 @@ func pick_up():
 func primary_action():
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
-		print(collider.name + " can be propertied")
-		var col = collider as PhysObject
-		if "lol" in collider:
-			print(collider.lol)
-		#print(collider.pm)
-		#collider.pm.applied_properties.append(held_property)
+		if "pm" in collider:
+			collider.pm.append_prop(held_property) #as Array[Globals.properties]
+		else:
+			print("property manager not found")
 	
 func secondary_action():
-	pass
+	var collider = property_cast.get_collider()
+	if collider in get_tree().get_nodes_in_group("CanProperty"):
+		if "pm" in collider:
+			collider.pm.remove_prop(held_property) #as Array[Globals.properties]
+		else:
+			print("property manager not found")
+

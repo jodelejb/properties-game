@@ -8,13 +8,17 @@ extends Node
 var base_collision_mask
 #enum properties {gravity, red, green, blue}
 
-var applied_properties: Array[Globals.properties] = []:#[Globals.properties.red]:
-	get:
-		return applied_properties
-	set(value):
-		applied_properties = value
-		print(applied_properties)
+var applied_properties: Array[Globals.properties] = []#[Globals.properties.red]:
+func append_prop(prop: Globals.properties) -> void:
+	if prop not in applied_properties:
+		applied_properties.append(prop)
 		set_properties()
+		
+func remove_prop(prop: Globals.properties) -> void:
+	if prop in applied_properties:
+		applied_properties.erase(prop)
+		set_properties()
+
 		
 func set_properties() -> void:
 	#gravity property
@@ -49,15 +53,16 @@ func set_properties() -> void:
 	phys_body.collision_mask = base_collision_mask + Globals.get_collision(color_col)
 
 func _ready():
-	print("i am on the " + phys_body.name)
 	base_collision_mask = phys_body.collision_mask
 	phys_body.collision_mask += Globals.get_collision([Globals.red, Globals.blue, Globals.green])
 	set_properties()
 	phys_body.add_to_group("CanProperty")
 	
+	
 func _process(delta):
 	property_rotation.position = phys_body.global_position + Vector3(0,0.8,0)
 	var player = get_tree().get_first_node_in_group("Player")
-	property_rotation.look_at(player.head.global_position)
+	if not phys_body == player:
+		property_rotation.look_at(player.head.global_position)
 	
 
