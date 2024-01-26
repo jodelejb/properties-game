@@ -3,10 +3,12 @@
 [ext_resource type="Script" path="res://scenes/static_objects/colored_barrier.gd" id="1_30ma5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfghk"]
+resource_local_to_scene = true
 transparency = 1
-albedo_color = Color(1, 0, 0, 0.466667)
+albedo_color = Color(1, 1, 1, 0.466667)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5p4gp"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_gfghk")
 size = Vector3(2, 3, 0.1)
 
