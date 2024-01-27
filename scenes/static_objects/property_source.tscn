@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgibmv6j74vcp"]
+
+[ext_resource type="Script" path="res://scenes/static_objects/property_source.gd" id="1_13x7b"]
+[ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="2_j02sv"]
+[ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="3_gltg7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14u0v"]
+render_priority = 0
+shader = ExtResource("3_gltg7")
+shader_parameter/albedo = Vector4(0.6, 0.6, 0.6, 1)
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/point_size = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wnule"]
+material = SubResource("ShaderMaterial_14u0v")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.2
+radial_segments = 32
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rh1sy"]
+height = 1.2
+radius = 0.25
+
+[node name="PropertySource" type="StaticBody3D"]
+script = ExtResource("1_13x7b")
+
+[node name="PropertyManager" parent="." instance=ExtResource("2_j02sv")]
+pm_type = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_wnule")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_rh1sy")

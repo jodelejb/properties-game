@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://63ybhc1xnweb"]
+
+[ext_resource type="Script" path="res://scenes/static_objects/property_sink.gd" id="1_mmpjg"]
+[ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="2_xciqq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nj5o0"]
+albedo_color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q2u10"]
+material = SubResource("StandardMaterial3D_nj5o0")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.2
+radial_segments = 32
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sjp8j"]
+height = 1.2
+radius = 0.25
+
+[node name="PropertySink" type="StaticBody3D"]
+script = ExtResource("1_mmpjg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_q2u10")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_sjp8j")
+
+[node name="PropertyManager" parent="." instance=ExtResource("2_xciqq")]
+pm_type = 2

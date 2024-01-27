@@ -196,6 +196,7 @@ func primary_action():
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
+			if collider.pm.pm_type == Globals.pm_types.source: return
 			if held_property != null and held_property not in collider.pm.applied_properties:
 				collider.pm.append_prop(held_property) #as Array[Globals.properties]
 				remove_stored_prop(held_property)
@@ -206,6 +207,7 @@ func secondary_action():
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
+			if collider.pm.pm_type == Globals.pm_types.sink: return
 			for p in collider.pm.applied_properties:
 				if p not in stored_properties:
 					append_stored_prop(p)

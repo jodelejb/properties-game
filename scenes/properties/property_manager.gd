@@ -1,26 +1,29 @@
 extends Node
+class_name PropertyManager
 
 @onready var phys_body: PhysicsBody3D = $".."
 @onready var property_rotation = $PropertyRotation
 @onready var property_display = $PropertyRotation/PropertyDisplay
 
 
+@export var pm_type = Globals.pm_types.base
+
 var base_collision_mask
 #enum properties {gravity, red, green, blue}
 
 var applied_properties: Array[Globals.properties] = []#[Globals.properties.red]:
 func append_prop(prop: Globals.properties) -> void:
+	if pm_type != Globals.pm_types.base: return
 	if prop not in applied_properties:
 		applied_properties.append(prop)
 		set_properties()
 		
 func append_props(props: Array[Globals.properties]) -> void:
 	for prop in props:
-		if prop not in applied_properties:
-			applied_properties.append(prop)
-	set_properties()
+		append_prop(prop)
 		
 func remove_prop(prop: Globals.properties) -> void:
+	if pm_type != Globals.pm_types.base: return
 	if prop in applied_properties:
 		applied_properties.erase(prop)
 		set_properties()
@@ -64,7 +67,10 @@ func _ready():
 	set_properties()
 	phys_body.add_to_group("CanProperty")
 	if "base_properties" in phys_body:
+		var pmt = pm_type
+		pm_type = Globals.pm_types.base
 		append_props(phys_body.base_properties)
+		pm_type = pmt
 	
 	
 func _process(delta):

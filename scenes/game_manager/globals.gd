@@ -4,6 +4,7 @@ var lol: int = 69
 var low_grav: float = 10
 
 enum properties {gravity, red, green, blue}
+enum pm_types {base, source, sink}
 
 #layers
 var static_objects: int = 1-1
