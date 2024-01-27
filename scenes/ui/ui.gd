@@ -2,15 +2,18 @@ extends CanvasLayer
 
 @export var player: CharacterBody3D
 
-@onready var selected_property = $MarginContainer/SelectedProperty
-@onready var property_label_container = $MarginContainer2/PropertyLabelContainer
+@onready var selected_property = $MarginContainer/VBoxContainer/SelectedProperty
+@onready var property_label_container = $MarginContainer2/VBoxContainer/PropertyLabelContainer
+@onready var self_applied_props_container = $MarginContainer3/VBoxContainer/SelfAppliedPropsContainer
 
 var debug_label_settings = preload("res://scenes/dev/debug_text.tres")
 
 func _ready():
 	player.held_property_changed.connect(update_held_prop)
 	player.stored_properties_changed.connect(update_stored_props)
+	player.pm.applied_properties_changed.connect(update_applied_props)
 	update_stored_props()
+	update_applied_props()
 	
 func update_held_prop(prop):
 	selected_property.text = ""
@@ -20,13 +23,30 @@ func update_held_prop(prop):
 			break
 	pass
 	
+#func update_stored_propss():
+	#for lbl in property_label_container.get_children():
+		#lbl.queue_free()
+	#for key in Globals.properties:
+		#if Globals.properties[key] in player.stored_properties:
+			#var lbl = Label.new()
+			#lbl.text = key
+			#lbl.label_settings = debug_label_settings
+			#property_label_container.add_child(lbl)
+			
 func update_stored_props():
-	for lbl in property_label_container.get_children():
+	update_props(property_label_container,player.stored_properties)
+	
+func update_applied_props():
+	print('updating...')
+	update_props(self_applied_props_container, player.pm.applied_properties)
+			
+func update_props(vbox: VBoxContainer, props: Array[Globals.properties]) -> void:
+	for lbl in vbox.get_children():
 		lbl.queue_free()
 	for key in Globals.properties:
-		if Globals.properties[key] in player.stored_properties:
+		if Globals.properties[key] in props:
 			var lbl = Label.new()
 			lbl.text = key
 			lbl.label_settings = debug_label_settings
-			property_label_container.add_child(lbl)
+			vbox.add_child(lbl)
 	

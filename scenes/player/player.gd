@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var pickup: RayCast3D = $Head/Pickup
 @onready var holding = $Head/Holding
 @onready var property_cast: RayCast3D = $Head/PropertyCast
+@onready var pm = $PropertyManager
 
 var current_speed: float = 5.0
 const jump_vel: float = 8.0
@@ -158,6 +159,13 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("secondary_action"):
 		secondary_action()
+		
+	#pickup
+	if Input.is_action_just_pressed("self_apply_property"):
+		apply_property(pm)
+		
+	if Input.is_action_just_pressed("self_take_property"):
+		take_property(pm)
 	
 	if Input.is_action_just_pressed("pick_up_object"):
 		pick_up()
@@ -196,10 +204,7 @@ func primary_action():
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
-			if collider.pm.pm_type == Globals.pm_types.source: return
-			if held_property != null and held_property not in collider.pm.applied_properties:
-				collider.pm.append_prop(held_property) #as Array[Globals.properties]
-				remove_stored_prop(held_property)
+			apply_property(collider.pm)
 		else:
 			print("property manager not found")
 	
@@ -207,12 +212,22 @@ func secondary_action():
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
-			if collider.pm.pm_type == Globals.pm_types.sink: return
-			for p in collider.pm.applied_properties:
-				if p not in stored_properties:
-					append_stored_prop(p)
-					collider.pm.remove_prop(p) #as Array[Globals.properties]
-					break
+			take_property(collider.pm)
 		else:
 			print("property manager not found")
+			
+func apply_property(pm: PropertyManager) -> void:
+	if pm.pm_type == Globals.pm_types.source: return
+	if held_property != null and held_property not in pm.applied_properties:
+		pm.append_prop(held_property) #as Array[Globals.properties]
+		remove_stored_prop(held_property)
+	
+func take_property(pm: PropertyManager) -> void:
+	if pm.pm_type == Globals.pm_types.sink: return
+	for p in pm.applied_properties:
+		if p not in stored_properties:
+			append_stored_prop(p)
+			pm.remove_prop(p) #as Array[Globals.properties]
+			break
+
 

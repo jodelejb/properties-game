@@ -11,12 +11,14 @@ class_name PropertyManager
 var base_collision_mask
 #enum properties {gravity, red, green, blue}
 
+signal applied_properties_changed()
 var applied_properties: Array[Globals.properties] = []#[Globals.properties.red]:
 func append_prop(prop: Globals.properties) -> void:
 	if pm_type != Globals.pm_types.base: return
 	if prop not in applied_properties:
 		applied_properties.append(prop)
 		set_properties()
+		applied_properties_changed.emit()
 		
 func append_props(props: Array[Globals.properties]) -> void:
 	for prop in props:
@@ -27,6 +29,7 @@ func remove_prop(prop: Globals.properties) -> void:
 	if prop in applied_properties:
 		applied_properties.erase(prop)
 		set_properties()
+		applied_properties_changed.emit()
 
 		
 func set_properties() -> void:
