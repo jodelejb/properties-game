@@ -15,29 +15,17 @@ func _ready():
 	update_stored_props()
 	update_applied_props()
 	
-func update_held_prop(prop):
+func update_held_prop(prop) -> void:
 	selected_property.text = ""
 	for key in Globals.properties:
 		if prop == Globals.properties[key]:
 			selected_property.text = key
 			break
-	pass
-	
-#func update_stored_propss():
-	#for lbl in property_label_container.get_children():
-		#lbl.queue_free()
-	#for key in Globals.properties:
-		#if Globals.properties[key] in player.stored_properties:
-			#var lbl = Label.new()
-			#lbl.text = key
-			#lbl.label_settings = debug_label_settings
-			#property_label_container.add_child(lbl)
 			
-func update_stored_props():
+func update_stored_props() -> void:
 	update_props(property_label_container,player.stored_properties)
 	
-func update_applied_props():
-	print('updating...')
+func update_applied_props() -> void:
 	update_props(self_applied_props_container, player.pm.applied_properties)
 			
 func update_props(vbox: VBoxContainer, props: Array[Globals.properties]) -> void:

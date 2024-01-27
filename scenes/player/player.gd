@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+#node references
 @onready var head = $Head
 @onready var standing_collider: CollisionShape3D = $Standing
 @onready var crouching_collider: CollisionShape3D = $Crouching
@@ -11,6 +12,7 @@ extends CharacterBody3D
 @onready var property_cast: RayCast3D = $Head/PropertyCast
 @onready var pm = $PropertyManager
 
+#movement speeds
 var current_speed: float = 5.0
 const jump_vel: float = 8.0
 
@@ -26,12 +28,13 @@ var direction: Vector3 = Vector3.ZERO
 var head_height: float = 1.8
 var crouching_depth: float = -1.0
 
+#held object parameters. Maybe to move to phys object?
 var held_object: RigidBody3D = null
 var held_object_speed: float = 10.0
 
 signal stored_properties_changed
 signal held_property_changed
-var stored_properties: Array[Globals.properties] = [] # [Globals.properties.gravity, Globals.properties.red, Globals.properties.green, Globals.properties.blue]
+var stored_properties: Array[Globals.properties] = []
 func append_stored_prop(prop: Globals.properties) -> void:
 	if prop not in stored_properties:
 		stored_properties.append(prop)
@@ -59,7 +62,7 @@ var held_property = null:
 		held_property_changed.emit(held_property)
 		
 
-#states
+#movement states
 enum state {walking, sprinting, crouching, sliding, NULL}
 var curr_state = state.NULL:
 	get:
@@ -68,7 +71,6 @@ var curr_state = state.NULL:
 		curr_state = value
 
 #head bobbing:
-#var head_bob_speed: float = 0
 var head_bob_intense: float = 0
 
 const head_bob_key: Array = [state.crouching, state.walking, state.sprinting]
@@ -82,15 +84,15 @@ var head_bob_idx: float = 0.0
 
 		
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+#set the grav on the player to be the default project gravity
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
 
 func _input(event):
+	# mouse movement to camera movement
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-1 * event.relative.x * mouse_sense))
 		head.rotate_x(deg_to_rad(-1 * event.relative.y * mouse_sense))
@@ -170,6 +172,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("pick_up_object"):
 		pick_up()
 		
+	#move the held object in front of the player. could be useful to move to phys object instead
 	if held_object != null:
 		var a = held_object.global_position
 		var b = holding.global_position
@@ -179,18 +182,19 @@ func _physics_process(delta):
 	#scroll through properties
 	var curridx = stored_properties.find(held_property,0)
 		
+	#scroll through held properties to choose which to apply
 	if Input.is_action_just_pressed("prop_rotate_forward"):
 		if curridx != len(stored_properties)-1:
 			held_property = stored_properties[curridx+1]
 		else:
-			held_property = stored_properties[0]
-			
+			held_property = stored_properties[0]	
 	if Input.is_action_just_pressed("prop_rotate_backwards"):
 		if curridx != 0:
 			held_property = stored_properties[curridx-1]
 		else:
 			held_property = stored_properties[-1]
 	
+#code responsible for picking up and dropping obejcts
 func pick_up():
 	if held_object != null:
 		held_object = null
@@ -199,7 +203,8 @@ func pick_up():
 	if collider != null:
 		print("attempting to pick up " + collider.name)
 		held_object = collider
-		
+
+#primary action. Likely to include more functions later
 func primary_action():
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
@@ -215,14 +220,19 @@ func secondary_action():
 			take_property(collider.pm)
 		else:
 			print("property manager not found")
-			
+		
+#applies a property to the selected property manager. removes it from stored when done
 func apply_property(pm: PropertyManager) -> void:
+	#sources are infinite property resources and hence cannot receive a property
 	if pm.pm_type == Globals.pm_types.source: return
 	if held_property != null and held_property not in pm.applied_properties:
 		pm.append_prop(held_property) #as Array[Globals.properties]
 		remove_stored_prop(held_property)
 	
+#removes a property from the selected property manager in order of the list of properties
+#likely will need to be refactored to allow for choice later
 func take_property(pm: PropertyManager) -> void:
+	#sinks are an infinite well of one property and thus cannot have their properties removed
 	if pm.pm_type == Globals.pm_types.sink: return
 	for p in pm.applied_properties:
 		if p not in stored_properties:
