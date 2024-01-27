@@ -1,9 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://q6cw0b6ybd4k"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_qn00k"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_wu3pr"]
-font_size = 40
+[ext_resource type="LabelSettings" uid="uid://cpmtqydsji5ul" path="res://scenes/dev/debug_text.tres" id="2_1hq0e"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_qn00k")
@@ -22,6 +20,19 @@ theme_override_constants/margin_bottom = 10
 
 [node name="SelectedProperty" type="Label" parent="MarginContainer"]
 layout_mode = 2
-text = "
-"
-label_settings = SubResource("LabelSettings_wu3pr")
+text = "ActiveProp"
+label_settings = ExtResource("2_1hq0e")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PropertyLabelContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2

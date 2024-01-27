@@ -30,8 +30,27 @@ var held_object_speed: float = 10.0
 
 signal stored_properties_changed
 signal held_property_changed
-var stored_properties: Array[Globals.properties] = [Globals.properties.gravity, Globals.properties.red, Globals.properties.green, Globals.properties.blue]
-var held_property: Globals.properties:
+var stored_properties: Array[Globals.properties] = [] # [Globals.properties.gravity, Globals.properties.red, Globals.properties.green, Globals.properties.blue]
+func append_stored_prop(prop: Globals.properties) -> void:
+	if prop not in stored_properties:
+		stored_properties.append(prop)
+		if len(stored_properties) == 1: held_property = prop
+		stored_properties_changed.emit()
+		
+func append_stored_props(props: Array[Globals.properties]) -> void:
+	for prop in props:
+		append_stored_prop(prop)
+		
+func remove_stored_prop(prop: Globals.properties) -> void:
+	if prop in stored_properties:
+		stored_properties.erase(prop)
+		if len(stored_properties) == 0: 
+			held_property = null
+		elif prop == held_property:
+			held_property = stored_properties[0]
+		stored_properties_changed.emit()
+
+var held_property = null:
 	get:
 		return held_property
 	set(value):
@@ -68,6 +87,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -177,6 +197,7 @@ func primary_action():
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
 			collider.pm.append_prop(held_property) #as Array[Globals.properties]
+			remove_stored_prop(held_property)
 		else:
 			print("property manager not found")
 	
@@ -184,7 +205,12 @@ func secondary_action():
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
-			collider.pm.remove_prop(held_property) #as Array[Globals.properties]
+			for p in collider.pm.applied_properties:
+				if p not in stored_properties:
+					append_stored_prop(collider.pm.applied_properties[0])
+					collider.pm.remove_prop(collider.pm.applied_properties[0]) #as Array[Globals.properties]
+					break
+				
 		else:
 			print("property manager not found")
 

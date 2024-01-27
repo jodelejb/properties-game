@@ -3,6 +3,8 @@ class_name PhysObject
 
 @onready var pm = $PropertyManager
 
+@export var base_properties: Array[Globals.properties]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

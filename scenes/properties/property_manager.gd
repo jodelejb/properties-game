@@ -14,6 +14,12 @@ func append_prop(prop: Globals.properties) -> void:
 		applied_properties.append(prop)
 		set_properties()
 		
+func append_props(props: Array[Globals.properties]) -> void:
+	for prop in props:
+		if prop not in applied_properties:
+			applied_properties.append(prop)
+	set_properties()
+		
 func remove_prop(prop: Globals.properties) -> void:
 	if prop in applied_properties:
 		applied_properties.erase(prop)
@@ -57,6 +63,8 @@ func _ready():
 	phys_body.collision_mask += Globals.get_collision([Globals.red, Globals.blue, Globals.green])
 	set_properties()
 	phys_body.add_to_group("CanProperty")
+	if "base_properties" in phys_body:
+		append_props(phys_body.base_properties)
 	
 	
 func _process(delta):
