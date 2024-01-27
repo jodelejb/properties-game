@@ -8,7 +8,7 @@ extends CharacterBody3D
 @onready var cam = $Head/Eyes/Camera3D
 @onready var eyes: Node3D = $Head/Eyes
 @onready var pickup: RayCast3D = $Head/Pickup
-@onready var holding = $Head/Holding
+@onready var holding: Marker3D = $Head/Holding
 @onready var property_cast: RayCast3D = $Head/PropertyCast
 @onready var pm = $PropertyManager
 
@@ -31,6 +31,7 @@ var crouching_depth: float = -1.0
 #held object parameters. Maybe to move to phys object?
 var held_object: RigidBody3D = null
 var held_object_speed: float = 10.0
+var throw_speed: float = 15.0
 
 signal stored_properties_changed
 signal held_property_changed
@@ -96,7 +97,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-1 * event.relative.x * mouse_sense))
 		head.rotate_x(deg_to_rad(-1 * event.relative.y * mouse_sense))
-		head.rotation.x = clamp(head.rotation.x,deg_to_rad(-89),deg_to_rad(89))
+		head.rotation.x = clamp(head.rotation.x,deg_to_rad(-90),deg_to_rad(90))
 		pass
 
 func _physics_process(delta):
@@ -171,6 +172,14 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("pick_up_object"):
 		pick_up()
+		
+	if Input.is_action_just_pressed("throw"):
+		if held_object == null: return
+		var look_vec = (holding.global_position - head.global_position).normalized()
+		var obj_speed = held_object.linear_velocity.length()
+		if obj_speed < throw_speed:
+			held_object.linear_velocity += look_vec*(throw_speed - obj_speed)
+		held_object = null
 		
 	#move the held object in front of the player. could be useful to move to phys object instead
 	if held_object != null:
