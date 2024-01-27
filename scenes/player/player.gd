@@ -196,8 +196,9 @@ func primary_action():
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
-			collider.pm.append_prop(held_property) #as Array[Globals.properties]
-			remove_stored_prop(held_property)
+			if held_property != null and held_property not in collider.pm.applied_properties:
+				collider.pm.append_prop(held_property) #as Array[Globals.properties]
+				remove_stored_prop(held_property)
 		else:
 			print("property manager not found")
 	
@@ -207,10 +208,9 @@ func secondary_action():
 		if "pm" in collider:
 			for p in collider.pm.applied_properties:
 				if p not in stored_properties:
-					append_stored_prop(collider.pm.applied_properties[0])
-					collider.pm.remove_prop(collider.pm.applied_properties[0]) #as Array[Globals.properties]
+					append_stored_prop(p)
+					collider.pm.remove_prop(p) #as Array[Globals.properties]
 					break
-				
 		else:
 			print("property manager not found")
 
