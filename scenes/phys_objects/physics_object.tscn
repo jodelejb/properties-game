@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpfiv7lkgm073"]
+[gd_scene load_steps=4 format=3 uid="uid://dpfiv7lkgm073"]
 
 [ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="1_7kno0"]
 [ext_resource type="Script" path="res://scenes/phys_objects/physics_object.gd" id="1_whsrh"]
+[ext_resource type="PackedScene" uid="uid://cy0wpfj4vv2g7" path="res://scenes/properties/hold_manager.tscn" id="3_n3k04"]
 
 [node name="PhysicsObject" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_whsrh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-
 [node name="PropertyManager" parent="." instance=ExtResource("1_7kno0")]
+
+[node name="HoldManager" parent="." instance=ExtResource("3_n3k04")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]

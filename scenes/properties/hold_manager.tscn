@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy0wpfj4vv2g7"]
+
+[ext_resource type="Script" path="res://scenes/properties/hold_manager.gd" id="1_y6fvp"]
+
+[node name="HoldManager" type="Node"]
+script = ExtResource("1_y6fvp")

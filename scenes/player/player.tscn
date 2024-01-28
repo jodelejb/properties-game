@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8fy34txeuvpw"]
+[gd_scene load_steps=6 format=3 uid="uid://b8fy34txeuvpw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_jcji3"]
 [ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="2_xhnro"]
+[ext_resource type="PackedScene" uid="uid://cy0wpfj4vv2g7" path="res://scenes/properties/hold_manager.tscn" id="3_xagrw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r4vur"]
 
@@ -12,6 +13,11 @@ height = 1.0
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_jcji3")
+
+[node name="PropertyManager" parent="." instance=ExtResource("2_xhnro")]
+
+[node name="HoldManager" parent="." node_paths=PackedStringArray("hold_point") instance=ExtResource("3_xagrw")]
+hold_point = NodePath("../Head/Holding")
 
 [node name="Standing" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -42,5 +48,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 [node name="HeightCheck" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 target_position = Vector3(0, 1.9, 0)
-
-[node name="PropertyManager" parent="." instance=ExtResource("2_xhnro")]

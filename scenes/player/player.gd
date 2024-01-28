@@ -11,6 +11,8 @@ extends CharacterBody3D
 @onready var holding: Marker3D = $Head/Holding
 @onready var property_cast: RayCast3D = $Head/PropertyCast
 @onready var pm = $PropertyManager
+@onready var hm = $HoldManager
+
 
 #movement speeds
 var current_speed: float = 5.0
@@ -163,30 +165,25 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("secondary_action"):
 		secondary_action()
 		
-	#pickup
+	
 	if Input.is_action_just_pressed("self_apply_property"):
 		apply_property(pm)
 		
 	if Input.is_action_just_pressed("self_take_property"):
 		take_property(pm)
 	
+	#pickup
 	if Input.is_action_just_pressed("pick_up_object"):
-		pick_up()
+		hm.pick_up(pickup.get_collider())
 		
 	if Input.is_action_just_pressed("throw"):
-		if held_object == null: return
-		var look_vec = (holding.global_position - head.global_position).normalized()
-		var obj_speed = held_object.linear_velocity.length()
-		if obj_speed < throw_speed:
-			held_object.linear_velocity += look_vec*(throw_speed - obj_speed)
-		held_object = null
+		hm.throw((holding.global_position - head.global_position).normalized())
 		
 	#move the held object in front of the player. could be useful to move to phys object instead
 	if held_object != null:
 		var a = held_object.global_position
 		var b = holding.global_position
 		held_object.linear_velocity = (b-a) * held_object_speed
-		pass
 		
 	#scroll through properties
 	var curridx = stored_properties.find(held_property,0)
@@ -202,16 +199,6 @@ func _physics_process(delta):
 			held_property = stored_properties[curridx-1]
 		else:
 			held_property = stored_properties[-1]
-	
-#code responsible for picking up and dropping obejcts
-func pick_up():
-	if held_object != null:
-		held_object = null
-		return
-	var collider = pickup.get_collider()
-	if collider != null:
-		print("attempting to pick up " + collider.name)
-		held_object = collider
 
 #primary action. Likely to include more functions later
 func primary_action():

@@ -2,6 +2,7 @@ extends RigidBody3D
 class_name PhysObject
 
 @onready var pm = $PropertyManager
+@onready var hm = $HoldManager
 
 @export var base_properties: Array[Globals.properties]
 
