@@ -2,29 +2,32 @@ extends Node
 
 @onready var phys_body: PhysicsBody3D = $".."
 
-signal held_object_changed(current_held_object: PhysicsBody3D)
 var held_object: PhysicsBody3D:
 	get:
 		return held_object
 	set(value):
+		if held_object == value: return
+		#var old_held_object = held_object
+		if held_object != null: held_object.hm.holder = null
 		held_object = value
-		held_object_changed.emit(phys_body)
-func sync_held_object(current_holder: PhysicsBody3D):
-	pass
+		if held_object != null: held_object.hm.holder = phys_body
 
-signal holder_changed(current_holder: PhysicsBody3D)
 var holder: PhysicsBody3D:
 	get:
 		return holder
 	set(value):
+		if holder == value: return
+		#if holder != null: holder.hm.held_object = phys_body
 		holder = value
-		holder_changed.emit(holder)
-func sync_holder(current_held_object: PhysicsBody3D):
-	pass
+		if holder != null: holder.hm.held_object = phys_body
+		print("holder set to " + str(holder))
 
 @export var held_object_speed: float = 10.0
 @export var throw_speed: float = 15.0
 @export var hold_point: Marker3D
+
+func _ready():
+	phys_body.add_to_group("Holding")
 
 func _physics_process(delta):
 	follow()
@@ -36,7 +39,8 @@ func pick_up(collider):
 	#var collider = pickup.get_collider()
 	if collider != null:
 		print("attempting to pick up " + collider.name)
-		held_object = collider
+		if collider in get_tree().get_nodes_in_group("Holding") and "hm" in collider:
+			held_object = collider
 
 func throw(throw_vec: Vector3):
 	if held_object == null: return
@@ -47,7 +51,7 @@ func throw(throw_vec: Vector3):
 	held_object = null
 	
 func follow():
-	if held_object != null:
-		var a = held_object.global_position
-		var b = hold_point.global_position
-		held_object.linear_velocity = (b-a) * held_object_speed
+	if holder != null:
+		var a = phys_body.global_position
+		var b = holder.hm.hold_point.global_position
+		phys_body.linear_velocity = (b-a) * held_object_speed

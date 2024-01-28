@@ -84,9 +84,6 @@ const head_bob_intensity: Array[float] = [0.05, 0.1, 0.2]
 var head_bob_vec: Vector2 = Vector2.ZERO
 var head_bob_idx: float = 0.0
 
-
-		
-
 #set the grav on the player to be the default project gravity
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
