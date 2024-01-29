@@ -14,7 +14,8 @@ func _ready():
 func spawn():
 	var obj = object.instantiate()
 	#var obj = load(object_to_spawn).instantiate()
-	obj.global_position = global_position
-	parent_node.add_child.call_deferred(obj)
+	add_child.call_deferred(obj)
+	await obj.tree_entered
+	#obj.global_position = global_position
 	if "destroyed" in obj:
 		obj.destroyed.connect(spawn)

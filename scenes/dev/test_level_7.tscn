@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://3i616awhs77l"]
+
+[ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_xgl1s"]
+[ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_4fckg"]
+[ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_4xhys"]
+[ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="6_d2ahi"]
+[ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="7_mcghu"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="7_sgwic"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2t7"]
+render_priority = 0
+shader = ExtResource("1_xgl1s")
+shader_parameter/albedo = Vector4(0.6, 0.6, 0.6, 1)
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/point_size = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_w7eqo"]
+material = SubResource("ShaderMaterial_iy2t7")
+size = Vector3(10, 0.1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_egjdm"]
+size = Vector3(10, 0.1, 5)
+
+[node name="TestLevel7" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_w7eqo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_egjdm")
+
+[node name="LevelLoader" parent="." instance=ExtResource("2_4fckg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2396, 0, 0)
+level_to_load = "res://scenes/dev/test_level_3.tscn"
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("3_4xhys")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.24294, 0, 0)
+
+[node name="KillBarrier" parent="." instance=ExtResource("7_sgwic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.47975, 0)
+
+[node name="ColoredBarrier" parent="." instance=ExtResource("6_d2ahi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.26089, 0, -0.0251412)
+active_colors = Array[int]([0])
+
+[node name="PropertySource" parent="." instance=ExtResource("7_mcghu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09799, 0.652404, -1.22864)
+base_properties = Array[int]([1])

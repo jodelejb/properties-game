@@ -13,7 +13,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if global_position.y < -150: destroy()
 	
 func destroy():
 	queue_free()

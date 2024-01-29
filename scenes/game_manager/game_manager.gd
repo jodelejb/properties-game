@@ -15,9 +15,6 @@ func load_level(stage):
 		await scene.tree_exited
 	scene = stage.instantiate()
 	add_child(scene)
-	#var spawn = get_tree().get_first_node_in_group("PlayerSpawn")
-	#player.global_position = spawn.global_position
-	#player.rotation = spawn.rotation
 	reset_player()
 	
 	for loader in get_tree().get_nodes_in_group("Loader"):

@@ -1,0 +1,91 @@
+[gd_scene load_steps=15 format=3 uid="uid://c2sorf1fqymvw"]
+
+[ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_y018i"]
+[ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_goore"]
+[ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_bornt"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_sm3t3"]
+[ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="5_sic6g"]
+[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/door.tscn" id="6_kvgt7"]
+[ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="7_fpevn"]
+[ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="8_4fp63"]
+[ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="9_mfsdl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2t7"]
+render_priority = 0
+shader = ExtResource("1_y018i")
+shader_parameter/albedo = Vector4(0.6, 0.6, 0.6, 1)
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/point_size = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_w7eqo"]
+material = SubResource("ShaderMaterial_iy2t7")
+size = Vector3(10, 0.1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_egjdm"]
+size = Vector3(10, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e0g3k"]
+size = Vector3(2, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ymb2"]
+size = Vector3(2, 1, 5)
+
+[node name="TestLevel5" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_w7eqo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_egjdm")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4488, -0.05, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_w7eqo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_egjdm")
+
+[node name="LevelLoader" parent="." instance=ExtResource("2_goore")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.247426, 0.0175867, 3.42665)
+level_to_load = "res://scenes/dev/test_level_6.tscn"
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("3_bornt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.24294, 0, 0)
+
+[node name="KillBarrier" parent="." instance=ExtResource("4_sm3t3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.991, 0)
+
+[node name="PropertySource" parent="." instance=ExtResource("5_sic6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87042, 0.604914, -1.91687)
+base_properties = Array[int]([0])
+
+[node name="Door" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("6_kvgt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19763, 0, 2.53271)
+buttons = [NodePath("../FloorButton")]
+
+[node name="GravCannon" parent="." instance=ExtResource("7_fpevn")]
+transform = Transform3D(0.677248, 0.735754, 0, -0.735754, 0.677248, 0, 0, 0, 1, 2.30529, 0, 0.116242)
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("8_4fp63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16626, 2.66744, 0.0759873)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("..")
+
+[node name="FloorButton" parent="." instance=ExtResource("9_mfsdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.3484, 0, 0)
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5996, 0.47912, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+mesh = SubResource("BoxMesh_e0g3k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_6ymb2")
