@@ -15,9 +15,18 @@ func load_level(stage):
 		await scene.tree_exited
 	scene = stage.instantiate()
 	add_child(scene)
-	var spawn = get_tree().get_first_node_in_group("PlayerSpawn")
-	player.global_position = spawn.global_position
-	player.rotation = spawn.rotation
+	#var spawn = get_tree().get_first_node_in_group("PlayerSpawn")
+	#player.global_position = spawn.global_position
+	#player.rotation = spawn.rotation
+	reset_player()
 	
 	for loader in get_tree().get_nodes_in_group("Loader"):
 		loader.load_level.connect(load_level)
+		
+	for kb in get_tree().get_nodes_in_group("KillBarrier"):
+		kb.player_reset.connect(reset_player)
+		
+func reset_player():
+	var spawn = get_tree().get_first_node_in_group("PlayerSpawn")
+	player.global_position = spawn.global_position
+	player.rotation = spawn.rotation

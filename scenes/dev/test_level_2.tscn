@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://hpcvr6okdq4p"]
+[gd_scene load_steps=11 format=3 uid="uid://hpcvr6okdq4p"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_mtvs0"]
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_kn2xg"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="4_uupaj"]
+[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/door.tscn" id="4_yne3u"]
+[ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="5_3oxso"]
+[ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="6_vcton"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="7_u11ja"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2t7"]
 render_priority = 0
@@ -37,3 +41,18 @@ level_to_load = "res://scenes/dev/test_stage.tscn"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("4_uupaj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.24294, 0, 0)
+
+[node name="Door" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("4_yne3u")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.02339, 0, 0)
+buttons = [NodePath("../FloorButton")]
+
+[node name="FloorButton" parent="." instance=ExtResource("5_3oxso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282356, 0, -1.46291)
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("6_vcton")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.799405, 1.82707, 1.6271)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("..")
+
+[node name="KillBarrier" parent="." instance=ExtResource("7_u11ja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.47975, 0)

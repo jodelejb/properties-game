@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1q3ow1d61jb4"]
+[gd_scene load_steps=8 format=3 uid="uid://c1q3ow1d61jb4"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_dp8vn"]
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_wpln0"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_7hurn"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_kjx0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2t7"]
 render_priority = 0
@@ -37,3 +38,6 @@ level_to_load = "res://scenes/dev/test_level_2.tscn"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_7hurn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.24294, 0, 0)
+
+[node name="KillBarrier" parent="." instance=ExtResource("4_kjx0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.991, 0)

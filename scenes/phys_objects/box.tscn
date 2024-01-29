@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dpfiv7lkgm073" path="res://scenes/phys_objects/physics_object.tscn" id="1_j4703"]
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="2_5rmsm"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rahsx"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgxhi"]
 render_priority = 0
 shader = ExtResource("2_5rmsm")
@@ -15,12 +17,10 @@ shader_parameter/point_size = null
 [sub_resource type="BoxMesh" id="BoxMesh_e40dq"]
 material = SubResource("ShaderMaterial_mgxhi")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rahsx"]
-
 [node name="Box" instance=ExtResource("1_j4703")]
-
-[node name="MeshInstance3D" parent="." index="0"]
-mesh = SubResource("BoxMesh_e40dq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("BoxShape3D_rahsx")
+
+[node name="MeshInstance3D" parent="." index="3"]
+mesh = SubResource("BoxMesh_e40dq")

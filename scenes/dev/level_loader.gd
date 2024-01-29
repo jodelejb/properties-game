@@ -1,10 +1,17 @@
 extends Node3D
 
 @export_file("*.tscn") var level_to_load: String
+@onready var area_3d: Area3D = $Area3D
+@onready var delayed_start = $DelayedStart
+
+var enabled: bool = false
 
 signal load_level(lvl)
 
 func _on_area_3d_body_entered(body):
-	print("player entered")
+	if not enabled: return
 	load_level.emit(load(level_to_load))
-	pass # Replace with function body.
+
+
+func _on_delayed_start_timeout():
+	enabled = true
