@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsk26snggm5fn"]
+[gd_scene load_steps=19 format=3 uid="uid://bsk26snggm5fn"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_goxr4"]
 [ext_resource type="PackedScene" uid="uid://dpuif60enlfsp" path="res://scenes/phys_objects/ball.tscn" id="2_4qbnp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://63ybhc1xnweb" path="res://scenes/static_objects/property_sink.tscn" id="6_mfwxq"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="7_wbdvw"]
 [ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/door.tscn" id="7_xb1km"]
+[ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="9_aakh0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7i30x"]
 render_priority = 0
@@ -207,3 +208,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90483, 0, -6.845)
 [node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("7_xb1km")]
 transform = Transform3D(-0.311638, 0, -0.950201, 0, 1, 0, 0.950201, 0, -0.311638, 9.79673, 2.38419e-07, 0.340602)
 buttons = [NodePath("../FloorButton"), NodePath("../FloorButton2")]
+
+[node name="GravCannon" parent="StaticProps" instance=ExtResource("9_aakh0")]
+transform = Transform3D(0.654762, -0.421787, 0.627202, 0.541547, 0.840671, 0, -0.52727, 0.339659, 0.778857, 4.68358, -4.76837e-07, -3.36941)

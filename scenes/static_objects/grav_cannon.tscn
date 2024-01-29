@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy5qu0a6rr1mq"]
+
+[ext_resource type="PackedScene" uid="uid://cy0wpfj4vv2g7" path="res://scenes/properties/hold_manager.tscn" id="1_0ne4r"]
+[ext_resource type="Script" path="res://scenes/static_objects/grav_cannon.gd" id="1_844if"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_e0t4y"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f81n7"]
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ummxm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3wjmy"]
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lxn3l"]
+height = 1.0
+
+[node name="GravCannon" type="StaticBody3D"]
+script = ExtResource("1_844if")
+
+[node name="HoldManager" parent="." node_paths=PackedStringArray("hold_point") instance=ExtResource("1_0ne4r")]
+held_object_speed = 20.0
+throw_speed = 30.0
+hold_point = NodePath("../HoldPoint")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_e0t4y")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CylinderMesh_f81n7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ummxm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_3wjmy")
+
+[node name="GrabRange" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 14
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_lxn3l")
+
+[node name="HoldPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ThrowTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
