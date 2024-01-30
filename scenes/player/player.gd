@@ -187,11 +187,13 @@ func _physics_process(delta):
 		
 	#scroll through held properties to choose which to apply
 	if Input.is_action_just_pressed("prop_rotate_forward"):
+		if len(stored_properties) == 0: return
 		if curridx != len(stored_properties)-1:
 			held_property = stored_properties[curridx+1]
 		else:
 			held_property = stored_properties[0]	
 	if Input.is_action_just_pressed("prop_rotate_backwards"):
+		if len(stored_properties) == 0: return
 		if curridx != 0:
 			held_property = stored_properties[curridx-1]
 		else:
