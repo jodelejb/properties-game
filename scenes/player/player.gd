@@ -56,6 +56,10 @@ func remove_stored_prop(prop: Globals.properties) -> void:
 		elif prop == held_property:
 			held_property = stored_properties[0]
 		stored_properties_changed.emit()
+		
+func remove_all_stored_props():
+	for i in range(len(stored_properties)-1,-1,-1):
+		remove_stored_prop(stored_properties[i])
 
 var held_property = null:
 	get:

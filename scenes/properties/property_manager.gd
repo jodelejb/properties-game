@@ -30,6 +30,10 @@ func remove_prop(prop: Globals.properties) -> void:
 		applied_properties.erase(prop)
 		set_properties()
 		applied_properties_changed.emit()
+		
+func remove_all_properties():
+	for i in range(len(applied_properties)-1,-1,-1):
+		remove_prop(applied_properties[i])
 
 		
 func set_properties() -> void:
