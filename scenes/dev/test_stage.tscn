@@ -160,12 +160,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48181, 0, 6.73739)
 active_colors = Array[int]([0])
 
 [node name="ColoredBarrier2" parent="Barriers" instance=ExtResource("4_28jpm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.08741, -4.76837e-07, 6.75893)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31667, 0, 6.73739)
 active_colors = Array[int]([1])
 
 [node name="ColoredBarrier3" parent="Barriers" instance=ExtResource("4_28jpm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50037, 0, 6.62114)
-active_colors = Array[int]([2])
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.89289, 0, 6.73739)
+active_colors = Array[int]([2, 1])
+
+[node name="ColoredBarrier4" parent="Barriers" instance=ExtResource("4_28jpm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3902, 0, 6.73739)
+active_colors = Array[int]([0, 1, 2])
 
 [node name="PropertyGenerators" type="Node3D" parent="."]
 

@@ -23,18 +23,45 @@ func update_held_prop(prop) -> void:
 			break
 			
 func update_stored_props() -> void:
-	update_props(property_label_container,player.stored_properties)
+	update_props(property_label_container,player.stored_properties, false)
 	
 func update_applied_props() -> void:
-	update_props(self_applied_props_container, player.pm.applied_properties)
+	update_props(self_applied_props_container, player.pm.applied_properties, true)
 			
-func update_props(vbox: VBoxContainer, props: Array[Globals.properties]) -> void:
+func update_props(vbox: VBoxContainer, props: Array[Globals.properties], combine_colors: bool) -> void:
 	for lbl in vbox.get_children():
 		lbl.queue_free()
+	if combine_colors:
+		var color = update_color(props)
+		if color != "":
+			var lbl = Label.new()
+			lbl.text = color
+			lbl.label_settings = debug_label_settings
+			vbox.add_child(lbl)
 	for key in Globals.properties:
+		if combine_colors: if Globals.properties[key] in [Globals.properties.red,Globals.properties.green,Globals.properties.blue]: continue
 		if Globals.properties[key] in props:
 			var lbl = Label.new()
 			lbl.text = key
 			lbl.label_settings = debug_label_settings
 			vbox.add_child(lbl)
-	
+			
+func update_color(applied_properties: Array[Globals.properties]) -> String:
+	if Globals.properties.red in applied_properties:
+		if Globals.properties.blue in applied_properties:
+			if Globals.properties.green in applied_properties:
+				return "White"
+			else:
+				return "Magenta"
+		elif Globals.properties.green in applied_properties:
+			return "Yellow"
+		else:
+			return "Red"
+	elif Globals.properties.green in applied_properties:
+		if Globals.properties.blue in applied_properties:
+			return "Cyan"
+		else:
+			return "Green"
+	elif Globals.properties.blue in applied_properties:
+		return "Blue"
+	return ""

@@ -52,20 +52,33 @@ func set_properties() -> void:
 			phys_body.gravity_scale = 1.0
 		
 	#barrier collision properties
-	var color_col = []
-	if Globals.properties.red not in applied_properties:
-		color_col.append(Globals.red)
-	if Globals.properties.green not in applied_properties:
-		color_col.append(Globals.green)
-	if Globals.properties.blue not in applied_properties:
-		color_col.append(Globals.blue)
+	var color_col = [Globals.red,Globals.green,Globals.blue,Globals.cyan,Globals.magenta,Globals.yellow,Globals.white]
 		
 	if Globals.properties.red in applied_properties:
-		property_display.text += " Red"
-	if Globals.properties.green in applied_properties:
-		property_display.text += " Green"
-	if Globals.properties.blue in applied_properties:
+		if Globals.properties.blue in applied_properties:
+			if Globals.properties.green in applied_properties:
+				color_col.erase(Globals.white)
+				property_display.text += " White"
+			else:
+				color_col.erase(Globals.magenta)
+				property_display.text += " Magenta"
+		elif Globals.properties.green in applied_properties:
+			color_col.erase(Globals.yellow)
+			property_display.text += " Yellow"
+		else:
+			color_col.erase(Globals.red)
+			property_display.text += " Red"
+	elif Globals.properties.green in applied_properties:
+		if Globals.properties.blue in applied_properties:
+			color_col.erase(Globals.cyan)
+			property_display.text += " Cyan"
+		else:
+			color_col.erase(Globals.green)
+			property_display.text += " Green"
+	elif Globals.properties.blue in applied_properties:
+		color_col.erase(Globals.blue)
 		property_display.text += " Blue"
+	print(color_col)
 	phys_body.collision_mask = base_collision_mask + Globals.get_collision(color_col)
 
 func _ready():

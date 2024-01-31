@@ -120,6 +120,10 @@ throw={
 3d_physics/layer_6="Red"
 3d_physics/layer_7="Green"
 3d_physics/layer_8="Blue"
+3d_physics/layer_9="cyan"
+3d_physics/layer_10="magenta"
+3d_physics/layer_11="yellow"
+3d_physics/layer_12="white"
 
 [physics]
 
