@@ -65,7 +65,8 @@ func throw(throw_vec: Vector3):
 	elif "velocity" in held_object:
 		var obj_speed = held_object.velocity.length()
 		if obj_speed < throw_speed:
-			held_object.velocity += throw_vec*(throw_speed - obj_speed)
+			#held_object.velocity += throw_vec*(throw_speed - obj_speed)
+			held_object.applied_velocities.append([throw_vec*(throw_speed - obj_speed), held_object.vel_expiration.gravity, false])
 	held_object = null
 	
 func follow(delta):
@@ -75,4 +76,5 @@ func follow(delta):
 		if "linear_velocity" in phys_body:
 			phys_body.linear_velocity = (b-a) * held_object_speed * delta
 		if "velocity" in phys_body:
-			phys_body.velocity = (b-a) * held_object_speed * delta
+			#phys_body.velocity = (b-a) * held_object_speed * delta
+			phys_body.applied_velocities.append([(b-a) * held_object_speed * delta, phys_body.vel_expiration.instant, false])

@@ -26,6 +26,7 @@ var mouse_sense: float = 0.03
 
 var lerp_speed: float = 10.0
 var direction: Vector3 = Vector3.ZERO
+var input_dir
 
 var head_height: float = 1.8
 var crouching_depth: float = -1.0
@@ -76,6 +77,11 @@ var curr_state = state.NULL:
 		return curr_state
 	set(value):
 		curr_state = value
+		
+#added force expiration types
+enum vel_expiration {floor, gravity, instant}
+var applied_velocities = []
+var gravity_has_been_applied = false
 
 #head bobbing:
 var head_bob_intense: float = 0
@@ -104,7 +110,7 @@ func _input(event):
 		pass
 
 func _physics_process(delta):
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	input_dir = Input.get_vector("left", "right", "forward", "backward")
 	
 	#movement states
 	if Input.is_action_pressed("crouch"):
@@ -141,22 +147,23 @@ func _physics_process(delta):
 	else:
 		eyes.position = lerp(eyes.position,Vector3.ZERO,lerp_speed*delta)
 	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
+	## Add the gravity.
+	#if not is_on_floor():
+		#velocity.y -= gravity * delta
+#
+	## Handle jump.
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+		#velocity.y = jump_vel
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_vel
-
-	#Apply movement
-	direction = lerp(direction,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
-	if direction:
-		velocity.x = direction.x * current_speed
-		velocity.z = direction.z * current_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, current_speed)
-		velocity.z = move_toward(velocity.z, 0, current_speed)
+	##Apply movement
+	#direction = lerp(direction,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
+	#if direction:
+		#velocity.x = direction.x * current_speed
+		#velocity.z = direction.z * current_speed
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, current_speed)
+		#velocity.z = move_toward(velocity.z, 0, current_speed)
+	apply_velocities(delta)
 	move_and_slide()
 	
 	#pickup
@@ -202,6 +209,72 @@ func _physics_process(delta):
 			held_property = stored_properties[curridx-1]
 		else:
 			held_property = stored_properties[-1]
+
+func apply_velocities(delta):
+	velocity = Vector3.ZERO
+	gravity_has_been_applied = false
+	
+	### Add the gravity.
+	if not is_on_floor():
+		applied_velocities.append([Vector3.ZERO, vel_expiration.gravity, false])
+		#velocity.y -= gravity * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		applied_velocities.append([Vector3(0,1,0) * jump_vel, vel_expiration.gravity, false])
+		#velocity.y += jump_vel
+		
+	#Apply movement input
+	direction = lerp(direction,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
+	if direction:
+		velocity.x += direction.x * current_speed
+		velocity.z += direction.z * current_speed
+	else:
+		velocity.x += move_toward(velocity.x, 0, current_speed)
+		velocity.z += move_toward(velocity.z, 0, current_speed)
+		
+	#apply additional forces
+	var ref_grav = gravity
+	if hm.holder != null: gravity = 0
+	for i in range(len(applied_velocities)-1,-1,-1):
+		var applied = applied_velocities[i]
+		var res = modify_force(delta,applied[0], applied[1], applied[2])
+		print(res)
+		var vel = res[0]
+		var expired = res[3]
+		var wild = res[2]
+		var newvel = [res[0],res[1],res[2]]
+		if expired:
+			applied_velocities.erase(applied)
+			continue
+		else:
+			velocity += vel
+		if applied != newvel:
+			applied_velocities.erase(applied)
+			applied_velocities.append(newvel)
+	gravity = ref_grav
+			
+func modify_force(delta: float, vel: Vector3, type: vel_expiration, wildcard) -> Array:
+	var expire = false
+	if type == vel_expiration.floor:
+		if is_on_floor():
+			expire = true
+			vel = Vector3.ZERO
+	if type == vel_expiration.gravity:
+		if is_on_floor() and wildcard == true:
+			expire = true
+			vel = Vector3.ZERO
+		else:
+			if not gravity_has_been_applied:
+				vel -= Vector3(0,1,0) * gravity * delta
+				gravity_has_been_applied = true
+			wildcard = true
+	if type == vel_expiration.instant:
+		if wildcard:
+			expire = true
+		else:
+			wildcard = true
+	return [vel, type, wildcard, expire]
 
 #primary action. Likely to include more functions later
 func primary_action():
