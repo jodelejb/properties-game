@@ -9,10 +9,10 @@ var held_object: PhysicsBody3D:
 		if held_object == value: return
 		var old_held_object = held_object
 		held_object = value
-		if held_object != null:
-			print(phys_body.name + "'s held object is " + held_object.name)
-		else:
-			print(phys_body.name + "'s held object is null")
+		#if held_object != null:
+			#print(phys_body.name + "'s held object is " + held_object.name)
+		#else:
+			#print(phys_body.name + "'s held object is null")
 		if old_held_object != null: 
 			if old_held_object.hm.holder == phys_body:
 				old_held_object.hm.holder = null
@@ -25,10 +25,10 @@ var holder: PhysicsBody3D:
 		if holder == value: return
 		var old_holder = holder
 		holder = value
-		if holder != null:
-			print(phys_body.name + "'s holder is " + holder.name)
-		else:
-			print(phys_body.name + "'s holder is null")
+		#if holder != null:
+			#print(phys_body.name + "'s holder is " + holder.name)
+		#else:
+			#print(phys_body.name + "'s holder is null")
 		if old_holder != null: 
 			if old_holder.hm.held_object == phys_body:
 				old_holder.hm.held_object = null
@@ -51,22 +51,22 @@ func pick_up(collider):
 		return
 	#var collider = pickup.get_collider()
 	if collider != null:
-		print("attempting to pick up " + collider.name)
 		if collider in get_tree().get_nodes_in_group("Holding") and "hm" in collider:
 			held_object = collider
 
 func throw(throw_vec: Vector3):
 	if held_object == null: return
+	throw_vec = throw_vec.normalized()
 	#var look_vec = (holding.global_position - head.global_position).normalized()
 	if "linear_velocity" in held_object:
 		var obj_speed = held_object.linear_velocity.length()
 		if obj_speed < throw_speed:
-			held_object.linear_velocity += throw_vec*(throw_speed - obj_speed)
+			held_object.linear_velocity = throw_vec*throw_speed
 	elif "velocity" in held_object:
 		var obj_speed = held_object.velocity.length()
 		if obj_speed < throw_speed:
 			#held_object.velocity += throw_vec*(throw_speed - obj_speed)
-			held_object.applied_velocities.append([throw_vec*(throw_speed - obj_speed), held_object.vel_expiration.gravity, false])
+			held_object.applied_velocities.append([throw_vec*throw_speed, held_object.vel_expiration.gravity, false])
 	held_object = null
 	
 func follow(delta):

@@ -78,7 +78,6 @@ func set_properties() -> void:
 	elif Globals.properties.blue in applied_properties:
 		color_col.erase(Globals.blue)
 		property_display.text += " Blue"
-	print(color_col)
 	phys_body.collision_mask = base_collision_mask + Globals.get_collision(color_col)
 
 func _ready():

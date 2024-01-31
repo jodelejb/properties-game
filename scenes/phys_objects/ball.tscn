@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dpfiv7lkgm073" path="res://scenes/phys_objects/physics_object.tscn" id="1_x0ley"]
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="2_1u37m"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_x4p7v"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_saa7y"]
 render_priority = 0
 shader = ExtResource("2_1u37m")
@@ -15,12 +17,10 @@ shader_parameter/point_size = null
 [sub_resource type="SphereMesh" id="SphereMesh_mi6x5"]
 material = SubResource("ShaderMaterial_saa7y")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_x4p7v"]
-
 [node name="ball" instance=ExtResource("1_x0ley")]
-
-[node name="MeshInstance3D" parent="." index="0"]
-mesh = SubResource("SphereMesh_mi6x5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
 shape = SubResource("SphereShape3D_x4p7v")
+
+[node name="MeshInstance3D" parent="." index="3"]
+mesh = SubResource("SphereMesh_mi6x5")

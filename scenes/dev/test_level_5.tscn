@@ -47,9 +47,11 @@ shape = SubResource("BoxShape3D_egjdm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4488, -0.05, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.70648, 0, 0)
 mesh = SubResource("BoxMesh_w7eqo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.70648, 0, 0)
 shape = SubResource("BoxShape3D_egjdm")
 
 [node name="LevelLoader" parent="." instance=ExtResource("2_goore")]
@@ -79,13 +81,15 @@ object_to_spawn = "res://scenes/phys_objects/box.tscn"
 parent_node = NodePath("..")
 
 [node name="FloorButton" parent="." instance=ExtResource("9_mfsdl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.3484, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6419, 0, 0)
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5996, 0.47912, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.70648, 0, 0)
 mesh = SubResource("BoxMesh_e0g3k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.70648, 0, 0)
 shape = SubResource("BoxShape3D_6ymb2")

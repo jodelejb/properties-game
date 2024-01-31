@@ -147,22 +147,6 @@ func _physics_process(delta):
 	else:
 		eyes.position = lerp(eyes.position,Vector3.ZERO,lerp_speed*delta)
 	
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity.y -= gravity * delta
-#
-	## Handle jump.
-	#if Input.is_action_just_pressed("jump") and is_on_floor():
-		#velocity.y = jump_vel
-
-	##Apply movement
-	#direction = lerp(direction,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
-	#if direction:
-		#velocity.x = direction.x * current_speed
-		#velocity.z = direction.z * current_speed
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, current_speed)
-		#velocity.z = move_toward(velocity.z, 0, current_speed)
 	apply_velocities(delta)
 	move_and_slide()
 	
@@ -239,7 +223,6 @@ func apply_velocities(delta):
 	for i in range(len(applied_velocities)-1,-1,-1):
 		var applied = applied_velocities[i]
 		var res = modify_force(delta,applied[0], applied[1], applied[2])
-		print(res)
 		var vel = res[0]
 		var expired = res[3]
 		var wild = res[2]
@@ -266,7 +249,8 @@ func modify_force(delta: float, vel: Vector3, type: vel_expiration, wildcard) ->
 			vel = Vector3.ZERO
 		else:
 			if not gravity_has_been_applied:
-				vel -= Vector3(0,1,0) * gravity * delta
+				if not wildcard:
+					vel -= Vector3(0,1,0) * gravity * delta
 				gravity_has_been_applied = true
 			wildcard = true
 	if type == vel_expiration.instant:

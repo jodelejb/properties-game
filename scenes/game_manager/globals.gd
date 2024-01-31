@@ -1,7 +1,7 @@
 extends Node
 
 var lol: int = 69
-var low_grav: float = 10
+var low_grav: float = 15
 
 enum properties {gravity, red, green, blue}
 enum pm_types {base, source, sink}
