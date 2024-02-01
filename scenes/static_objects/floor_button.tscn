@@ -24,9 +24,9 @@ height = 0.1
 height = 0.1
 radius = 0.9
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_7c571"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4flg7"]
 height = 0.2
-radius = 1.0
+radius = 0.9
 
 [node name="FloorButton" instance=ExtResource("1_t738c")]
 script = ExtResource("2_ycsoh")
@@ -50,10 +50,8 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Button" index="1"]
 shape = SubResource("CylinderShape3D_3klrh")
 
-[node name="Detection" type="Area3D" parent="." index="3"]
+[node name="Detection" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
-collision_layer = 16
-collision_mask = 14
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection" index="0"]
-shape = SubResource("CylinderShape3D_7c571")
+[node name="CollisionShape3D" parent="Detection" index="0"]
+shape = SubResource("CylinderShape3D_4flg7")
