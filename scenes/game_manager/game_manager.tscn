@@ -19,3 +19,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86909, 0, 0)
 
 [node name="UI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_m5qyl")]
 player = NodePath("../Player")
+
+[node name="BridgePieces" type="Node3D" parent="." groups=["Bridge"]]

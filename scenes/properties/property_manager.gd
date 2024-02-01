@@ -5,6 +5,7 @@ class_name PropertyManager
 @onready var property_rotation = $PropertyRotation
 @onready var property_display = $PropertyRotation/PropertyDisplay
 
+var bridge: PackedScene = preload("res://scenes/properties/bridge.tscn")
 
 @export var pm_type = Globals.pm_types.base
 
@@ -78,7 +79,27 @@ func set_properties() -> void:
 	elif Globals.properties.blue in applied_properties:
 		color_col.erase(Globals.blue)
 		property_display.text += " Blue"
-	phys_body.collision_mask = base_collision_mask + Globals.get_collision(color_col)
+	
+	#bridge
+	var bridge_col = []
+	if Globals.properties.bridge in applied_properties:
+		property_display.text += " Bridge"
+		var has_bridge: bool = false
+		for child in phys_body.get_children():
+			if child is Bridge:
+				has_bridge = true
+				break
+		if not has_bridge:
+			var b = bridge.instantiate()
+			phys_body.add_child(b)
+	else:
+		for child in phys_body.get_children():
+			if child is Bridge:
+				child.queue_free()
+				break
+		bridge_col.append(Globals.bridge)
+	
+	phys_body.collision_mask = base_collision_mask + Globals.get_collision(color_col) + Globals.get_collision(bridge_col)
 
 func _ready():
 	base_collision_mask = phys_body.collision_mask
