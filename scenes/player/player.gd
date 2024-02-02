@@ -12,11 +12,14 @@ extends CharacterBody3D
 @onready var property_cast: RayCast3D = $Head/PropertyCast
 @onready var pm = $PropertyManager
 @onready var hm = $HoldManager
+@onready var bridge_jump_timer = $BridgeJumpTimer
 
 
 #movement speeds
 var current_speed: float = 5.0
 const jump_vel: float = 8.0
+var bridge_jump: bool = false
+var bridge_jump_base_modifier = 1
 
 const walk_speed: float = 5.0
 const sprint_speed: float = 8.0
@@ -169,6 +172,13 @@ func _physics_process(delta):
 		hm.pick_up(pickup.get_collider())
 		
 	if Input.is_action_just_pressed("throw"):
+		print(head.rotation_degrees.x)
+		for child in hm.held_object.get_children():
+			if child is Bridge:
+				bridge_jump = true
+				bridge_jump_timer.start()
+				bridge_jump_base_modifier = (clamp(head.rotation_degrees.x + 45,0,90))/90 + 1
+				break
 		hm.throw((holding.global_position - head.global_position).normalized())
 		
 	#move the held object in front of the player. could be useful to move to phys object instead
@@ -205,7 +215,14 @@ func apply_velocities(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		applied_velocities.append([Vector3(0,1,0) * jump_vel, vel_expiration.gravity, false])
+		var bridge_jump_modifier = 1
+		if bridge_jump:
+			if Globals.properties.gravity in pm.applied_properties:
+				bridge_jump_modifier = bridge_jump_base_modifier / 1.5#1.3
+			else:
+				bridge_jump_modifier = bridge_jump_base_modifier
+			bridge_jump = false
+		applied_velocities.append([Vector3(0,1,0) * jump_vel * bridge_jump_modifier, vel_expiration.gravity, false])
 		#velocity.y += jump_vel
 		
 	#Apply movement input
@@ -297,3 +314,8 @@ func take_property(pm: PropertyManager) -> void:
 			break
 
 
+
+
+func _on_bridge_jump_timer_timeout():
+	bridge_jump = false
+	pass # Replace with function body.
