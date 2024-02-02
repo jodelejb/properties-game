@@ -26,7 +26,12 @@ func _process(delta):
 		var bp  = bridge_piece.instantiate() as StaticBody3D
 		#bp.global_rotation = phys_body.linear_velocity.normalized()
 		bp.global_position = spawn_point.global_position
-		var xzproj: Vector2 = Vector2(phys_body.linear_velocity.dot(Vector3(1,0,0)),phys_body.linear_velocity.dot(Vector3(0,0,1)))
+		var vel
+		if "linear_velocity" in phys_body:
+			vel = phys_body.linear_velocity
+		elif "velocity" in phys_body:
+			vel = phys_body.velocity
+		var xzproj: Vector2 = Vector2(vel.dot(Vector3(1,0,0)),vel.dot(Vector3(0,0,1)))
 		var xzproj3d: Vector3 = Vector3(xzproj.x,0,xzproj.y)
 		var norm2d
 		if xzproj == Vector2.ZERO:
@@ -35,7 +40,7 @@ func _process(delta):
 			norm2d = xzproj.rotated(PI/2)
 		var norm = Vector3(norm2d.x,0,norm2d.y)
 		var angle_y = Vector3(1,0,0).signed_angle_to(norm,Vector3(0,1,0))
-		var angle_x = xzproj3d.signed_angle_to(phys_body.linear_velocity,norm)
+		var angle_x = xzproj3d.signed_angle_to(vel,norm)
 		bp.rotate_y(angle_y)
 		bp.quaternion = Quaternion(norm.normalized(),angle_x)*Quaternion(Vector3(0,1,0),angle_y)
 		bridge_node.add_child(bp)
