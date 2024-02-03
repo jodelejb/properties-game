@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhk5cnv5gf1mj"]
+
+[ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="1_2d8mh"]
+[ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_opww7"]
+[ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_copy2"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_uh2pj"]
+[ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="5_67ht1"]
+[ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="7_8ux6f"]
+[ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="7_yl30q"]
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="DevTerrain" parent="Stage" instance=ExtResource("1_2d8mh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+size = Vector3(10, 0.1, 5)
+
+[node name="DevTerrain2" parent="Stage" instance=ExtResource("1_2d8mh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5147, -0.05, -0.659162)
+size = Vector3(8.73, 0.1, 7.935)
+
+[node name="Spawners" type="Node3D" parent="."]
+
+[node name="PlayerSpawn" parent="Spawners" instance=ExtResource("3_copy2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.24294, 0, 0)
+
+[node name="Spawner" parent="Spawners" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("7_8ux6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23548, 1.94362, 1.41978)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("../../Props")
+reset_button = NodePath("../../StaticProps/FloorButton")
+
+[node name="KillBarrier" parent="." instance=ExtResource("4_uh2pj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.47975, 0)
+
+[node name="StaticProps" type="Node3D" parent="."]
+
+[node name="FloorButton" parent="StaticProps" instance=ExtResource("5_67ht1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0985856, 0, -1.38411)
+
+[node name="LevelLoader" parent="StaticProps" instance=ExtResource("2_opww7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7952, 4.76837e-07, -0.4686)
+level_to_load = "res://scenes/dev/test_level_12.tscn"
+
+[node name="PropertySource" parent="StaticProps" instance=ExtResource("7_yl30q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04768, 0.592235, -2.04534)
+base_properties = Array[int]([4])
+
+[node name="Props" type="Node3D" parent="."]

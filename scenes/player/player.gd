@@ -172,7 +172,7 @@ func _physics_process(delta):
 		hm.pick_up(pickup.get_collider())
 		
 	if Input.is_action_just_pressed("throw"):
-		print(head.rotation_degrees.x)
+		if hm.held_object == null: return
 		for child in hm.held_object.get_children():
 			if child is Bridge:
 				bridge_jump = true

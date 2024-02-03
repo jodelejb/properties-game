@@ -16,5 +16,6 @@ func _process(_delta):
 	if global_position.y < -150: destroy()
 	
 func destroy():
+	hm.holder = null
 	queue_free()
 	destroyed.emit()
