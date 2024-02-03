@@ -242,7 +242,7 @@ func apply_velocities(delta):
 		var res = modify_force(delta,applied[0], applied[1], applied[2])
 		var vel = res[0]
 		var expired = res[3]
-		var wild = res[2]
+		#var wild = res[2]
 		var newvel = [res[0],res[1],res[2]]
 		if expired:
 			applied_velocities.erase(applied)

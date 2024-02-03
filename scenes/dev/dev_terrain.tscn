@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://bd4sn0m1gvel2"]
+
+[ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_3blli"]
+
+[sub_resource type="GDScript" id="GDScript_0yfj0"]
+script/source = "@tool
+extends StaticBody3D
+
+@onready var mesh = $MeshInstance3D
+@onready var collision = $CollisionShape3D
+
+@export var size: Vector3 = Vector3(1,1,1)
+
+func _ready():
+	mesh.mesh = mesh.mesh.duplicate()
+	collision.shape = collision.shape.duplicate()
+	update_shape()
+	
+func _process(_delta):
+	if Engine.is_editor_hint():
+		update_shape()
+		
+func update_shape():
+	#var collision = CollisionShape3D.new()
+	#var shape = BoxShape3D.new()
+	#shape.resource_local_to_scene = true
+	mesh.mesh.size = size
+	#shape.size = size
+	collision.shape.size = size
+	#add_child(collision)
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wy6pi"]
+render_priority = 0
+shader = ExtResource("1_3blli")
+shader_parameter/albedo = Vector4(0.6, 0.6, 0.6, 1)
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/point_size = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_xlyht"]
+material = SubResource("ShaderMaterial_wy6pi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1sc8e"]
+resource_local_to_scene = true
+
+[node name="DevTerrain" type="StaticBody3D"]
+script = SubResource("GDScript_0yfj0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xlyht")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1sc8e")

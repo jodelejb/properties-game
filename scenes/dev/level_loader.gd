@@ -8,7 +8,7 @@ var enabled: bool = false
 
 signal load_level(lvl)
 
-func _on_area_3d_body_entered(body):
+func _on_area_3d_body_entered(_body):
 	if not enabled: return
 	load_level.emit(load(level_to_load))
 

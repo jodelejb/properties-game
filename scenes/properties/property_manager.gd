@@ -91,7 +91,7 @@ func set_properties() -> void:
 				break
 		if not has_bridge:
 			var b = bridge.instantiate()
-			phys_body.add_child(b)
+			phys_body.add_child.call_deferred(b)
 	else:
 		for child in phys_body.get_children():
 			if child is Bridge:
@@ -113,7 +113,7 @@ func _ready():
 		pm_type = pmt
 	
 	
-func _process(delta):
+func _process(_delta):
 	property_rotation.position = phys_body.global_position + Vector3(0,0.8,0)
 	var player = get_tree().get_first_node_in_group("Player")
 	if not phys_body == player:
