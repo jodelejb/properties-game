@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bsk26snggm5fn"]
+[gd_scene load_steps=23 format=3 uid="uid://bsk26snggm5fn"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_goxr4"]
 [ext_resource type="PackedScene" uid="uid://dpuif60enlfsp" path="res://scenes/phys_objects/ball.tscn" id="2_4qbnp"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="10_mwnwk"]
 [ext_resource type="PackedScene" uid="uid://bad2dhkavd7sa" path="res://scenes/static_objects/grab_button.tscn" id="10_xxu7p"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="12_0woha"]
+[ext_resource type="PackedScene" uid="uid://bkmdkg02dd0cl" path="res://scenes/environment/cloudy_sky.tscn" id="13_6bfvg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7i30x"]
 render_priority = 0
@@ -235,3 +236,9 @@ level_to_load = "res://scenes/dev/test_level_1.tscn"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("12_0woha")]
 transform = Transform3D(-0.581584, 0, 0.813487, 0, 1, 0, -0.813487, 0, -0.581584, 5.92039, 0, -0.945536)
+
+[node name="CloudySky" parent="." instance=ExtResource("13_6bfvg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.5507, 0)
+size = Vector3(195.176, 40.7611, 181.42)
+clouds_to_spawn = 30
+cloud_file = "res://scenes/environment/cloud.tscn"

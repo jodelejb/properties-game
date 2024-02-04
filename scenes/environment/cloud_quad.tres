@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://daioeqjc7vbey"]
+
+[ext_resource type="Shader" path="res://scenes/shaders/cloud/SimpleCloud.gdshader" id="1_yhm5v"]
+[ext_resource type="Texture2D" uid="uid://skhu18gjfgsx" path="res://assets/textures/cloud/FX_CloudAlpha03.png" id="2_fyekd"]
+[ext_resource type="Texture2D" uid="uid://c6dleie31p110" path="res://assets/textures/noise/Super Noise/Super Noise 14 - 512x512_normal.png" id="3_xg1si"]
+[ext_resource type="Texture2D" uid="uid://bv5i8kuf8c8de" path="res://assets/textures/noise/Super Noise/Super Noise 14 - 512x512.png" id="4_x8v2x"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yhm5v")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/time_scale = 0.01
+shader_parameter/cloud_step = 0.27
+shader_parameter/noise_texture = ExtResource("4_x8v2x")
+shader_parameter/noise_normal_texture = ExtResource("3_xg1si")
+shader_parameter/cloud_texture = ExtResource("2_fyekd")
+shader_parameter/noise_height = 0.435
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/shadow_size = 0.045
+shader_parameter/shadow_blend = 0.001
+shader_parameter/shadow_extra_intensity = 0.13
+shader_parameter/shadow_color = Color(0.890196, 0.890196, 0.890196, 1)
+shader_parameter/light_tint = Color(0.886275, 0.886275, 0.886275, 1)

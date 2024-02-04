@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c16wisb7x7y4p"]
+
+[ext_resource type="Material" uid="uid://daioeqjc7vbey" path="res://scenes/environment/cloud_quad.tres" id="1_6wxme"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_unj8f"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 3, 4)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_brh5t"]
+material = ExtResource("1_6wxme")
+size = Vector2(10, 10)
+subdivide_width = 40
+subdivide_depth = 40
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 50
+lifetime = 30.0
+explosiveness = 0.98
+process_material = SubResource("ParticleProcessMaterial_unj8f")
+draw_pass_1 = SubResource("QuadMesh_brh5t")
