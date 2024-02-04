@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d12itapyfkqfo"]
+[gd_scene load_steps=8 format=3 uid="uid://d12itapyfkqfo"]
 
 [ext_resource type="Script" path="res://scenes/game_manager/game_manager.gd" id="1_fk1w3"]
 [ext_resource type="PackedScene" uid="uid://b8fy34txeuvpw" path="res://scenes/player/player.tscn" id="2_s7vm7"]
 [ext_resource type="PackedScene" uid="uid://q6cw0b6ybd4k" path="res://scenes/ui/ui.tscn" id="3_m5qyl"]
+[ext_resource type="PackedScene" uid="uid://bkmdkg02dd0cl" path="res://scenes/environment/cloudy_sky.tscn" id="4_vk0do"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qm5ec"]
 sky_top_color = Color(0.203922, 0.494118, 0.682353, 1)
@@ -53,3 +54,10 @@ player = NodePath("../Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4y1ji")
+
+[node name="CloudySky" parent="." instance=ExtResource("4_vk0do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45.2904, 0)
+size = Vector3(195.176, 40.7611, 181.42)
+clouds_to_spawn = 30
+cloud_file = "res://scenes/environment/cloud.tscn"
+metadata/_edit_lock_ = true

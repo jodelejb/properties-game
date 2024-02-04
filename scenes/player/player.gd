@@ -179,7 +179,9 @@ func _physics_process(delta):
 				bridge_jump_timer.start()
 				bridge_jump_base_modifier = (clamp(head.rotation_degrees.x + 45,0,90))/90 + 1
 				break
-		hm.throw((holding.global_position - head.global_position).normalized())
+		var throw_augmenter: float = sin((head.rotation.x + 90)*PI/180) * 1
+		var throw_aug_vec: Vector3 = Vector3(0,throw_augmenter,0)
+		hm.throw((holding.global_position + throw_aug_vec - head.global_position).normalized())
 		
 	#move the held object in front of the player. could be useful to move to phys object instead
 	if held_object != null:
