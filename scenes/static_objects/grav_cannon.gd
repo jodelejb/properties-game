@@ -5,6 +5,7 @@ extends StaticBody3D
 @onready var throw_timer: Timer = $ThrowTimer
 @onready var hold_point = $HoldPoint
 
+@export var throw_speed: float = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

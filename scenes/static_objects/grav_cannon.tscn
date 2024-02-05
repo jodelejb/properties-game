@@ -21,7 +21,6 @@ script = ExtResource("1_844if")
 
 [node name="HoldManager" parent="." node_paths=PackedStringArray("hold_point") instance=ExtResource("1_0ne4r")]
 held_object_speed = 20.0
-throw_speed = 20.0
 hold_point = NodePath("../HoldPoint")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
