@@ -36,12 +36,12 @@ adjustment_contrast = 1.05
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_fk1w3")
-starting_stage = "res://scenes/dev/test_stage.tscn"
+starting_stage = "res://scenes/dev/test_level_15.tscn"
 
 [node name="Lighting" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(0.525724, -0.761618, 0.378883, 0, 0.445401, 0.895331, -0.850655, -0.470697, 0.234158, 5.54223, 7.86093, 0)
+transform = Transform3D(0.525724, -0.761618, 0.378883, 0, 0.445401, 0.895331, -0.850655, -0.470697, 0.234158, 5.54223, 129.475, 0)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_s7vm7")]

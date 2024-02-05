@@ -216,7 +216,7 @@ func apply_velocities(delta):
 		#velocity.y -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and hm.holder == null:
 		var bridge_jump_modifier = 1
 		if bridge_jump:
 			if Globals.properties.gravity in pm.applied_properties:
@@ -228,13 +228,14 @@ func apply_velocities(delta):
 		#velocity.y += jump_vel
 		
 	#Apply movement input
-	direction = lerp(direction,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
-	if direction:
-		velocity.x += direction.x * current_speed
-		velocity.z += direction.z * current_speed
-	else:
-		velocity.x += move_toward(velocity.x, 0, current_speed)
-		velocity.z += move_toward(velocity.z, 0, current_speed)
+	if hm.holder == null:
+		direction = lerp(direction,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
+		if direction:
+			velocity.x += direction.x * current_speed
+			velocity.z += direction.z * current_speed
+		else:
+			velocity.x += move_toward(velocity.x, 0, current_speed)
+			velocity.z += move_toward(velocity.z, 0, current_speed)
 		
 	#apply additional forces
 	var ref_grav = gravity
