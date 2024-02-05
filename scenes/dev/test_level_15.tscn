@@ -18,7 +18,7 @@
 [node name="Stage" type="Node3D" parent="."]
 
 [node name="DevTerrain" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 1.68175)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39029, -0.05, 1.68175)
 size = Vector3(10, 0.1, 8.445)
 
 [node name="DevTerrain4" parent="Stage" instance=ExtResource("1_cmthq")]
@@ -34,16 +34,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1708, -0.05, 4.42229)
 size = Vector3(0.1, 7.34, 6.77)
 
 [node name="DevTerrain5" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7323, 8.82446, 0)
-size = Vector3(12.71, 11.66, 6.255)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7323, 13.1988, 0)
+size = Vector3(12.71, 19.315, 6.255)
 
 [node name="DevTerrain10" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3142, 1.45543, -4.92235)
-size = Vector3(12.71, 24.625, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3142, 1.45543, -6.54836)
+size = Vector3(12.71, 36.975, 8.34)
 
 [node name="DevTerrain11" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3142, 1.45543, 7.29428)
-size = Vector3(12.71, 21.495, 9.1)
+size = Vector3(12.71, 30.89, 9.1)
 
 [node name="DevTerrain3" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1408, -7.4624, -19.1992)
@@ -58,15 +58,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1408, -8.72095, 0.304686)
 size = Vector3(44.445, 0.1, 27.57)
 
 [node name="DevTerrain2" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 5.46436, 3.47147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, 3.47147)
 size = Vector3(4.3, 0.1, 3.925)
 
+[node name="DevTerrain14" parent="Stage" instance=ExtResource("1_cmthq")]
+transform = Transform3D(0.600657, -0.799506, 0, 0.799506, 0.600657, 0, 0, 0, 1, 14.0354, 9.35345, -0.0192181)
+size = Vector3(15.3, 0.1, 6.425)
+
 [node name="DevTerrain6" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 5.46436, -9.21459)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, -9.21459)
 size = Vector3(4.3, 0.1, 3.925)
 
 [node name="DevTerrain7" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.497, 13.4587, -3.32738)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.497, 18.2648, -3.32738)
 size = Vector3(4.3, 0.1, 3.925)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Stage"]
@@ -78,7 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4046, 2.21764, -1.15149)
 [node name="Spawners" type="Node3D" parent="."]
 
 [node name="PlayerSpawn" parent="Spawners" instance=ExtResource("2_2cvfo")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.24294, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.63323, 0, 0)
 
 [node name="KillBarrier" parent="." instance=ExtResource("3_ciwm1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.2041, 0)
@@ -90,39 +94,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8721, 0.110529, -0.30852)
 level_to_load = "res://scenes/dev/test_stage.tscn"
 
 [node name="Spawner" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85277, 1.16967)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39029, 1.85277, 1.16967)
 object_to_spawn = "res://scenes/phys_objects/box.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
 initially_applied_properties = Array[int]([4])
 
 [node name="Spawner4" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66396, 1.85277, 3.97954)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00557, 1.85277, 3.97954)
 object_to_spawn = "res://scenes/phys_objects/ball.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
 
 [node name="Spawner5" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30183, 1.85277, 3.27171)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3677, 1.85277, 3.27171)
 object_to_spawn = "res://scenes/phys_objects/ball.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
 
 [node name="Spawner3" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3366, -0.047745, -8.80198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.572, -0.047745, -8.80198)
 object_to_spawn = "res://scenes/phys_objects/box.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
 
 [node name="Spawner2" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4442, 8.21011, -9.91969)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4442, 13.0162, -9.91969)
 object_to_spawn = "res://scenes/phys_objects/box.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
 initially_applied_properties = Array[int]([4])
 
 [node name="GravCannon" parent="StaticProps" instance=ExtResource("6_xb5w5")]
-transform = Transform3D(0.828901, 0.559396, 0, -0.559396, 0.828901, 0, 0, 0, 1, 4.27852, 0, 0)
+transform = Transform3D(0.744102, 0.502168, -0.440613, -0.559396, 0.828901, 0, 0.365225, 0.246477, 0.897697, 1.88823, 0, 4.42121)
+throw_speed = 30.0
 
 [node name="GravCannon2" parent="StaticProps" instance=ExtResource("6_xb5w5")]
 transform = Transform3D(0.11681, -0.0489441, -0.991948, 0.386454, 0.922309, 1.77636e-15, 0.914882, -0.383342, 0.126649, 4.2635, -8.56044, -2.27989)
@@ -131,19 +136,19 @@ transform = Transform3D(0.11681, -0.0489441, -0.991948, 0.386454, 0.922309, 1.77
 transform = Transform3D(0.0660391, -0.0276709, 0.997433, 0.526894, 0.849856, -0.0113084, -0.847362, 0.526288, 0.0707032, 0.354511, -3.6167, -9.69393)
 
 [node name="GravCannon3" parent="StaticProps" instance=ExtResource("6_xb5w5")]
-transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 7.65879, -3.53453, -9.55706)
+transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 6.44375, -3.53453, -9.55706)
 throw_speed = 25.0
 
 [node name="GravCannon4" parent="StaticProps" instance=ExtResource("6_xb5w5")]
-transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 7.65879, -3.53453, 10.1472)
+transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 6.44375, -3.53453, 10.1472)
 throw_speed = 25.0
 
 [node name="GravCannon5" parent="StaticProps" instance=ExtResource("6_xb5w5")]
-transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 11.3366, -3.53453, -9.55706)
+transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 10.572, -3.53453, -9.55706)
 throw_speed = 25.0
 
 [node name="GravCannon6" parent="StaticProps" instance=ExtResource("6_xb5w5")]
-transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 11.3366, -3.53453, 10.1472)
+transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 10.572, -3.53453, 10.1472)
 throw_speed = 25.0
 
 [node name="GravCannon7" parent="StaticProps" instance=ExtResource("6_xb5w5")]
@@ -155,10 +160,10 @@ transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0
 throw_speed = 25.0
 
 [node name="FloorButton2" parent="StaticProps" instance=ExtResource("7_ys8t8")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -4.11914, 3.52507, 0.0501276)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -6.50943, 3.52507, 0.0501276)
 
 [node name="Label3D" type="Label3D" parent="StaticProps"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.29383, 1.72952, 0.119687)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.68412, 1.72952, 0.119687)
 text = "Reset Level"
 
 [node name="Reset" parent="StaticProps" node_paths=PackedStringArray("button") instance=ExtResource("8_mgt30")]
@@ -166,11 +171,11 @@ level_to_load = "res://scenes/dev/test_level_15.tscn"
 button = NodePath("../FloorButton2")
 
 [node name="PropertySource" parent="StaticProps" instance=ExtResource("9_4isb5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2081, 6.11865, 4.8614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9868, 10.9248, 4.8614)
 base_properties = Array[int]([4])
 
 [node name="PropertySource2" parent="StaticProps" instance=ExtResource("9_4isb5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.134, 14.1623, -2.24229)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7435, 18.9684, -2.24229)
 base_properties = Array[int]([1])
 
 [node name="ColoredBarrier" parent="StaticProps" instance=ExtResource("10_r52c8")]
