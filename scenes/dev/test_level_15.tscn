@@ -45,6 +45,10 @@ size = Vector3(12.71, 36.975, 8.34)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3142, 1.45543, 7.29428)
 size = Vector3(12.71, 30.89, 9.1)
 
+[node name="DevTerrain15" parent="Stage" instance=ExtResource("1_cmthq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0045, 1.45543, 16.3346)
+size = Vector3(12.71, 30.89, 9.1)
+
 [node name="DevTerrain3" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1408, -7.4624, -19.1992)
 size = Vector3(44.445, 7.27, 20.725)
@@ -98,7 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39029, 1.85277, 1.16967)
 object_to_spawn = "res://scenes/phys_objects/box.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
-initially_applied_properties = Array[int]([4])
 
 [node name="Spawner4" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00557, 1.85277, 3.97954)
@@ -117,6 +120,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.572, -0.047745, -8.80198)
 object_to_spawn = "res://scenes/phys_objects/box.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
+initially_applied_properties = Array[int]([4])
 
 [node name="Spawner2" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4442, 13.0162, -9.91969)

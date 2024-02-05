@@ -51,3 +51,8 @@ active_colors = Array[int]([0])
 [node name="PropertySource" parent="." instance=ExtResource("7_mcghu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09799, 0.652404, -1.22864)
 base_properties = Array[int]([1])
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.551544, 0, -0.834146, 0, 1, 0, 0.834146, 0, 0.551544, 2.21794, 1.53305, -2.52638)
+text = "Barriers can only be crossed if the 
+right colors are applied to self or object"

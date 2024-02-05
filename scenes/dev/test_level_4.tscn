@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkc4ea7j3npa7"]
+[gd_scene load_steps=12 format=3 uid="uid://bkc4ea7j3npa7"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_iygro"]
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_brtwt"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_bwql1"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_fsgnq"]
 [ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="5_lqdu3"]
+[ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="6_d7n0j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2t7"]
 render_priority = 0
@@ -63,3 +64,13 @@ shape = SubResource("BoxShape3D_ysain")
 [node name="PropertySource" parent="." instance=ExtResource("5_lqdu3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87042, 0.604914, -1.91687)
 base_properties = Array[int]([0])
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.749869, 0, -0.661587, 0, 1, 0, 0.661587, 0, 0.749869, -2.53806, 2.5963, -1.84987)
+text = "Right click to take property
+C / mouse thumb 2 to apply property to self
+V / mouse thumb 1 to remove property from self"
+
+[node name="DevTerrain" parent="." instance=ExtResource("6_d7n0j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.352589, 0, -4.5361)
+size = Vector3(8.05, 10.44, 1)

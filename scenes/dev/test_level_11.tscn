@@ -37,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.47975, 0)
 [node name="StaticProps" type="Node3D" parent="."]
 
 [node name="FloorButton" parent="StaticProps" instance=ExtResource("5_67ht1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0985856, 0, -1.38411)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.586661, 1.19814, -2.92402)
 
 [node name="LevelLoader" parent="StaticProps" instance=ExtResource("2_opww7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7952, 4.76837e-07, -0.4686)
@@ -48,3 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04768, 0.592235, -2.04534)
 base_properties = Array[int]([4])
 
 [node name="Props" type="Node3D" parent="."]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.479177, 2.80073, -2.61689)
+text = "Reset object"

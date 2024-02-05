@@ -55,3 +55,8 @@ base_properties = Array[int]([1])
 [node name="PropertySource2" parent="." instance=ExtResource("6_mgqew")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0425251, 0.652404, -1.22864)
 base_properties = Array[int]([2])
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(0.723955, 0, -0.689847, 0, 1, 0, 0.689847, 0, 0.723955, 2.00754, 1.53305, -2.12769)
+text = "Exact color combinations must be 
+applied to pass through barriers"

@@ -235,3 +235,8 @@ level_to_load = "res://scenes/dev/test_level_1.tscn"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("12_0woha")]
 transform = Transform3D(-0.581584, 0, 0.813487, 0, 1, 0, -0.813487, 0, -0.581584, 5.92039, 0, -0.945536)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.572575, 0, 0.819852, 0, 1, 0, -0.819852, 0, 0.572575, -3.12942, 2.61634, -8.89035)
+text = "Start Puzzles
+"

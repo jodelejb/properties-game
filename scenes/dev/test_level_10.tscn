@@ -45,3 +45,9 @@ object_to_spawn = "res://scenes/phys_objects/box.tscn"
 parent_node = NodePath("../Props")
 
 [node name="Props" type="Node3D" parent="."]
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(0.442258, 0, -0.896888, 0, 1, 0, 0.896888, 0, 0.442258, 4.20645, 1.53305, -2.20021)
+text = "Some switches grab 
+objects to activate
+F to throw held objects"

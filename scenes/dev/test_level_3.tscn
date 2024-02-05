@@ -65,3 +65,7 @@ mesh = SubResource("BoxMesh_ec86q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 shape = SubResource("BoxShape3D_ysain")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-0.639909, 0, -0.768451, 0, 1, 0, 0.768451, 0, -0.639909, -1.43944, 1.53305, 2.60501)
+text = "Space to jump"

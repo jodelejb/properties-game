@@ -93,3 +93,8 @@ mesh = SubResource("BoxMesh_e0g3k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50407, 0, 0)
 shape = SubResource("BoxShape3D_6ymb2")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.345921, 0, -0.938264, 0, 1, 0, 0.938264, 0, 0.345921, 2.83006, 1.53305, -2.38822)
+text = "Left click to apply property to object
+Right click to take property from object"

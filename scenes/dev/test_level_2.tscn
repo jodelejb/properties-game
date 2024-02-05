@@ -56,3 +56,8 @@ parent_node = NodePath("..")
 
 [node name="KillBarrier" parent="." instance=ExtResource("7_u11ja")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.47975, 0)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-0.639909, 0, -0.768451, 0, 1, 0, 0.768451, 0, -0.639909, -1.43944, 1.53305, 2.60501)
+text = "E to pick up objects
+E to drop objects"

@@ -36,13 +36,14 @@ adjustment_contrast = 1.05
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_fk1w3")
-starting_stage = "res://scenes/dev/test_level_15.tscn"
+starting_stage = "res://scenes/dev/test_stage.tscn"
 
 [node name="Lighting" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
 transform = Transform3D(0.525724, -0.761618, 0.378883, 0, 0.445401, 0.895331, -0.850655, -0.470697, 0.234158, 5.54223, 129.475, 0)
 shadow_enabled = true
+directional_shadow_max_distance = 400.0
 
 [node name="Player" parent="." instance=ExtResource("2_s7vm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86909, 0, 0)
@@ -58,6 +59,6 @@ environment = SubResource("Environment_4y1ji")
 [node name="CloudySky" parent="." instance=ExtResource("4_vk0do")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45.2904, 0)
 size = Vector3(195.176, 40.7611, 181.42)
-clouds_to_spawn = 30
+clouds_to_spawn = 15
 cloud_file = "res://scenes/environment/cloud.tscn"
 metadata/_edit_lock_ = true
