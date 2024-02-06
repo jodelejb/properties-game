@@ -11,16 +11,21 @@ extends StaticBody3D
 
 @export var size: Vector3 = Vector3(1,1,1)
 
+var prev_size: Vector3
+
 func _ready():
 	mesh.mesh = mesh.mesh.duplicate()
 	collision.shape = collision.shape.duplicate()
 	update_shape()
+	prev_size = size
 	
 func _process(_delta):
 	if Engine.is_editor_hint():
 		update_shape()
 		
 func update_shape():
+	if size == prev_size: return
+	prev_size = size
 	#var collision = CollisionShape3D.new()
 	#var shape = BoxShape3D.new()
 	#shape.resource_local_to_scene = true
@@ -39,17 +44,17 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.5
 shader_parameter/point_size = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_st4nd"]
+[sub_resource type="BoxMesh" id="BoxMesh_nkgv8"]
 material = SubResource("ShaderMaterial_wy6pi")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_34lm5"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_1p84i"]
 resource_local_to_scene = true
 
 [node name="DevTerrain" type="StaticBody3D"]
 script = SubResource("GDScript_0yfj0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_st4nd")
+mesh = SubResource("BoxMesh_nkgv8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_34lm5")
+shape = SubResource("BoxShape3D_1p84i")
