@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_goore"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_bornt"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_sm3t3"]
-[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/door.tscn" id="6_kvgt7"]
+[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/standard_door.tscn" id="6_kvgt7"]
 [ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="7_fpevn"]
 [ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="8_4fp63"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="9_mfsdl"]

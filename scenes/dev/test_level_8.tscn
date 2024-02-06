@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="5_abfmr"]
 [ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="6_s5yl8"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="7_7ia6k"]
-[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/door.tscn" id="8_6vo4e"]
+[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/standard_door.tscn" id="8_6vo4e"]
 [ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="9_tlipq"]
 [ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="10_p2rlo"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cj4msn1rxyei1"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_4wu77"]
-[ext_resource type="Script" path="res://scenes/static_objects/door.gd" id="1_hk6ru"]
+[ext_resource type="Script" path="res://scenes/static_objects/standard_door.gd" id="1_hk6ru"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_51exi"]
 size = Vector3(2, 2.5, 0.1)
