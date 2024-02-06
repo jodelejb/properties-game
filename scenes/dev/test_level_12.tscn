@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="6_sms1i"]
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="6_wwqrx"]
 [ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="7_6lxst"]
-[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/standard_door.tscn" id="8_su8ue"]
+[ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="8_n5krw"]
 [ext_resource type="PackedScene" uid="uid://bad2dhkavd7sa" path="res://scenes/static_objects/grab_button.tscn" id="9_xtqyv"]
 [ext_resource type="PackedScene" uid="uid://c8ntq61r4ku4g" path="res://scenes/game_manager/reset.tscn" id="11_qm1f2"]
 
@@ -142,7 +142,7 @@ transform = Transform3D(0.908041, -0.418882, 0, 0.418882, 0.908041, 0, 0, 0, 1, 
 [node name="GravCannon2" parent="StaticProps" instance=ExtResource("7_6lxst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.807474, 0, -5.99003)
 
-[node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("8_su8ue")]
+[node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("8_n5krw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.945644, 0, 2.39355)
 buttons = [NodePath("../GrabButton")]
 

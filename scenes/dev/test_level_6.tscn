@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_qpv45"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_4706d"]
 [ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="5_5p2tu"]
-[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/standard_door.tscn" id="6_hnml6"]
+[ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="6_imbih"]
 [ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="7_pxw48"]
 [ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="8_xe8jo"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="9_r7b8a"]
@@ -68,7 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.991, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87042, 0.604914, -1.91687)
 base_properties = Array[int]([0])
 
-[node name="Door" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("6_hnml6")]
+[node name="Door" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("6_imbih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19763, 0, 2.53271)
 buttons = [NodePath("../FloorButton")]
 

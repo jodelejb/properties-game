@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_2pjmo"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_sx6me"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_mjxtj"]
+[ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="6_3xvge"]
 [ext_resource type="PackedScene" uid="uid://bad2dhkavd7sa" path="res://scenes/static_objects/grab_button.tscn" id="6_uiqsf"]
 [ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="7_l5pxh"]
-[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/standard_door.tscn" id="7_phebv"]
 
 [node name="TestLevel" type="Node3D"]
 
@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.47975, 0)
 [node name="GrabButton" parent="StaticProps" instance=ExtResource("6_uiqsf")]
 transform = Transform3D(-0.0527543, -0.998608, 0, 0.998608, -0.0527543, 0, 0, 0, 1, 12.1016, 3.95109, 0)
 
-[node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("7_phebv")]
+[node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("6_3xvge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0208149, 4.76837e-07, 2.52866)
 buttons = [NodePath("../GrabButton")]
 

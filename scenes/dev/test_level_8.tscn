@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="5_abfmr"]
 [ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="6_s5yl8"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="7_7ia6k"]
-[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/standard_door.tscn" id="8_6vo4e"]
+[ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="8_lu4my"]
 [ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="9_tlipq"]
 [ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="10_p2rlo"]
 
@@ -103,11 +103,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.49871, -4.76837e-07, -3.557
 
 [node name="Doors" type="Node3D" parent="."]
 
-[node name="Door" parent="Doors" node_paths=PackedStringArray("buttons") instance=ExtResource("8_6vo4e")]
+[node name="Door" parent="Doors" node_paths=PackedStringArray("buttons") instance=ExtResource("8_lu4my")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37361, 0, 2.46227)
 buttons = [NodePath("../../Buttons/FloorButton")]
 
-[node name="Door2" parent="Doors" node_paths=PackedStringArray("buttons") instance=ExtResource("8_6vo4e")]
+[node name="Door2" parent="Doors" node_paths=PackedStringArray("buttons") instance=ExtResource("8_lu4my")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20713, -4.76837e-07, -2.37986)
 buttons = [NodePath("../../Buttons/FloorButton2")]
 

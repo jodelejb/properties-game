@@ -1,16 +1,17 @@
-[gd_scene load_steps=22 format=3 uid="uid://bsk26snggm5fn"]
+[gd_scene load_steps=23 format=3 uid="uid://bsk26snggm5fn"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_goxr4"]
 [ext_resource type="PackedScene" uid="uid://dpuif60enlfsp" path="res://scenes/phys_objects/ball.tscn" id="2_4qbnp"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="2_npbkg"]
 [ext_resource type="PackedScene" uid="uid://dla2ibpjjj5va" path="res://scenes/phys_objects/box.tscn" id="3_vv1is"]
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="4_28jpm"]
 [ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="5_2sscl"]
 [ext_resource type="PackedScene" uid="uid://63ybhc1xnweb" path="res://scenes/static_objects/property_sink.tscn" id="6_mfwxq"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="7_wbdvw"]
-[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/standard_door.tscn" id="7_xb1km"]
 [ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="9_aakh0"]
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="10_mwnwk"]
 [ext_resource type="PackedScene" uid="uid://bad2dhkavd7sa" path="res://scenes/static_objects/grab_button.tscn" id="10_xxu7p"]
+[ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="11_rvy2j"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="12_0woha"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7i30x"]
@@ -154,6 +155,9 @@ mesh = SubResource("BoxMesh_km53i")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="env/Ramp3"]
 shape = SubResource("ConvexPolygonShape3D_l0tqn")
 
+[node name="KillBarrier" parent="env" instance=ExtResource("2_npbkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.5982, 0)
+
 [node name="Barriers" type="Node3D" parent="."]
 
 [node name="ColoredBarrier" parent="Barriers" instance=ExtResource("4_28jpm")]
@@ -216,7 +220,7 @@ transform = Transform3D(-0.311638, 0, -0.950201, 0, 1, 0, 0.950201, 0, -0.311638
 [node name="FloorButton2" parent="StaticProps" instance=ExtResource("7_wbdvw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90483, 0, -6.845)
 
-[node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("7_xb1km")]
+[node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("11_rvy2j")]
 transform = Transform3D(-0.311638, 0, -0.950201, 0, 1, 0, 0.950201, 0, -0.311638, 9.79673, 2.38419e-07, 0.340602)
 buttons = [NodePath("../FloorButton"), NodePath("../FloorButton2"), NodePath("../GrabButton")]
 

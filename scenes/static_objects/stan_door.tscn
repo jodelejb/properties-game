@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://35s75wc585v1" path="res://scenes/static_objects/door.tscn" id="1_6rii2"]
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="2_db5mo"]
-[ext_resource type="Script" path="res://scenes/static_objects/standard_door.gd" id="2_hom6l"]
+[ext_resource type="Script" path="res://scenes/static_objects/stan_door.gd" id="2_hom6l"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_careh"]
 size = Vector3(2, 2.5, 0.1)
