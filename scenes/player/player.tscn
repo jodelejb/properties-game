@@ -53,4 +53,8 @@ target_position = Vector3(0, 1.9, 0)
 wait_time = 3.0
 one_shot = true
 
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+
 [connection signal="timeout" from="BridgeJumpTimer" to="." method="_on_bridge_jump_timer_timeout"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var pm = $PropertyManager
 @onready var hm = $HoldManager
 @onready var bridge_jump_timer = $BridgeJumpTimer
+@onready var coyote_timer = $CoyoteTimer
 
 
 #movement speeds
@@ -20,6 +21,8 @@ var current_speed: float = 5.0
 const jump_vel: float = 8.0
 var bridge_jump: bool = false
 var bridge_jump_base_modifier = 1
+var can_jump: bool
+var just_on_ground: bool = true
 
 const walk_speed: float = 5.0
 const sprint_speed: float = 8.0
@@ -114,6 +117,13 @@ func _input(event):
 
 func _physics_process(delta):
 	input_dir = Input.get_vector("left", "right", "forward", "backward")
+	
+	if not is_on_floor() and just_on_ground and can_jump:
+		coyote_timer.start()
+	
+	if is_on_floor(): 
+		just_on_ground = true
+		can_jump = true
 	
 	#movement states
 	if Input.is_action_pressed("crouch"):
@@ -216,7 +226,9 @@ func apply_velocities(delta):
 		#velocity.y -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor() and hm.holder == null:
+	if Input.is_action_just_pressed("jump") and can_jump and hm.holder == null:
+		velocity.y = 0
+		can_jump = false
 		var bridge_jump_modifier = 1
 		if bridge_jump:
 			if Globals.properties.gravity in pm.applied_properties:
@@ -321,4 +333,9 @@ func take_property(pm: PropertyManager) -> void:
 
 func _on_bridge_jump_timer_timeout():
 	bridge_jump = false
+	pass # Replace with function body.
+
+
+func _on_coyote_timer_timeout():
+	can_jump = false
 	pass # Replace with function body.
