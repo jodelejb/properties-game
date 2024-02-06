@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk5shqnsho70"]
+
+[ext_resource type="Script" path="res://scenes/properties/color_collision.gd" id="1_0s4d6"]
+
+[node name="ColorCollision" type="Node"]
+script = ExtResource("1_0s4d6")

@@ -5,6 +5,7 @@ var low_grav: float = 15
 
 enum properties {gravity, red, green, blue, bridge}
 enum pm_types {base, source, sink}
+enum colors {red, green, blue}
 
 #layers
 var static_objects: int = 1-1

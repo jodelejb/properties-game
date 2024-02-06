@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3vb23hyx0kvu"]
+[gd_scene load_steps=6 format=3 uid="uid://c3vb23hyx0kvu"]
 
 [ext_resource type="Script" path="res://scenes/static_objects/colored_barrier.gd" id="1_30ma5"]
+[ext_resource type="PackedScene" uid="uid://dk5shqnsho70" path="res://scenes/properties/color_collision.tscn" id="1_bfyyo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfghk"]
 resource_local_to_scene = true
@@ -27,3 +28,7 @@ mesh = SubResource("BoxMesh_5p4gp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_2r1hd")
+
+[node name="ColorCollision" parent="." node_paths=PackedStringArray("bodies", "meshes") instance=ExtResource("1_bfyyo")]
+bodies = [NodePath("..")]
+meshes = [NodePath("../MeshInstance3D")]
