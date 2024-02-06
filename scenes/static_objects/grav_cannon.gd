@@ -25,7 +25,6 @@ func _process(_delta):
 	cannon_body.mesh.material.albedo_color = normal_color
 	for body in grab_range.get_overlapping_bodies():
 		if can_grab:
-			print("i am here")
 			cannon_body.mesh.material.albedo_color = grab_color
 		if body.hm.holder == null:
 			grab_object(body)
