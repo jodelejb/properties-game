@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c8ntq61r4ku4g" path="res://scenes/game_manager/reset.tscn" id="8_mgt30"]
 [ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="9_4isb5"]
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="10_r52c8"]
-[ext_resource type="PackedScene" uid="uid://cj4msn1rxyei1" path="res://scenes/static_objects/standard_door.tscn" id="11_74042"]
+[ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="11_74042"]
 [ext_resource type="PackedScene" uid="uid://bad2dhkavd7sa" path="res://scenes/static_objects/grab_button.tscn" id="12_bys6t"]
 
 [node name="TestLevel" type="Node3D"]
@@ -62,12 +62,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1408, -8.72095, 0.304686)
 size = Vector3(44.445, 0.1, 27.57)
 
 [node name="DevTerrain2" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, 3.47147)
-size = Vector3(4.3, 0.1, 3.925)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, 4.19068)
+size = Vector3(4.3, 0.1, 6.045)
 
 [node name="DevTerrain14" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(0.600657, -0.799506, 0, 0.799506, 0.600657, 0, 0, 0, 1, 14.0354, 9.35345, -0.0192181)
-size = Vector3(15.3, 0.1, 6.425)
+size = Vector3(13.55, 0.1, 6.425)
 
 [node name="DevTerrain6" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, -9.21459)
@@ -136,8 +136,14 @@ throw_speed = 30.0
 [node name="GravCannon2" parent="StaticProps" instance=ExtResource("6_xb5w5")]
 transform = Transform3D(0.11681, -0.0489441, -0.991948, 0.386454, 0.922309, 1.77636e-15, 0.914882, -0.383342, 0.126649, 4.2635, -8.56044, -2.27989)
 
+[node name="GravCannon10" parent="StaticProps" instance=ExtResource("6_xb5w5")]
+transform = Transform3D(0.172744, -0.072381, 0.982304, 0.386454, 0.922309, -1.85818e-09, -0.905987, 0.379615, 0.187296, 4.2635, -8.56044, 5.48681)
+
 [node name="GravCannon9" parent="StaticProps" instance=ExtResource("6_xb5w5")]
 transform = Transform3D(0.0660391, -0.0276709, 0.997433, 0.526894, 0.849856, -0.0113084, -0.847362, 0.526288, 0.0707032, 0.354511, -3.6167, -9.69393)
+
+[node name="GravCannon11" parent="StaticProps" instance=ExtResource("6_xb5w5")]
+transform = Transform3D(-0.104557, 0.051608, -0.993179, 0.526894, 0.849856, -0.0113084, 0.843476, -0.524482, -0.11605, 0.354511, -3.6167, 11.0622)
 
 [node name="GravCannon3" parent="StaticProps" instance=ExtResource("6_xb5w5")]
 transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 6.44375, -3.53453, -9.55706)

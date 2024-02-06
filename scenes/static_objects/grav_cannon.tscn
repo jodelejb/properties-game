@@ -1,11 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy5qu0a6rr1mq"]
+[gd_scene load_steps=10 format=3 uid="uid://cy5qu0a6rr1mq"]
 
 [ext_resource type="PackedScene" uid="uid://cy0wpfj4vv2g7" path="res://scenes/properties/hold_manager.tscn" id="1_0ne4r"]
 [ext_resource type="Script" path="res://scenes/static_objects/grav_cannon.gd" id="1_844if"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46dwm"]
+
 [sub_resource type="SphereMesh" id="SphereMesh_e0t4y"]
+material = SubResource("StandardMaterial3D_46dwm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucfpp"]
+resource_local_to_scene = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_f81n7"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ucfpp")
 height = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ummxm"]
@@ -51,4 +59,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="ThrowTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="DisabledTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
+[connection signal="timeout" from="DisabledTimer" to="." method="_on_disabled_timer_timeout"]

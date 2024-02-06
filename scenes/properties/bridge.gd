@@ -23,6 +23,10 @@ func _process(_delta):
 	if (spawn_point.global_position-last_location).length() > piece_length:
 		if "hm" in phys_body:
 			if phys_body.hm.holder != null: return
+		if "linear_velocity" in phys_body:
+			if Vector2(phys_body.linear_velocity.x, phys_body.linear_velocity.z).length() < 0.05: return
+		elif "velocity" in phys_body:
+			if Vector2(phys_body.velocity.x, phys_body.velocity.z).length() < 0.05: return
 		var bp  = bridge_piece.instantiate() as StaticBody3D
 		#bp.global_rotation = phys_body.linear_velocity.normalized()
 		bp.global_position = spawn_point.global_position

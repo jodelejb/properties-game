@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/properties/bridge_piece.gd" id="1_a0w8k"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3wvaf"]
-size = Vector3(1.2, 0.1, 0.2)
+size = Vector3(1.5, 0.1, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g0c3o"]
-size = Vector3(1.2, 0.1, 0.2)
+size = Vector3(1.5, 0.1, 0.2)
 
 [node name="BridgePiece" type="StaticBody3D"]
 collision_layer = 32
@@ -22,7 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("BoxShape3D_g0c3o")
 
 [node name="Lifespan" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 7.5
 one_shot = true
 autostart = true
 
