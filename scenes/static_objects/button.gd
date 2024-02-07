@@ -18,6 +18,8 @@ func _process(delta):
 			status_changed.emit()
 		deactivated(delta)
 
+func press():
+	pass
 
 func activated(delta):
 	pass

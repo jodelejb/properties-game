@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://desa1aon2famp"]
+[gd_scene load_steps=14 format=3 uid="uid://desa1aon2famp"]
 
 [ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="1_cmthq"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="2_2cvfo"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="10_r52c8"]
 [ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="11_74042"]
 [ext_resource type="PackedScene" uid="uid://bad2dhkavd7sa" path="res://scenes/static_objects/grab_button.tscn" id="12_bys6t"]
+[ext_resource type="PackedScene" uid="uid://qocx0wwwvv4r" path="res://scenes/static_objects/lever.tscn" id="13_tjhto"]
 
 [node name="TestLevel" type="Node3D"]
 
@@ -19,11 +20,11 @@
 
 [node name="DevTerrain" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39029, -0.05, 1.68175)
-size = Vector3(10, 0.1, 8.445)
+size = Vector3(11.065, 0.1, 10.295)
 
 [node name="DevTerrain4" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0668, -6.8149, 0.0338898)
-size = Vector3(10, 13.665, 6.77)
+size = Vector3(8.585, 13.665, 6.77)
 
 [node name="DevTerrain12" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1708, -0.05, -4.3785)
@@ -70,8 +71,8 @@ transform = Transform3D(0.600657, -0.799506, 0, 0.799506, 0.600657, 0, 0, 0, 1, 
 size = Vector3(13.55, 0.1, 6.425)
 
 [node name="DevTerrain6" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, -9.21459)
-size = Vector3(4.3, 0.1, 3.925)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, -10.5334)
+size = Vector3(4.3, 0.1, 6.85)
 
 [node name="DevTerrain7" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.497, 18.2648, -3.32738)
@@ -162,11 +163,11 @@ transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0
 throw_speed = 25.0
 
 [node name="GravCannon7" parent="StaticProps" instance=ExtResource("6_xb5w5")]
-transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 14.9738, -3.53453, -9.55706)
+transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 14.7719, -3.53453, -9.55706)
 throw_speed = 25.0
 
 [node name="GravCannon8" parent="StaticProps" instance=ExtResource("6_xb5w5")]
-transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 14.9738, -3.53453, 10.1472)
+transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 14.7719, -3.53453, 10.1472)
 throw_speed = 25.0
 
 [node name="FloorButton2" parent="StaticProps" instance=ExtResource("7_ys8t8")]
@@ -189,11 +190,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7435, 18.9684, -2.24229)
 base_properties = Array[int]([1])
 
 [node name="ColoredBarrier" parent="StaticProps" instance=ExtResource("10_r52c8")]
-transform = Transform3D(1, 0, 0, 0, 0.881847, 0.471535, 0, -0.471535, 0.881847, 15.1381, -3.15664, -4.99237)
+transform = Transform3D(1, 0, 0, 0, 0.881847, 0.471535, 0, -0.471535, 0.881847, 14.9362, -3.15664, -4.99237)
 active_colors = Array[int]([0])
 
 [node name="ColoredBarrier2" parent="StaticProps" instance=ExtResource("10_r52c8")]
-transform = Transform3D(1, 0, 0, 0, 0.838528, -0.544859, 0, 0.544859, 0.838528, 15.0648, -2.76273, 5.0791)
+transform = Transform3D(1, 0, 0, 0, 0.838528, -0.544859, 0, 0.544859, 0.838528, 14.8629, -2.76273, 5.0791)
 active_colors = Array[int]([0])
 
 [node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("11_74042")]
@@ -205,5 +206,18 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 21.099
 
 [node name="GrabButton2" parent="StaticProps" instance=ExtResource("12_bys6t")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 19.2078, 1.64852, 2.80558)
+
+[node name="Label3D2" type="Label3D" parent="StaticProps"]
+transform = Transform3D(0.0529111, 0, -0.998599, 0, 1, 0, 0.998599, 0, 0.0529111, 15.8374, 12.3957, -12.862)
+text = "Shortcut back here
+Activates grav lift below"
+
+[node name="Lever" parent="StaticProps" instance=ExtResource("13_tjhto")]
+transform = Transform3D(0.0529111, 0, -0.998599, 0, 1, 0, 0.998599, 0, 0.0529111, 15.1358, 10.2999, -12.862)
+
+[node name="GravCannon12" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("6_xb5w5")]
+transform = Transform3D(0.959702, -0.0203318, -0.280282, 0, 0.997379, -0.0723504, 0.281018, 0.0694349, 0.957187, 14.8908, -3.69441, -16.7416)
+throw_speed = 33.0
+buttons = [NodePath("../Lever")]
 
 [node name="Props" type="Node3D" parent="."]

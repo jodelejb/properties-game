@@ -9,19 +9,36 @@ extends StaticBody3D
 
 @export var throw_speed: float = 20
 
+@export var buttons: Array[InteractableButton]
+
+var active: bool = true
 var can_grab: bool = true
 
+var inactive_color: Color = Color(0,0,0)
 var normal_color: Color = Color(1,1,1)
 var grab_color: Color = Color(1,1,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if len(buttons) == 0:
+		active = true
+	else:
+		for btn in buttons:
+			btn.status_changed.connect(update_status)
+		update_status()
 	#grab_range.body_entered.connect(grab_object)
 	pass # Replace with function body.
 
+func update_status():
+	active = true
+	for btn in buttons:
+		if not btn.active: active = false
+		cannon_body.mesh.material.albedo_color = inactive_color
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if not active: return
 	cannon_body.mesh.material.albedo_color = normal_color
 	for body in grab_range.get_overlapping_bodies():
 		if can_grab:

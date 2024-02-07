@@ -180,6 +180,13 @@ func _physics_process(delta):
 	#pickup
 	if Input.is_action_just_pressed("pick_up_object"):
 		hm.pick_up(pickup.get_collider())
+	
+	if Input.is_action_just_pressed("interact"):
+		var body = pickup.get_collider()
+		
+		#if body is InteractableButton:
+		if body in get_tree().get_nodes_in_group("Interactable"):
+			body.press()
 		
 	if Input.is_action_just_pressed("throw"):
 		if hm.held_object == null: return

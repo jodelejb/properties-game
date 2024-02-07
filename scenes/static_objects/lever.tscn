@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://qocx0wwwvv4r"]
+
+[ext_resource type="PackedScene" uid="uid://xxhjwqnlngvd" path="res://scenes/static_objects/button.tscn" id="1_srd57"]
+[ext_resource type="Script" path="res://scenes/static_objects/lever.gd" id="2_17kwu"]
+[ext_resource type="Script" path="res://scenes/static_objects/lever_pivot.gd" id="3_luett"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ru7lg"]
+size = Vector3(0.01, 0.01, 0.01)
+
+[sub_resource type="PrismMesh" id="PrismMesh_yj1gs"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mflli"]
+data = PackedVector3Array(0, 0.25, 0.25, 0.25, -0.25, 0.25, -0.25, -0.25, 0.25, 0, 0.25, -0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, 0, 0.25, 0.25, 0, 0.25, -0.25, 0.25, -0.25, 0.25, 0, 0.25, -0.25, 0.25, -0.25, -0.25, 0.25, -0.25, 0.25, 0, 0.25, -0.25, 0, 0.25, 0.25, -0.25, -0.25, -0.25, 0, 0.25, 0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, -0.25, -0.25, 0.25, 0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, -0.25, -0.25)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_df0hs"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s6fft"]
+height = 1.0
+radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4q4i"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wa0d0"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_e4q4i")
+radius = 0.15
+height = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4dfel"]
+radius = 0.15
+
+[node name="Lever" groups=["Interactable"] instance=ExtResource("1_srd57")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_17kwu")
+
+[node name="CollisionShape3D" parent="Detection" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.543945, 0)
+shape = SubResource("BoxShape3D_ru7lg")
+
+[node name="Base" type="StaticBody3D" parent="." index="1" groups=["Interactable"]]
+collision_mask = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Base" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("PrismMesh_yj1gs")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("ConcavePolygonShape3D_mflli")
+
+[node name="Pivot" type="StaticBody3D" parent="." index="2" groups=["Interactable"]]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 9
+collision_mask = 15
+script = ExtResource("3_luett")
+
+[node name="ShaftMesh" type="MeshInstance3D" parent="Pivot" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CylinderMesh_df0hs")
+skeleton = NodePath("")
+
+[node name="ShaftCollision" type="CollisionShape3D" parent="Pivot" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CylinderShape3D_s6fft")
+
+[node name="BallMesh" type="MeshInstance3D" parent="Pivot" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37166, 0)
+mesh = SubResource("SphereMesh_wa0d0")
+
+[node name="BallCollision" type="CollisionShape3D" parent="Pivot" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37166, 0)
+shape = SubResource("SphereShape3D_4dfel")
