@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm3wguio5pxvm"]
+
+[ext_resource type="Script" path="res://scenes/static_objects/colored_barrier_adjustable.gd" id="1_s0kme"]
+[ext_resource type="PackedScene" uid="uid://dk5shqnsho70" path="res://scenes/properties/color_collision.tscn" id="2_oervm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axxhh"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.466667)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aablm"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_axxhh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_avgpm"]
+resource_local_to_scene = true
+
+[node name="ColoredBarrierAdjustable" type="StaticBody3D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_s0kme")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_aablm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_avgpm")
+
+[node name="ColorCollision" parent="." node_paths=PackedStringArray("bodies", "meshes") instance=ExtResource("2_oervm")]
+bodies = [NodePath("..")]
+meshes = [NodePath("../MeshInstance3D")]
