@@ -67,8 +67,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, 4.19068)
 size = Vector3(4.3, 0.1, 6.045)
 
 [node name="DevTerrain14" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(0.600657, -0.799506, 0, 0.799506, 0.600657, 0, 0, 0, 1, 14.0354, 9.35345, -0.0192181)
-size = Vector3(13.55, 0.1, 6.425)
+transform = Transform3D(0.600657, -0.799506, 0, 0.799506, 0.600657, 0, 0, 0, 1, 14.0354, 9.35345, -1.48546)
+size = Vector3(13.55, 0.1, 12.555)
 
 [node name="DevTerrain6" parent="Stage" instance=ExtResource("1_cmthq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, -10.5334)
@@ -96,7 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.2041, 0)
 
 [node name="LevelLoader" parent="StaticProps" instance=ExtResource("4_teatg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8721, 0.110529, -0.30852)
-level_to_load = "res://scenes/dev/test_stage.tscn"
+level_to_load = "res://scenes/dev/test_level_16.tscn"
 
 [node name="Spawner" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39029, 1.85277, 1.16967)

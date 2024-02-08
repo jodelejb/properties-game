@@ -78,3 +78,5 @@ mesh = SubResource("SphereMesh_wa0d0")
 [node name="BallCollision" type="CollisionShape3D" parent="Pivot" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37166, 0)
 shape = SubResource("SphereShape3D_4dfel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]

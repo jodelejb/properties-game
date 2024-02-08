@@ -38,6 +38,7 @@ var holder: PhysicsBody3D:
 @export var held_object_speed: float = 800
 @export var throw_speed: float = 15
 @export var hold_point: Marker3D
+@export var hold_length: float = 3
 
 func _ready():
 	phys_body.add_to_group("Holding")
@@ -75,6 +76,9 @@ func follow(delta):
 	if holder != null:
 		var a = phys_body.global_position
 		var b = holder.hm.hold_point.global_position
+		if (b-a).length() > hold_length: 
+			holder = null
+			return
 		if "linear_velocity" in phys_body:
 			phys_body.linear_velocity = (b-a) * held_object_speed * delta
 		if "velocity" in phys_body:

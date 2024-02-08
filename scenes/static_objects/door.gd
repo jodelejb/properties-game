@@ -5,6 +5,7 @@ class_name Door
 #@onready var door_col = $CollisionShape3D
 
 @export var buttons: Array[InteractableButton]
+@export var inverted: bool = false
 
 var active = false
 
@@ -12,14 +13,19 @@ var active = false
 func _ready():
 	for btn in buttons:
 		btn.status_changed.connect(update_status)
+	update_status()
 
 func update_status():
 	active = true
 	for btn in buttons:
 		if not btn.active: active = false
 	
-	if active: open()
-	else: close()
+	if not inverted:
+		if active: open()
+		else: close()
+	else:
+		if active: close()
+		else: open()
 		
 		
 func open():

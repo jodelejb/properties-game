@@ -36,6 +36,10 @@ shape = SubResource("BoxShape3D_egjdm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2396, 0, 0)
 level_to_load = "res://scenes/dev/test_level_2.tscn"
 
+[node name="LevelLoader2" parent="." instance=ExtResource("2_wpln0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2396, 0, 4.69966)
+level_to_load = "res://scenes/dev/test_level_13.tscn"
+
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_7hurn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.24294, 0, 0)
 
@@ -47,3 +51,7 @@ transform = Transform3D(0.599317, 0, -0.800512, 0, 1, 0, 0.800512, 0, 0.599317, 
 text = "WASD to walk
 Shift to run
 Ctrl to crouch"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-0.595188, 0, -0.803587, 0, 1, 0, 0.803587, 0, -0.595188, 4.36286, 2.79294, 4.62231)
+text = "Skip tutorial"
