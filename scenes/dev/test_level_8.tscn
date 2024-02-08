@@ -29,6 +29,40 @@ size = Vector3(10, 0.1, 5)
 
 [node name="TestLevel8" type="Node3D"]
 
+[node name="stage" type="Node3D" parent="."]
+
+[node name="DevTerrain" parent="stage" instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22295, 1.64037, -4.23156)
+size = Vector3(0.1, 3.55, 3.29)
+
+[node name="DevTerrain6" parent="stage" instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.81517, 1.64037, 4.06787)
+size = Vector3(0.1, 3.55, 3.29)
+
+[node name="DevTerrain7" parent="stage" instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216148, 1.64037, 4.06787)
+size = Vector3(0.1, 3.55, 3.29)
+
+[node name="DevTerrain8" parent="stage" instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.53146, 1.64037, 4.06787)
+size = Vector3(0.1, 3.55, 3.29)
+
+[node name="DevTerrain2" parent="stage" instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.956807, 1.64037, -4.23156)
+size = Vector3(0.1, 3.55, 3.29)
+
+[node name="DevTerrain3" parent="stage" instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.20527, 1.64037, -4.23156)
+size = Vector3(0.1, 3.55, 3.29)
+
+[node name="DevTerrain4" parent="stage" instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.60987, 1.64037, -4.23156)
+size = Vector3(0.1, 3.55, 3.29)
+
+[node name="DevTerrain5" parent="stage" instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2914, 1.64037, -4.23156)
+size = Vector3(0.1, 3.55, 3.29)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 metadata/_edit_lock_ = true
@@ -108,7 +142,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37361, 0, 2.46227)
 buttons = [NodePath("../../Buttons/FloorButton")]
 
 [node name="Door2" parent="Doors" node_paths=PackedStringArray("buttons") instance=ExtResource("8_lu4my")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20713, -4.76837e-07, -2.37986)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9477, -4.76837e-07, -2.59321)
 buttons = [NodePath("../../Buttons/FloorButton2")]
 
 [node name="Node3D" type="Node3D" parent="."]
@@ -120,6 +154,22 @@ parent_node = NodePath("../..")
 
 [node name="DevTerrain" parent="." instance=ExtResource("10_p2rlo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -4.128)
+size = Vector3(2.765, 0.1, 3.25)
+
+[node name="DevTerrain3" parent="." instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47973, -0.05, 3.98361)
+size = Vector3(2.765, 0.1, 3.25)
+
+[node name="DevTerrain4" parent="." instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28866, -0.05, 3.98361)
+size = Vector3(2.765, 0.1, 3.25)
+
+[node name="DevTerrain2" parent="." instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32047, -0.05, -4.128)
+size = Vector3(2.765, 0.1, 3.25)
+
+[node name="DevTerrain5" parent="." instance=ExtResource("10_p2rlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12206, -0.05, -4.128)
 size = Vector3(2.765, 0.1, 3.25)
 
 [node name="Label3D" type="Label3D" parent="."]
