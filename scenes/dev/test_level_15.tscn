@@ -117,7 +117,7 @@ parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
 
 [node name="Spawner3" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.572, -0.047745, -8.80198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4299, -0.047745, -8.80198)
 object_to_spawn = "res://scenes/phys_objects/box.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")

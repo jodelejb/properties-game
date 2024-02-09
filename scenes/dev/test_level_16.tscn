@@ -98,7 +98,7 @@ size = Vector3(3.01, 3.815, 5.735)
 
 [node name="DevTerrain22" parent="Stage" instance=ExtResource("1_nmv61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45238, -0.239621, 1.61992)
-size = Vector3(3.01, 18.265, 2.565)
+size = Vector3(3.01, 28.335, 2.565)
 
 [node name="DevTerrain15" parent="Stage" instance=ExtResource("1_nmv61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.857437, -0.255342, 4.09833)
