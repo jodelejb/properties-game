@@ -1,12 +1,16 @@
 extends Node3D
 class_name Bridge
 
+@onready var piece_delay = $PieceDelay
+
 var bridge_piece: PackedScene = preload("res://scenes/properties/bridge_piece.tscn")
 var last_location: Vector3
 var spawn_point: Node3D
 var bridge_node: Node3D
 
 var piece_length = 0.2
+
+var can_bridge: bool = false
 
 @onready var phys_body: PhysicsBody3D = $".."
 
@@ -15,6 +19,8 @@ func _ready():
 	bridge_node = get_tree().get_first_node_in_group("Bridge")
 	spawn_point = self
 	last_location = spawn_point.global_position
+	if "hm" in phys_body:
+		phys_body.hm.holder_changed.connect(hold_changed)
 	pass # Replace with function body.
 
 
@@ -23,6 +29,7 @@ func _process(_delta):
 	if (spawn_point.global_position-last_location).length() > piece_length:
 		if "hm" in phys_body:
 			if phys_body.hm.holder != null: return
+		if not can_bridge: return
 		if "linear_velocity" in phys_body:
 			if Vector2(phys_body.linear_velocity.x, phys_body.linear_velocity.z).length() < 0.05: return
 		elif "velocity" in phys_body:
@@ -49,3 +56,12 @@ func _process(_delta):
 		bp.quaternion = Quaternion(norm.normalized(),angle_x)*Quaternion(Vector3(0,1,0),angle_y)
 		bridge_node.add_child(bp)
 		last_location = spawn_point.global_position
+		
+func hold_changed():
+	if phys_body.hm.holder == null:
+		can_bridge = false
+		piece_delay.start()
+
+
+func _on_piece_delay_timeout():
+	can_bridge = true

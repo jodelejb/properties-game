@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/properties/bridge_piece.gd" id="1_a0w8k"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3wvaf"]
-size = Vector3(1.5, 0.1, 0.2)
+size = Vector3(1.5, 0.1, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g0c3o"]
-size = Vector3(1.5, 0.1, 0.2)
+size = Vector3(1.5, 0.1, 0.3)
 
 [node name="BridgePiece" type="StaticBody3D"]
 collision_layer = 32

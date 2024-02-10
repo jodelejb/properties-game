@@ -2,6 +2,7 @@ extends Node
 
 @onready var phys_body: PhysicsBody3D = $".."
 
+signal held_changed
 var held_object: PhysicsBody3D:
 	get:
 		return held_object
@@ -17,7 +18,9 @@ var held_object: PhysicsBody3D:
 			if old_held_object.hm.holder == phys_body:
 				old_held_object.hm.holder = null
 		if held_object != null: held_object.hm.holder = phys_body
+		held_changed.emit()
 
+signal holder_changed
 var holder: PhysicsBody3D:
 	get:
 		return holder
@@ -33,6 +36,7 @@ var holder: PhysicsBody3D:
 			if old_holder.hm.held_object == phys_body:
 				old_holder.hm.held_object = null
 		if holder != null: holder.hm.held_object = phys_body
+		holder_changed.emit()
 		#print("holder set to " + str(holder))
 
 @export var held_object_speed: float = 800
@@ -64,7 +68,10 @@ func throw(throw_vec: Vector3):
 	if "linear_velocity" in held_object:
 		var obj_speed = held_object.linear_velocity.length()
 		if obj_speed < throw_speed:
-			held_object.linear_velocity = throw_vec*throw_speed
+			var throw_total = throw_vec*throw_speed
+			if "velocity_offset" in held_object:
+				held_object.velocity_offset = Vector3(throw_total.x,0,throw_total.z)
+			held_object.linear_velocity = throw_total
 	elif "velocity" in held_object:
 		var obj_speed = held_object.velocity.length()
 		if obj_speed < throw_speed:

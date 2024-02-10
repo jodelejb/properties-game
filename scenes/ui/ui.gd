@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var player: CharacterBody3D
+@export var player: RigidBody3D
 
 @onready var selected_property = $MarginContainer/VBoxContainer/SelectedProperty
 @onready var property_label_container = $MarginContainer2/VBoxContainer/PropertyLabelContainer

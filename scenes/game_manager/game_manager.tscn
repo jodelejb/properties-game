@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://d12itapyfkqfo"]
 
 [ext_resource type="Script" path="res://scenes/game_manager/game_manager.gd" id="1_fk1w3"]
-[ext_resource type="PackedScene" uid="uid://b8fy34txeuvpw" path="res://scenes/player/player.tscn" id="2_s7vm7"]
-[ext_resource type="PackedScene" uid="uid://q6cw0b6ybd4k" path="res://scenes/ui/ui.tscn" id="3_m5qyl"]
+[ext_resource type="PackedScene" uid="uid://cot6q6o70j5nh" path="res://scenes/player/player_rigid.tscn" id="3_ewae7"]
+[ext_resource type="PackedScene" uid="uid://q6cw0b6ybd4k" path="res://scenes/ui/ui.tscn" id="4_si7o4"]
 [ext_resource type="PackedScene" uid="uid://bkmdkg02dd0cl" path="res://scenes/environment/cloudy_sky.tscn" id="4_vk0do"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qm5ec"]
@@ -45,11 +45,7 @@ transform = Transform3D(0.525724, -0.761618, 0.378883, 0, 0.445401, 0.895331, -0
 shadow_enabled = true
 directional_shadow_max_distance = 400.0
 
-[node name="Player" parent="." instance=ExtResource("2_s7vm7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86909, 0, 0)
-
-[node name="UI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_m5qyl")]
-player = NodePath("../Player")
+[node name="Player" parent="." instance=ExtResource("3_ewae7")]
 
 [node name="BridgePieces" type="Node3D" parent="." groups=["Bridge"]]
 
@@ -62,3 +58,6 @@ size = Vector3(195.176, 40.7611, 181.42)
 clouds_to_spawn = 15
 cloud_file = "res://scenes/environment/cloud.tscn"
 metadata/_edit_lock_ = true
+
+[node name="UI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_si7o4")]
+player = NodePath("../Player")
