@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cot6q6o70j5nh"]
+[gd_scene load_steps=8 format=3 uid="uid://cot6q6o70j5nh"]
 
 [ext_resource type="Script" path="res://scenes/player/player_rigid.gd" id="1_50aot"]
 [ext_resource type="Script" path="res://scenes/player/Neck.gd" id="2_cv7a3"]
 [ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="2_rt1l4"]
 [ext_resource type="PackedScene" uid="uid://cy0wpfj4vv2g7" path="res://scenes/properties/hold_manager.tscn" id="3_ms2y1"]
-[ext_resource type="Script" path="res://scenes/player/FloorMonitor.gd" id="5_2o4jj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_en1wk"]
 friction = 0.0
@@ -14,9 +13,6 @@ friction = 0.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pfgwf"]
 height = 1.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_87g7o"]
-radius = 0.45
-
 [node name="Player" type="RigidBody3D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 13
@@ -24,6 +20,8 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_en1wk")
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("1_50aot")
 
 [node name="PropertyManager" parent="." instance=ExtResource("2_rt1l4")]
@@ -71,24 +69,13 @@ one_shot = true
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15
 
-[node name="FloorMonitor" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-collision_layer = 0
-collision_mask = 45
-mass = 0.01
-gravity_scale = 0.0
-continuous_cd = true
-max_contacts_reported = 4
-contact_monitor = true
-script = ExtResource("5_2o4jj")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorMonitor"]
-shape = SubResource("SphereShape3D_87g7o")
-
 [node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
 
-[connection signal="body_entered" from="FloorMonitor" to="." method="_on_rigid_body_3d_body_entered"]
-[connection signal="body_exited" from="FloorMonitor" to="." method="_on_rigid_body_3d_body_exited"]
+[node name="ThrownTimer" type="Timer" parent="."]
+wait_time = 0.23
+one_shot = true
+
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="ThrownTimer" to="." method="_on_thrown_timer_timeout"]

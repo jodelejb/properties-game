@@ -16,10 +16,13 @@ extends RigidBody3D
 @onready var bridge_jump_timer = $BridgeJumpTimer
 @onready var coyote_timer = $CoyoteTimer
 @onready var jump_timer = $JumpTimer
+#@onready var floor_monitor_area = $FloorMonitorArea
+@onready var thrown_timer = $ThrownTimer
 
 var del: float
 
 var floor: bool = false
+var wall: bool = false
 
 #movement speeds
 var current_speed: float = 5.0
@@ -29,6 +32,7 @@ var bridge_jump_base_modifier = 1
 var can_jump: bool
 var just_on_ground: bool = true
 var just_jumped: bool = false
+var just_thrown: bool = false
 var velocity_offset: Vector3 = Vector3.ZERO
 
 const walk_speed: float = 5.0/5.0
@@ -233,16 +237,29 @@ func _physics_process(delta):
 
 func _integrate_forces(state):
 	direction = lerp(direction,(neck.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),del*lerp_speed)
-	if is_on_floor():
+	var numcol = state.get_contact_count()
+	floor = false
+	wall = false
+	for n in range(numcol):
+		var col: Vector3 = state.get_contact_local_position(n) -global_position
+		#print(col)
+		if col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35: floor = true
+		if col.y > 0.5 and Vector2(col.x,col.z).length() > 0.49: wall = true
+	if (is_on_floor() or is_on_wall()) and not just_thrown:
 		velocity_offset = Vector3.ZERO
 	if direction:
-		apply_force(direction*60*current_speed)
+		apply_force(direction*65*current_speed)
 		apply_force(-10*(Vector3(linear_velocity.x,0,linear_velocity.z) - velocity_offset)*1)
-		physics_material_override.friction = clamp(0.7-direction.length(),0,0.7)
+		if is_on_floor():
+			physics_material_override.friction = clamp(0.7-direction.length(),0,0.7)
 		
 		
 func is_on_floor() -> bool:
 	return floor
+	#return floor or floor_monitor_area.has_overlapping_bodies()
+	
+func is_on_wall() -> bool:
+	return wall
 	
 #primary action. Likely to include more functions later
 func primary_action():
@@ -282,13 +299,20 @@ func take_property(pm: PropertyManager) -> void:
 			
 
 func _on_rigid_body_3d_body_entered(body):
-	floor = true
+	pass
+	#floor = true
 
 
 func _on_rigid_body_3d_body_exited(body):
-	floor = false
+	pass
+	#floor = false
 
 
 func _on_jump_timer_timeout():
 	just_jumped = false
+	pass # Replace with function body.
+
+
+func _on_thrown_timer_timeout():
+	just_thrown = false
 	pass # Replace with function body.

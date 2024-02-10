@@ -71,6 +71,8 @@ func throw(throw_vec: Vector3):
 			var throw_total = throw_vec*throw_speed
 			if "velocity_offset" in held_object:
 				held_object.velocity_offset = Vector3(throw_total.x,0,throw_total.z)
+				held_object.just_thrown = true
+				held_object.thrown_timer.start()
 			held_object.linear_velocity = throw_total
 	elif "velocity" in held_object:
 		var obj_speed = held_object.velocity.length()
