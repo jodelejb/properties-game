@@ -90,8 +90,8 @@ var held_property = null:
 		
 
 #movement states
-enum state {walking, sprinting, crouching, sliding, NULL}
-var curr_state = state.NULL:
+enum states {walking, sprinting, crouching, sliding, NULL}
+var curr_state = states.NULL:
 	get:
 		return curr_state
 	set(value):
@@ -100,7 +100,7 @@ var curr_state = state.NULL:
 #head bobbing:
 var head_bob_intense: float = 0
 
-const head_bob_key: Array = [state.crouching, state.walking, state.sprinting]
+const head_bob_key: Array = [states.crouching, states.walking, states.sprinting]
 
 const head_bob_speeds: Array[float] = [10.0, 14.0, 22.0]
 const head_bob_intensity: Array[float] = [0.05, 0.1, 0.2]
@@ -116,7 +116,7 @@ func _physics_process(delta):
 	#floor_check.set_collision_layer_value(32, not floor_check.get_collision_layer_value(32))
 	#PhysicsServer3D.area_set_monitorable(floor_check, false)
 	#PhysicsServer3D.area_set_monitorable(floor_check, true)
-	print(is_on_floor())
+	#print(is_on_floor())
 	input_dir = Input.get_vector("left", "right", "forward", "backward")
 	del = delta
 	
@@ -133,17 +133,17 @@ func _physics_process(delta):
 		standing_collider.disabled = true
 		crouching_collider.disabled = false
 		head.position.y = lerp(head.position.y, head_height + crouching_depth, lerp_speed*delta)
-		curr_state = state.crouching
+		curr_state = states.crouching
 	elif !height_check.is_colliding():
 		head.position.y = lerp(head.position.y, head_height, lerp_speed*delta)
 		standing_collider.disabled = false
 		crouching_collider.disabled = true
 		if Input.is_action_pressed("sprint"):
 			current_speed = sprint_speed #lerp(current_speed, sprint_speed, lerp_speed*delta)
-			curr_state = state.sprinting
+			curr_state = states.sprinting
 		else:
 			current_speed = walk_speed #lerp(current_speed, walk_speed, lerp_speed*delta)
-			curr_state = state.walking
+			curr_state = states.walking
 			
 	# get head bob intensities and speeds
 	for i in len(head_bob_key):
@@ -153,7 +153,7 @@ func _physics_process(delta):
 			break
 		
 	# apply the head bob
-	if is_on_floor() && curr_state != state.sliding && input_dir != Vector2.ZERO:
+	if is_on_floor() && curr_state != states.sliding && input_dir != Vector2.ZERO:
 		head_bob_vec.y = sin(head_bob_idx)
 		head_bob_vec.x = sin(head_bob_idx/2) + 0.5
 		
@@ -260,7 +260,10 @@ func _integrate_forces(state):
 		if col.y < 0.5:
 			floor_angle = 90*lerpf(0,1,sqrt(clamp(col.y,0.0,0.5)/0.5))
 			floor_direction = col.normalized()
-			print(floor_angle)
+			if curr_state == states.sprinting:
+				floor_angle += 20 * direction.normalized().dot(Vector3(floor_direction.x,0,floor_direction.z).normalized())
+				#print(direction.dot(floor_direction))
+			#print(floor_angle)
 	if (is_on_floor() or is_on_wall()) and not just_thrown:
 		velocity_offset = Vector3.ZERO
 	if direction:
