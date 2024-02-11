@@ -4,3 +4,9 @@
 
 [node name="HoldManager" type="Node"]
 script = ExtResource("1_y6fvp")
+
+[node name="GrabTimeout" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="GrabTimeout" to="." method="_on_grab_timeout_timeout"]

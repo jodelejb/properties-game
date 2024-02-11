@@ -256,9 +256,17 @@ func _integrate_forces(state):
 	var floor_angle: float = 0
 	var floor_direction: Vector3
 	for n in range(numcol):
+		var obj = state.get_contact_collider_object(n)
+		
+		#get floor and wall collisions
 		var col: Vector3 = state.get_contact_local_position(n) - ground.global_position
+		
 		if col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35: floor = true
 		if col.y > 0.5 and Vector2(col.x,col.z).length() > 0.49: wall = true
+		if obj == hm.held_object and (col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35):
+			hm.held_object = null
+			hm.can_hold = false
+			hm.grab_timeout.start()
 		if col.y < 0.5:
 			floor_angle = 90*lerpf(0,1,sqrt(clamp(col.y,0.0,0.5)/0.5))
 			floor_direction = col.normalized()

@@ -1,12 +1,15 @@
 extends Node
 
+var can_hold: bool = true
 @onready var phys_body: PhysicsBody3D = $".."
+@onready var grab_timeout = $GrabTimeout
 
 signal held_changed
 var held_object: PhysicsBody3D:
 	get:
 		return held_object
 	set(value):
+		if not can_hold: return
 		if held_object == value: return
 		var old_held_object = held_object
 		held_object = value
@@ -93,3 +96,8 @@ func follow(delta):
 		if "velocity" in phys_body:
 			#phys_body.velocity = (b-a) * held_object_speed * delta
 			phys_body.applied_velocities.append([(b-a) * held_object_speed * delta, phys_body.vel_expiration.instant, false])
+
+
+func _on_grab_timeout_timeout():
+	can_hold = true
+	pass # Replace with function body.
