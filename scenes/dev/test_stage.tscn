@@ -161,6 +161,9 @@ shape = SubResource("ConvexPolygonShape3D_l0tqn")
 [node name="KillBarrier" parent="env" instance=ExtResource("2_npbkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.5982, 0)
 
+[node name="KillBarrier2" parent="env" instance=ExtResource("2_npbkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.4426, 0)
+
 [node name="DevTerrain" parent="env" instance=ExtResource("3_wfrqm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50512, 8.55209, -1.39346)
 size = Vector3(7.315, 0.1, 8.875)

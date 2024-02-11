@@ -15,11 +15,13 @@ var active: bool = true
 var can_grab: bool = true
 
 var inactive_color: Color = Color(0,0,0)
+var inactive_grab_color: Color = Color(.3,.3,0)
 var normal_color: Color = Color(1,1,1)
 var grab_color: Color = Color(1,1,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hm.held_changed.connect(released)
 	if len(buttons) == 0:
 		active = true
 	else:
@@ -34,16 +36,25 @@ func update_status():
 	for btn in buttons:
 		if not btn.active: active = false
 		cannon_body.mesh.material.albedo_color = inactive_color
+	if active == true and hm.held_object != null:
+		throw_timer.start()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if not active: return
-	cannon_body.mesh.material.albedo_color = normal_color
+	if active:
+		cannon_body.mesh.material.albedo_color = normal_color
+	else:
+		cannon_body.mesh.material.albedo_color = inactive_color
 	for body in grab_range.get_overlapping_bodies():
-		if can_grab:
+		if active:
 			cannon_body.mesh.material.albedo_color = grab_color
+		else:
+			cannon_body.mesh.material.albedo_color = inactive_grab_color
+		#if can_grab:
+			
 		if body.hm.holder == null:
+			if body in get_tree().get_nodes_in_group("Player") and not active: return
 			grab_object(body)
 		
 	#print(hm.held_object)
@@ -54,7 +65,8 @@ func grab_object(object):
 	if hm.held_object == null and can_grab:
 		hm.pick_up(object)
 		can_grab = false
-		throw_timer.start()
+		if active:
+			throw_timer.start()
 
 
 
@@ -67,3 +79,7 @@ func _on_throw_timer_timeout():
 func _on_disabled_timer_timeout():
 	can_grab = true
 	pass # Replace with function body.
+	
+func released():
+	if hm.held_object == null:
+		disabled_timer.start()

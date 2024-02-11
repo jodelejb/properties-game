@@ -127,6 +127,9 @@ func _physics_process(delta):
 		just_on_ground = true
 		can_jump = true
 	
+	if not is_on_floor():
+		just_on_ground = false
+	
 	#movement states
 	if Input.is_action_pressed("crouch"):
 		current_speed = crouch_speed #lerp(current_speed, crouch_speed, lerp_speed*delta)
@@ -254,7 +257,6 @@ func _integrate_forces(state):
 	var floor_direction: Vector3
 	for n in range(numcol):
 		var col: Vector3 = state.get_contact_local_position(n) - ground.global_position
-		#print(col)
 		if col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35: floor = true
 		if col.y > 0.5 and Vector2(col.x,col.z).length() > 0.49: wall = true
 		if col.y < 0.5:
@@ -262,13 +264,11 @@ func _integrate_forces(state):
 			floor_direction = col.normalized()
 			if curr_state == states.sprinting:
 				floor_angle += 20 * direction.normalized().dot(Vector3(floor_direction.x,0,floor_direction.z).normalized())
-				#print(direction.dot(floor_direction))
-			#print(floor_angle)
 	if (is_on_floor() or is_on_wall()) and not just_thrown:
 		velocity_offset = Vector3.ZERO
 	if direction:
 		if floor_angle > max_floor_angle:
-			direction -= direction.dot(floor_direction)*floor_direction
+			direction -= direction.dot(floor_direction)*Vector3(floor_direction.x,0.0,floor_direction.z)*0.5
 		apply_force(direction*65*current_speed)
 		apply_force(-10*(Vector3(linear_velocity.x,0,linear_velocity.z) - velocity_offset)*1)
 		if is_on_floor():
@@ -277,7 +277,6 @@ func _integrate_forces(state):
 		
 func is_on_floor() -> bool:
 	return floor
-	#return floor or floor_monitor_area.has_overlapping_bodies()
 	
 func is_on_wall() -> bool:
 	return wall
@@ -331,9 +330,11 @@ func _on_rigid_body_3d_body_exited(body):
 
 func _on_jump_timer_timeout():
 	just_jumped = false
-	pass # Replace with function body.
 
 
 func _on_thrown_timer_timeout():
 	just_thrown = false
-	pass # Replace with function body.
+
+func _on_coyote_timer_timeout():
+	can_jump = false
+

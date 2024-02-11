@@ -67,6 +67,7 @@ one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15
+one_shot = true
 
 [node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.05
@@ -79,5 +80,6 @@ one_shot = true
 [node name="Ground" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="ThrownTimer" to="." method="_on_thrown_timer_timeout"]
