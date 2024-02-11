@@ -51,6 +51,11 @@ func set_properties() -> void:
 			phys_body.gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 		if "gravity_scale" in phys_body:
 			phys_body.gravity_scale = 1.0
+			
+	if Globals.properties.invert in applied_properties:
+		property_display.text += " Invert"
+		if "gravity_scale" in phys_body:
+			phys_body.gravity_scale *= -1
 		
 	#barrier collision properties
 	var color_col = [Globals.red,Globals.green,Globals.blue,Globals.cyan,Globals.magenta,Globals.yellow,Globals.white]

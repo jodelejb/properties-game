@@ -18,6 +18,7 @@ extends RigidBody3D
 @onready var jump_timer = $JumpTimer
 #@onready var floor_monitor_area = $FloorMonitorArea
 @onready var thrown_timer = $ThrownTimer
+@onready var ground = $Ground
 
 var del: float
 
@@ -45,7 +46,7 @@ var lerp_speed: float = 10.0
 var direction: Vector3 = Vector3.ZERO
 var input_dir
 
-var head_height: float = 1.8
+var head_height: float = .8
 var crouching_depth: float = -1.0
 
 #held object parameters. Maybe to move to phys object?
@@ -172,7 +173,15 @@ func _physics_process(delta):
 			else:
 				bridge_jump_modifier = bridge_jump_base_modifier
 			bridge_jump = false
+		if Globals.properties.invert in pm.applied_properties:
+			bridge_jump_modifier *= -1
 		linear_velocity.y = jump_vel * bridge_jump_modifier
+		
+	if Globals.properties.invert in pm.applied_properties:
+		rotation_degrees.z = lerp(rotation_degrees.z, 180.0, delta*lerp_speed*0.7)
+	else:
+		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta*lerp_speed*0.7)
+		pass
 		
 	#pickup
 	if Input.is_action_just_pressed("primary_action"):
@@ -241,7 +250,7 @@ func _integrate_forces(state):
 	floor = false
 	wall = false
 	for n in range(numcol):
-		var col: Vector3 = state.get_contact_local_position(n) -global_position
+		var col: Vector3 = state.get_contact_local_position(n) - ground.global_position
 		#print(col)
 		if col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35: floor = true
 		if col.y > 0.5 and Vector2(col.x,col.z).length() > 0.49: wall = true

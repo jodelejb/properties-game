@@ -3,7 +3,7 @@ extends Node
 var lol: int = 69
 var low_grav: float = 15
 
-enum properties {gravity, red, green, blue, bridge}
+enum properties {gravity, red, green, blue, bridge, invert}
 enum pm_types {base, source, sink}
 enum colors {red, green, blue}
 

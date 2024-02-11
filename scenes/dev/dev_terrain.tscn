@@ -44,17 +44,17 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.5
 shader_parameter/point_size = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_prwah"]
+[sub_resource type="BoxMesh" id="BoxMesh_q7tis"]
 material = SubResource("ShaderMaterial_wy6pi")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_m30om"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_dnqfg"]
 resource_local_to_scene = true
 
 [node name="DevTerrain" type="StaticBody3D"]
 script = SubResource("GDScript_0yfj0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_prwah")
+mesh = SubResource("BoxMesh_q7tis")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_m30om")
+shape = SubResource("BoxShape3D_dnqfg")

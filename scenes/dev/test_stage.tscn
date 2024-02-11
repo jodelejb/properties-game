@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://bsk26snggm5fn"]
+[gd_scene load_steps=26 format=3 uid="uid://bsk26snggm5fn"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_goxr4"]
 [ext_resource type="PackedScene" uid="uid://dpuif60enlfsp" path="res://scenes/phys_objects/ball.tscn" id="2_4qbnp"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="2_npbkg"]
 [ext_resource type="PackedScene" uid="uid://dla2ibpjjj5va" path="res://scenes/phys_objects/box.tscn" id="3_vv1is"]
+[ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="3_wfrqm"]
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="4_28jpm"]
 [ext_resource type="PackedScene" uid="uid://bm3wguio5pxvm" path="res://scenes/static_objects/colored_barrier_adjustable.tscn" id="4_nrtrh"]
 [ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="5_2sscl"]
@@ -160,6 +161,10 @@ shape = SubResource("ConvexPolygonShape3D_l0tqn")
 [node name="KillBarrier" parent="env" instance=ExtResource("2_npbkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.5982, 0)
 
+[node name="DevTerrain" parent="env" instance=ExtResource("3_wfrqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50512, 8.55209, -1.39346)
+size = Vector3(7.315, 0.1, 8.875)
+
 [node name="Barriers" type="Node3D" parent="."]
 
 [node name="ColoredBarrier" parent="Barriers" instance=ExtResource("4_28jpm")]
@@ -207,6 +212,10 @@ base_properties = Array[int]([3])
 [node name="PropertySource5" parent="PropertyGenerators" instance=ExtResource("5_2sscl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38085, 0.61398, -8.0578)
 base_properties = Array[int]([4])
+
+[node name="PropertySource6" parent="PropertyGenerators" instance=ExtResource("5_2sscl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81176, 0.61398, -8.0578)
+base_properties = Array[int]([5])
 
 [node name="Props" type="Node3D" parent="."]
 
