@@ -24,6 +24,7 @@ var del: float
 
 var floor: bool = false
 var wall: bool = false
+var max_floor_angle: float = 55
 
 #movement speeds
 var current_speed: float = 5.0
@@ -249,14 +250,22 @@ func _integrate_forces(state):
 	var numcol = state.get_contact_count()
 	floor = false
 	wall = false
+	var floor_angle: float = 0
+	var floor_direction: Vector3
 	for n in range(numcol):
 		var col: Vector3 = state.get_contact_local_position(n) - ground.global_position
 		#print(col)
 		if col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35: floor = true
 		if col.y > 0.5 and Vector2(col.x,col.z).length() > 0.49: wall = true
+		if col.y < 0.5:
+			floor_angle = 90*lerpf(0,1,sqrt(clamp(col.y,0.0,0.5)/0.5))
+			floor_direction = col.normalized()
+			print(floor_angle)
 	if (is_on_floor() or is_on_wall()) and not just_thrown:
 		velocity_offset = Vector3.ZERO
 	if direction:
+		if floor_angle > max_floor_angle:
+			direction -= direction.dot(floor_direction)*floor_direction
 		apply_force(direction*65*current_speed)
 		apply_force(-10*(Vector3(linear_velocity.x,0,linear_velocity.z) - velocity_offset)*1)
 		if is_on_floor():
