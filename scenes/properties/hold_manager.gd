@@ -42,7 +42,7 @@ var holder: PhysicsBody3D:
 		holder_changed.emit()
 		#print("holder set to " + str(holder))
 
-@export var held_object_speed: float = 800
+@export var held_object_speed: float = 1600
 @export var throw_speed: float = 15
 @export var hold_point: Marker3D
 @export var hold_length: float = 3
@@ -51,6 +51,8 @@ func _ready():
 	phys_body.add_to_group("Holding")
 	if "throw_speed" in phys_body:
 		throw_speed = phys_body.throw_speed
+	if "held_object_speed" in phys_body:
+		held_object_speed = phys_body.held_object_speed
 
 func _physics_process(delta):
 	follow(delta)

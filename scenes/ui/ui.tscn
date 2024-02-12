@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://q6cw0b6ybd4k"]
+[gd_scene load_steps=4 format=3 uid="uid://q6cw0b6ybd4k"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_qn00k"]
 [ext_resource type="LabelSettings" uid="uid://cpmtqydsji5ul" path="res://scenes/dev/debug_text.tres" id="2_1hq0e"]
+[ext_resource type="Texture2D" uid="uid://bqsu0f2xovowv" path="res://assets/textures/reticule/Crosshair_no_outer_ring.svg" id="3_enrwr"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_qn00k")
@@ -71,3 +72,20 @@ label_settings = ExtResource("2_1hq0e")
 
 [node name="PropertyLabelContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.709804)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_enrwr")

@@ -25,6 +25,11 @@ var del: float
 var floor: bool = false
 var wall: bool = false
 var max_floor_angle: float = 55
+var invert_axis: Vector3
+var invert_focus: float
+var invert_quat: Quaternion
+var inverted: bool = false
+var head_rotated: bool = true
 
 #movement speeds
 var current_speed: float = 5.0
@@ -52,7 +57,7 @@ var crouching_depth: float = -1.0
 
 #held object parameters. Maybe to move to phys object?
 var held_object: RigidBody3D = null
-var held_object_speed: float = 10.0
+var held_object_speed: float = 1600
 var throw_speed: float = 15.0
 
 signal stored_properties_changed
@@ -110,6 +115,7 @@ var head_bob_idx: float = 0.0
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pm.applied_properties_changed.connect(check_properties)
 		
 
 func _physics_process(delta):
@@ -180,12 +186,13 @@ func _physics_process(delta):
 		if Globals.properties.invert in pm.applied_properties:
 			bridge_jump_modifier *= -1
 		linear_velocity.y = jump_vel * bridge_jump_modifier
-		
-	if Globals.properties.invert in pm.applied_properties:
-		rotation_degrees.z = lerp(rotation_degrees.z, 180.0, delta*lerp_speed*0.7)
-	else:
-		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta*lerp_speed*0.7)
-		pass
+	
+	#Rotate view due to invert property
+	print(invert_quat)
+	set_quaternion(lerp(quaternion,invert_quat,lerp_speed*delta))
+	if not head_rotated:
+		head.rotation.x = invert_focus
+		head_rotated = true
 		
 	#pickup
 	if Input.is_action_just_pressed("primary_action"):
@@ -224,12 +231,6 @@ func _physics_process(delta):
 		var throw_aug_vec: Vector3 = Vector3(0,throw_augmenter,0)
 		hm.throw((holding.global_position + throw_aug_vec - head.global_position).normalized())
 		
-	#move the held object in front of the player. could be useful to move to phys object instead
-	if held_object != null:
-		var a = held_object.global_position
-		var b = holding.global_position
-		held_object.linear_velocity = (b-a) * held_object_speed
-		
 	#scroll through properties
 	var curridx = stored_properties.find(held_property,0)
 		
@@ -247,6 +248,11 @@ func _physics_process(delta):
 		else:
 			held_property = stored_properties[-1]
 	
+	if Input.is_action_just_pressed("pause"):
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _integrate_forces(state):
 	direction = lerp(direction,(neck.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),del*lerp_speed)
@@ -263,16 +269,20 @@ func _integrate_forces(state):
 		
 		if col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35: floor = true
 		if col.y > 0.5 and Vector2(col.x,col.z).length() > 0.49: wall = true
-		if obj == hm.held_object and (col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35):
+		
+		# to fix prop flying
+		if obj == hm.held_object and (col.y < 0.45 and Vector2(col.x,col.z).length() < 0.45):
 			hm.held_object = null
 			hm.can_hold = false
 			hm.grab_timeout.start()
+			
 		if col.y < 0.5:
 			floor_angle = 90*lerpf(0,1,sqrt(clamp(col.y,0.0,0.5)/0.5))
 			floor_direction = col.normalized()
 			if curr_state == states.sprinting:
 				floor_angle += 20 * direction.normalized().dot(Vector3(floor_direction.x,0,floor_direction.z).normalized())
-	if (is_on_floor() or is_on_wall()) and not just_thrown:
+	print(linear_velocity.y)
+	if (is_on_floor() or is_on_wall()) and not just_thrown and linear_velocity.y < 6:
 		velocity_offset = Vector3.ZERO
 	if direction:
 		if floor_angle > max_floor_angle:
@@ -345,4 +355,24 @@ func _on_thrown_timer_timeout():
 
 func _on_coyote_timer_timeout():
 	can_jump = false
+	
+func check_properties():
+	if (Globals.properties.invert in pm.applied_properties and not inverted) or (Globals.properties.invert not in pm.applied_properties and inverted):
+		#invert_axis = Vector3(sin(neck.global_rotation.y),0,cos(neck.global_rotation.y))
+		#invert_focus = -1*head.rotation.x
+		#var rot = 0
+		#if Globals.properties.invert in pm.applied_properties: rot = PI
+		#invert_quat = Quaternion(invert_axis,rot)
+		set_invert_quat()
+		head_rotated = false
+		inverted = !inverted
+	#elif Globals.properties.invert not in pm.applied_properties and inverted:
+		#invert_axis = Vector3(sin(neck.global_rotation.y),0,cos(neck.global_rotation.y))
+		
+func set_invert_quat():
+	invert_axis = Vector3(sin(neck.global_rotation.y),0,cos(neck.global_rotation.y))
+	invert_focus = -1*head.rotation.x
+	var rot = 0
+	if Globals.properties.invert in pm.applied_properties: rot = PI
+	invert_quat = Quaternion(invert_axis,rot)
 

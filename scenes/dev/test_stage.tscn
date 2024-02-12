@@ -1,13 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://bsk26snggm5fn"]
+[gd_scene load_steps=25 format=3 uid="uid://bsk26snggm5fn"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_goxr4"]
-[ext_resource type="PackedScene" uid="uid://dpuif60enlfsp" path="res://scenes/phys_objects/ball.tscn" id="2_4qbnp"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="2_npbkg"]
-[ext_resource type="PackedScene" uid="uid://dla2ibpjjj5va" path="res://scenes/phys_objects/box.tscn" id="3_vv1is"]
 [ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="3_wfrqm"]
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="4_28jpm"]
 [ext_resource type="PackedScene" uid="uid://bm3wguio5pxvm" path="res://scenes/static_objects/colored_barrier_adjustable.tscn" id="4_nrtrh"]
 [ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="5_2sscl"]
+[ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="5_bi6dj"]
 [ext_resource type="PackedScene" uid="uid://63ybhc1xnweb" path="res://scenes/static_objects/property_sink.tscn" id="6_mfwxq"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="7_wbdvw"]
 [ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="9_aakh0"]
@@ -168,6 +167,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.4426, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50512, 8.55209, -1.39346)
 size = Vector3(7.315, 0.1, 8.875)
 
+[node name="Spawners" type="Node3D" parent="."]
+
+[node name="PlayerSpawn" parent="Spawners" instance=ExtResource("12_0woha")]
+transform = Transform3D(0.544961, 0, 0.838462, 0, 1, 0, -0.838462, 0, 0.544961, 5.59613, 0, -1.23745)
+
+[node name="Spawner" parent="Spawners" node_paths=PackedStringArray("parent_node") instance=ExtResource("5_bi6dj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49148, 1.02795, 5.2571)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("../../Props")
+
+[node name="Spawner2" parent="Spawners" node_paths=PackedStringArray("parent_node") instance=ExtResource("5_bi6dj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.06488, 1.02795, 3.71005)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("../../Props")
+
+[node name="Spawner3" parent="Spawners" node_paths=PackedStringArray("parent_node") instance=ExtResource("5_bi6dj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.19472, 1.02795, 3.3256)
+object_to_spawn = "res://scenes/phys_objects/ball.tscn"
+parent_node = NodePath("../../Props")
+
 [node name="Barriers" type="Node3D" parent="."]
 
 [node name="ColoredBarrier" parent="Barriers" instance=ExtResource("4_28jpm")]
@@ -222,15 +241,6 @@ base_properties = Array[int]([5])
 
 [node name="Props" type="Node3D" parent="."]
 
-[node name="ball" parent="Props" instance=ExtResource("2_4qbnp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80424, 0.850034, 2.89151)
-
-[node name="Box" parent="Props" instance=ExtResource("3_vv1is")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32997, 0.999366, 1.21644)
-
-[node name="Box2" parent="Props" instance=ExtResource("3_vv1is")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68028, 0.709467, 2.26125)
-
 [node name="StaticProps" type="Node3D" parent="."]
 
 [node name="FloorButton" parent="StaticProps" instance=ExtResource("7_wbdvw")]
@@ -262,9 +272,6 @@ buttons = [NodePath("../Lever")]
 [node name="LevelLoader" parent="." instance=ExtResource("10_mwnwk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25956, 0, -8.97472)
 level_to_load = "res://scenes/dev/test_level_1.tscn"
-
-[node name="PlayerSpawn" parent="." instance=ExtResource("12_0woha")]
-transform = Transform3D(0.544961, 0, 0.838462, 0, 1, 0, -0.838462, 0, 0.544961, 5.59613, 0, -1.23745)
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(0.572575, 0, 0.819852, 0, 1, 0, -0.819852, 0, 0.572575, -3.12942, 2.61634, -8.89035)

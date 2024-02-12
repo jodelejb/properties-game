@@ -26,6 +26,8 @@ func load_level(stage):
 func reset_player():
 	var spawn = get_tree().get_first_node_in_group("PlayerSpawn")
 	player.global_position = spawn.global_position + Vector3(0,1,0)
-	player.rotation = spawn.rotation
+	player.linear_velocity = Vector3.ZERO
+	player.neck.global_rotation = spawn.rotation
 	player.remove_all_stored_props()
 	player.pm.remove_all_properties()
+	player.set_invert_quat()
