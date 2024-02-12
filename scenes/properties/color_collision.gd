@@ -11,7 +11,6 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(bodies)
 	if "active_colors" in parent:
 		active_colors = parent.active_colors
 	var col = []# [Globals.red,Globals.green,Globals.blue,Globals.cyan,Globals.magenta,Globals.yellow,Globals.white]

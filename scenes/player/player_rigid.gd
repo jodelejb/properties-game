@@ -188,7 +188,6 @@ func _physics_process(delta):
 		linear_velocity.y = jump_vel * bridge_jump_modifier
 	
 	#Rotate view due to invert property
-	print(invert_quat)
 	set_quaternion(lerp(quaternion,invert_quat,lerp_speed*delta))
 	if not head_rotated:
 		head.rotation.x = invert_focus
@@ -281,7 +280,6 @@ func _integrate_forces(state):
 			floor_direction = col.normalized()
 			if curr_state == states.sprinting:
 				floor_angle += 20 * direction.normalized().dot(Vector3(floor_direction.x,0,floor_direction.z).normalized())
-	print(linear_velocity.y)
 	if (is_on_floor() or is_on_wall()) and not just_thrown and linear_velocity.y < 6:
 		velocity_offset = Vector3.ZERO
 	if direction:
