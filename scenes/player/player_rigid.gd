@@ -22,7 +22,7 @@ extends RigidBody3D
 
 var del: float
 
-var floor: bool = false
+var on_floor: bool = false
 var wall: bool = false
 var max_floor_angle: float = 55
 var invert_axis: Vector3
@@ -257,7 +257,7 @@ func _physics_process(delta):
 func _integrate_forces(state):
 	direction = lerp(direction,(neck.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),del*lerp_speed)
 	var numcol = state.get_contact_count()
-	floor = false
+	on_floor = false
 	wall = false
 	var floor_angle: float = 0
 	var floor_direction: Vector3
@@ -267,7 +267,7 @@ func _integrate_forces(state):
 		#get floor and wall collisions
 		var col: Vector3 = state.get_contact_local_position(n) - ground.global_position
 		
-		if col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35: floor = true
+		if col.y < 0.35 and Vector2(col.x,col.z).length() < 0.35: on_floor = true
 		if col.y > 0.5 and Vector2(col.x,col.z).length() > 0.49: wall = true
 		
 		# to fix prop flying
@@ -294,7 +294,7 @@ func _integrate_forces(state):
 		
 		
 func is_on_floor() -> bool:
-	return floor
+	return on_floor
 	
 func is_on_wall() -> bool:
 	return wall
@@ -317,31 +317,31 @@ func secondary_action():
 			print("property manager not found")
 		
 #applies a property to the selected property manager. removes it from stored when done
-func apply_property(pm: PropertyManager) -> void:
+func apply_property(other_pm: PropertyManager) -> void:
 	#sources are infinite property resources and hence cannot receive a property
-	if pm.pm_type == Globals.pm_types.source: return
-	if held_property != null and held_property not in pm.applied_properties:
-		pm.append_prop(held_property) #as Array[Globals.properties]
+	if other_pm.pm_type == Globals.pm_types.source: return
+	if held_property != null and held_property not in other_pm.applied_properties:
+		other_pm.append_prop(held_property) #as Array[Globals.properties]
 		remove_stored_prop(held_property)
 	
 #removes a property from the selected property manager in order of the list of properties
 #likely will need to be refactored to allow for choice later
-func take_property(pm: PropertyManager) -> void:
+func take_property(other_pm: PropertyManager) -> void:
 	#sinks are an infinite well of one property and thus cannot have their properties removed
-	if pm.pm_type == Globals.pm_types.sink: return
-	for p in pm.applied_properties:
+	if other_pm.pm_type == Globals.pm_types.sink: return
+	for p in other_pm.applied_properties:
 		if p not in stored_properties:
 			append_stored_prop(p)
-			pm.remove_prop(p) #as Array[Globals.properties]
+			other_pm.remove_prop(p) #as Array[Globals.properties]
 			break
 			
 
-func _on_rigid_body_3d_body_entered(body):
+func _on_rigid_body_3d_body_entered(_body):
 	pass
 	#floor = true
 
 
-func _on_rigid_body_3d_body_exited(body):
+func _on_rigid_body_3d_body_exited(_body):
 	pass
 	#floor = false
 

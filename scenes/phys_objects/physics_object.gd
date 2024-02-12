@@ -17,9 +17,10 @@ func _process(_delta):
 	#if len(get_colliding_bodies()) == 0:
 		#linear_velocity.y += 0.000000000001
 		
-func _physics_process(delta):
-	if len(get_colliding_bodies()) == 0:
-		apply_force(Vector3(0,-0.000000000000001,0))
+func _physics_process(_delta):
+	if contact_monitor:
+		if len(get_colliding_bodies()) == 0:
+			apply_force(Vector3(0,-0.000000000000001,0))
 	
 func destroy():
 	hm.holder = null

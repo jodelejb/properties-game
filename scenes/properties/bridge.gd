@@ -35,8 +35,7 @@ func _process(_delta):
 		elif "velocity" in phys_body:
 			if Vector2(phys_body.velocity.x, phys_body.velocity.z).length() < 0.05: return
 		var bp  = bridge_piece.instantiate() as StaticBody3D
-		#bp.global_rotation = phys_body.linear_velocity.normalized()
-		bp.global_position = spawn_point.global_position
+		bp.set_deferred("global_position",spawn_point.global_position)
 		var vel
 		if "linear_velocity" in phys_body:
 			vel = phys_body.linear_velocity

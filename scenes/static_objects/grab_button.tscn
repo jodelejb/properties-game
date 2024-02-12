@@ -45,4 +45,8 @@ hold_point = NodePath("../HoldMarker")
 [node name="HoldMarker" type="Marker3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44289, 0)
 
-[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[node name="DisabledTimer" type="Timer" parent="." index="5"]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="DisabledTimer" to="." method="_on_disabled_timer_timeout"]

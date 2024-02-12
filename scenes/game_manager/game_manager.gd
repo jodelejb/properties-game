@@ -31,4 +31,3 @@ func reset_player(props: Array[Globals.properties], keep_stored: bool):
 	if not keep_stored: player.remove_all_stored_props()
 	player.pm.remove_all_properties()
 	player.pm.append_props(props)
-	player.set_invert_quat()
