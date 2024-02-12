@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_ydotr"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_w587k"]
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="5_nn1th"]
-[ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="6_mgqew"]
+[ext_resource type="PackedScene" uid="uid://dub5k407wwx12" path="res://scenes/static_objects/property_pylon.tscn" id="6_y78qh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2t7"]
 render_priority = 0
@@ -48,11 +48,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.47975, 0)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.26089, 0, -0.0251412)
 active_colors = Array[int]([0, 1])
 
-[node name="PropertySource" parent="." instance=ExtResource("6_mgqew")]
+[node name="PropertyPylon" parent="." instance=ExtResource("6_y78qh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09799, 0.652404, -1.22864)
 base_properties = Array[int]([1])
 
-[node name="PropertySource2" parent="." instance=ExtResource("6_mgqew")]
+[node name="PropertyPylon2" parent="." instance=ExtResource("6_y78qh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0425251, 0.652404, -1.22864)
 base_properties = Array[int]([2])
 

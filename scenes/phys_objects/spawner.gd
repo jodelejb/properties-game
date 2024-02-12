@@ -7,6 +7,7 @@ var spawned_objects: Array = []
 
 @export var reset_button: InteractableButton
 @export var initially_applied_properties: Array[Globals.properties]
+var applied_properties: Array[Globals.properties]
 
 var enabled = false
 
@@ -18,7 +19,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func spawn():
+func spawn(props: Array[Globals.properties]):
+	applied_properties = props
 	if not enabled: return
 	spawned_objects = []
 	var obj = object.instantiate()
@@ -27,7 +29,7 @@ func spawn():
 	add_child.call_deferred(obj)
 	await obj.tree_entered
 	await obj.ready
-	obj.pm.append_props(initially_applied_properties)
+	obj.pm.append_props(props)
 	#obj.global_position = global_position
 	if "destroyed" in obj:
 		obj.destroyed.connect(spawn)
@@ -35,7 +37,7 @@ func spawn():
 
 func _on_start_delay_timeout():
 	enabled = true
-	spawn()
+	spawn(initially_applied_properties)
 
 func reset():
 	if reset_button.active:

@@ -10,6 +10,7 @@ var bridge: PackedScene = preload("res://scenes/properties/bridge.tscn")
 @export var pm_type = Globals.pm_types.base
 
 var base_collision_mask
+
 #enum properties {gravity, red, green, blue}
 
 signal applied_properties_changed()
@@ -104,6 +105,7 @@ func set_properties() -> void:
 				break
 		bridge_col.append(Globals.bridge)
 	
+	if phys_body == get_tree().get_first_node_in_group("Player"): property_display.text = ""
 	phys_body.collision_mask = base_collision_mask + Globals.get_collision(color_col) + Globals.get_collision(bridge_col)
 
 func _ready():

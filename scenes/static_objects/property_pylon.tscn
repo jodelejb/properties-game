@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://dub5k407wwx12"]
+
+[ext_resource type="Script" path="res://scenes/static_objects/property_pylon.gd" id="1_qxvlg"]
+[ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_rus7g"]
+[ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="3_ptcib"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux67l"]
+render_priority = 0
+shader = ExtResource("1_rus7g")
+shader_parameter/albedo = Vector4(0.6, 0.6, 0.6, 1)
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/point_size = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_hgbhk"]
+material = SubResource("ShaderMaterial_ux67l")
+size = Vector3(0.35, 1.2, 0.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qqp51"]
+size = Vector3(0.35, 1.2, 0.35)
+
+[node name="PropertyPylon" type="StaticBody3D"]
+script = ExtResource("1_qxvlg")
+
+[node name="PropertyManager" parent="." instance=ExtResource("3_ptcib")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hgbhk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qqp51")

@@ -5,7 +5,7 @@ class_name PhysObject
 @onready var hm = $HoldManager
 
 @export var base_properties: Array[Globals.properties]
-signal destroyed
+signal destroyed(props: Array[Globals.properties])
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,4 +24,4 @@ func _physics_process(delta):
 func destroy():
 	hm.holder = null
 	queue_free()
-	destroyed.emit()
+	destroyed.emit(pm.applied_properties)

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_brtwt"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_bwql1"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_fsgnq"]
-[ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="5_lqdu3"]
+[ext_resource type="PackedScene" uid="uid://dub5k407wwx12" path="res://scenes/static_objects/property_pylon.tscn" id="5_uffed"]
 [ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="6_d7n0j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2t7"]
@@ -61,7 +61,7 @@ mesh = SubResource("BoxMesh_ec86q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.579127, 0)
 shape = SubResource("BoxShape3D_ysain")
 
-[node name="PropertySource" parent="." instance=ExtResource("5_lqdu3")]
+[node name="PropertyPylon" parent="." instance=ExtResource("5_uffed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87042, 0.604914, -1.91687)
 base_properties = Array[int]([0])
 

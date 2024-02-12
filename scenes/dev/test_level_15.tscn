@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="6_xb5w5"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="7_ys8t8"]
 [ext_resource type="PackedScene" uid="uid://c8ntq61r4ku4g" path="res://scenes/game_manager/reset.tscn" id="8_mgt30"]
-[ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="9_4isb5"]
+[ext_resource type="PackedScene" uid="uid://dub5k407wwx12" path="res://scenes/static_objects/property_pylon.tscn" id="9_2ckaf"]
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="10_r52c8"]
 [ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="11_74042"]
 [ext_resource type="PackedScene" uid="uid://bad2dhkavd7sa" path="res://scenes/static_objects/grab_button.tscn" id="12_bys6t"]
@@ -181,11 +181,11 @@ text = "Reset Level"
 level_to_load = "res://scenes/dev/test_level_15.tscn"
 button = NodePath("../FloorButton2")
 
-[node name="PropertySource" parent="StaticProps" instance=ExtResource("9_4isb5")]
+[node name="PropertyPylon" parent="StaticProps" instance=ExtResource("9_2ckaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9868, 10.9248, 4.8614)
 base_properties = Array[int]([4])
 
-[node name="PropertySource2" parent="StaticProps" instance=ExtResource("9_4isb5")]
+[node name="PropertyPylon2" parent="StaticProps" instance=ExtResource("9_2ckaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7435, 18.9684, -2.24229)
 base_properties = Array[int]([1])
 

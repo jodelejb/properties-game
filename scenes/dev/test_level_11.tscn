@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_uh2pj"]
 [ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="5_67ht1"]
 [ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="7_8ux6f"]
-[ext_resource type="PackedScene" uid="uid://cgibmv6j74vcp" path="res://scenes/static_objects/property_source.tscn" id="7_yl30q"]
+[ext_resource type="PackedScene" uid="uid://dub5k407wwx12" path="res://scenes/static_objects/property_pylon.tscn" id="7_mvbc5"]
 
 [node name="TestLevel" type="Node3D"]
 
@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.586
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7952, 4.76837e-07, -0.4686)
 level_to_load = "res://scenes/dev/test_level_12.tscn"
 
-[node name="PropertySource" parent="StaticProps" instance=ExtResource("7_yl30q")]
+[node name="PropertyPylon" parent="StaticProps" instance=ExtResource("7_mvbc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04768, 0.592235, -2.04534)
 base_properties = Array[int]([4])
 
