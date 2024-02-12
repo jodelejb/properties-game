@@ -121,7 +121,9 @@ func _ready():
 	
 	
 func _process(_delta):
-	property_rotation.position = phys_body.global_position + Vector3(0,0.8,0)
+	var prop_offset = Vector3(0,0.8,0)
+	if Globals.properties.invert in applied_properties and phys_body is PhysObject: prop_offset = Vector3(0,-0.8,0)
+	property_rotation.position = phys_body.global_position + prop_offset
 	var player = get_tree().get_first_node_in_group("Player")
 	if not phys_body == player:
 		property_rotation.look_at(player.head.global_position)
