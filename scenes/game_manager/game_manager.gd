@@ -27,7 +27,7 @@ func reset_player(props: Array[Globals.properties], keep_stored: bool):
 	var spawn = get_tree().get_first_node_in_group("PlayerSpawn")
 	player.global_position = spawn.global_position + Vector3(0,1,0)
 	player.linear_velocity = Vector3.ZERO
-	player.neck.global_rotation = spawn.rotation
+	player.neck.global_rotation.y = spawn.rotation.y
 	if not keep_stored: player.remove_all_stored_props()
 	player.pm.remove_all_properties()
 	player.pm.append_props(props)
