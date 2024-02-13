@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cutm82jrd1ev8"]
+
+[ext_resource type="Script" path="res://scenes/static_objects/moving_platform.gd" id="1_440q2"]
+
+[node name="MovingPlatform" type="PathFollow3D"]
+rotation_mode = 0
+script = ExtResource("1_440q2")

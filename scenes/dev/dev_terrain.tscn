@@ -35,7 +35,7 @@ func update_shape():
 	#add_child(collision)
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wy6pi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kuurh"]
 render_priority = 0
 shader = ExtResource("1_3blli")
 shader_parameter/albedo = Vector4(0.6, 0.6, 0.6, 1)
@@ -44,17 +44,17 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.5
 shader_parameter/point_size = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_q7tis"]
-material = SubResource("ShaderMaterial_wy6pi")
+[sub_resource type="BoxMesh" id="BoxMesh_bx87d"]
+material = SubResource("ShaderMaterial_kuurh")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dnqfg"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_sks45"]
 resource_local_to_scene = true
 
 [node name="DevTerrain" type="StaticBody3D"]
 script = SubResource("GDScript_0yfj0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_q7tis")
+mesh = SubResource("BoxMesh_bx87d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_dnqfg")
+shape = SubResource("BoxShape3D_sks45")

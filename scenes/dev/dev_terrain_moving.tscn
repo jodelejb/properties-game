@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwpand25pdb2n"]
+
+[ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_37jy5"]
+[ext_resource type="Script" path="res://scenes/dev/dev_terrain_moving.gd" id="1_bdlq5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wy6pi"]
+render_priority = 0
+shader = ExtResource("1_37jy5")
+shader_parameter/albedo = Vector4(0.6, 0.6, 0.6, 1)
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/point_size = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_hyqlq"]
+material = SubResource("ShaderMaterial_wy6pi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_64j2f"]
+resource_local_to_scene = true
+
+[node name="DevTerrainMoving" type="RigidBody3D"]
+disable_mode = 2
+collision_mask = 0
+gravity_scale = 0.0
+freeze_mode = 1
+script = ExtResource("1_bdlq5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hyqlq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_64j2f")
