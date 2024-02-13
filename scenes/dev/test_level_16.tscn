@@ -32,8 +32,12 @@ transform = Transform3D(0.991712, 0.128484, 0, -0.128484, 0.991712, 0, 0, 0, 1, 
 size = Vector3(3.745, 0.1, 5.27)
 
 [node name="DevTerrain26" parent="Stage" instance=ExtResource("1_nmv61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81654, 6.13396, -0.445128)
-size = Vector3(3.745, 2.015, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52114, 6.13396, -0.445128)
+size = Vector3(5.005, 2.015, 0.1)
+
+[node name="DevTerrain33" parent="Stage" instance=ExtResource("1_nmv61")]
+transform = Transform3D(0.69694, 0.71713, 0, -0.71713, 0.69694, 0, 0, 0, 1, 4.30453, 5.88201, -2.93431)
+size = Vector3(0.1, 2.015, 4.94)
 
 [node name="DevTerrain25" parent="Stage" instance=ExtResource("1_nmv61")]
 transform = Transform3D(0.994022, 0.109179, 0, -0.109179, 0.994022, 0, 0, 0, 1, 1.38951, 7.18585, -7.78757)
@@ -89,7 +93,7 @@ size = Vector3(0.1, 9.81, 2.605)
 
 [node name="DevTerrain12" parent="Stage" instance=ExtResource("1_nmv61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.11327, 6.20685, -2.20472)
-size = Vector3(0.1, 12.65, 17.65)
+size = Vector3(0.1, 21.71, 17.65)
 
 [node name="DevTerrain10" parent="Stage" instance=ExtResource("1_nmv61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12746, 5.05103, 3.7239)
@@ -101,7 +105,7 @@ size = Vector3(14.69, 12.735, 0.1)
 
 [node name="DevTerrain11" parent="Stage" instance=ExtResource("1_nmv61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0786805, 5.4018, 5.71704)
-size = Vector3(14.69, 13.91, 0.1)
+size = Vector3(14.69, 23.365, 0.1)
 
 [node name="DevTerrain15" parent="Stage" instance=ExtResource("1_nmv61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42095, -0.990922, 4.94056)
@@ -193,6 +197,10 @@ buttons = [NodePath("../FloorButton2")]
 [node name="GravCannon2" parent="StaticProps" instance=ExtResource("4_cr75d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.14681, 0, 4.28925)
 
+[node name="GravCannon4" parent="StaticProps" instance=ExtResource("4_cr75d")]
+transform = Transform3D(1, 0, 0, 0, 0.988367, -0.152089, 0, 0.152089, 0.988367, -5.19139, 7.11696, -1.91379)
+throw_speed = 30.0
+
 [node name="Barriers" type="Node3D" parent="."]
 
 [node name="ColoredBarrierAdjustable" parent="Barriers" instance=ExtResource("4_5lhaf")]
@@ -226,8 +234,8 @@ size = Vector3(0.1, 13.505, 4.635)
 active_colors = Array[int]([2])
 
 [node name="ColoredBarrierAdjustable6" parent="Barriers" instance=ExtResource("4_5lhaf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17777, 13.4573, 0.321371)
-size = Vector3(4.53, 13.505, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17777, 12.0054, 0.434545)
+size = Vector3(4.53, 10.68, 0.1)
 active_colors = Array[int]([2])
 
 [node name="Props" type="Node3D" parent="."]

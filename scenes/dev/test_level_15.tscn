@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://desa1aon2famp"]
+[gd_scene load_steps=13 format=3 uid="uid://desa1aon2famp"]
 
 [ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="1_cmthq"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="2_2cvfo"]
@@ -10,8 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c8ntq61r4ku4g" path="res://scenes/game_manager/reset.tscn" id="8_mgt30"]
 [ext_resource type="PackedScene" uid="uid://dub5k407wwx12" path="res://scenes/static_objects/property_pylon.tscn" id="9_2ckaf"]
 [ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="10_r52c8"]
-[ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="11_74042"]
-[ext_resource type="PackedScene" uid="uid://bad2dhkavd7sa" path="res://scenes/static_objects/grab_button.tscn" id="12_bys6t"]
+[ext_resource type="PackedScene" uid="uid://bm3wguio5pxvm" path="res://scenes/static_objects/colored_barrier_adjustable.tscn" id="12_uxext"]
 [ext_resource type="PackedScene" uid="uid://qocx0wwwvv4r" path="res://scenes/static_objects/lever.tscn" id="13_tjhto"]
 
 [node name="TestLevel" type="Node3D"]
@@ -95,24 +94,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.2041, 0)
 [node name="StaticProps" type="Node3D" parent="."]
 
 [node name="LevelLoader" parent="StaticProps" instance=ExtResource("4_teatg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8721, 0.110529, -0.30852)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8721, 0.110529, 0.022471)
 level_to_load = "res://scenes/dev/test_level_16.tscn"
 
 [node name="Spawner" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39029, 1.85277, 1.16967)
 object_to_spawn = "res://scenes/phys_objects/box.tscn"
-parent_node = NodePath("../../Props")
-reset_button = NodePath("../FloorButton2")
-
-[node name="Spawner4" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00557, 1.85277, 3.97954)
-object_to_spawn = "res://scenes/phys_objects/ball.tscn"
-parent_node = NodePath("../../Props")
-reset_button = NodePath("../FloorButton2")
-
-[node name="Spawner5" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_asye1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3677, 1.85277, 3.27171)
-object_to_spawn = "res://scenes/phys_objects/ball.tscn"
 parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
 
@@ -187,7 +174,7 @@ base_properties = Array[int]([4])
 
 [node name="PropertyPylon2" parent="StaticProps" instance=ExtResource("9_2ckaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7435, 18.9684, -2.24229)
-base_properties = Array[int]([1])
+base_properties = Array[int]([1, 3])
 
 [node name="ColoredBarrier" parent="StaticProps" instance=ExtResource("10_r52c8")]
 transform = Transform3D(1, 0, 0, 0, 0.881847, 0.471535, 0, -0.471535, 0.881847, 14.9362, -3.15664, -4.99237)
@@ -196,16 +183,6 @@ active_colors = Array[int]([0])
 [node name="ColoredBarrier2" parent="StaticProps" instance=ExtResource("10_r52c8")]
 transform = Transform3D(1, 0, 0, 0, 0.838528, -0.544859, 0, 0.544859, 0.838528, 14.8629, -2.76273, 5.0791)
 active_colors = Array[int]([0])
-
-[node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("11_74042")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.3077, 0, 0)
-buttons = [NodePath("../GrabButton"), NodePath("../GrabButton2")]
-
-[node name="GrabButton" parent="StaticProps" instance=ExtResource("12_bys6t")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 21.0995, 1.64852, -2.44903)
-
-[node name="GrabButton2" parent="StaticProps" instance=ExtResource("12_bys6t")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 19.2078, 1.64852, 2.80558)
 
 [node name="Label3D2" type="Label3D" parent="StaticProps"]
 transform = Transform3D(0.0529111, 0, -0.998599, 0, 1, 0, 0.998599, 0, 0.0529111, 15.8374, 12.3957, -12.862)
@@ -219,5 +196,10 @@ transform = Transform3D(0.0529111, 0, -0.998599, 0, 1, 0, 0.998599, 0, 0.0529111
 transform = Transform3D(0.959702, -0.0203318, -0.280282, 0, 0.997379, -0.0723504, 0.281018, 0.0694349, 0.957187, 14.8908, -3.69441, -16.7416)
 throw_speed = 33.0
 buttons = [NodePath("../Lever")]
+
+[node name="ColoredBarrierAdjustable" parent="StaticProps" instance=ExtResource("12_uxext")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7974, 1.82044, 0)
+size = Vector3(0.1, 3.8, 6.375)
+active_colors = Array[int]([2])
 
 [node name="Props" type="Node3D" parent="."]

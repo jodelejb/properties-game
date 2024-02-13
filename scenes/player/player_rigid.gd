@@ -43,7 +43,7 @@ var just_thrown: bool = false
 var velocity_offset: Vector3 = Vector3.ZERO
 
 const walk_speed: float = 5.0/5.0
-const sprint_speed: float = 8.0/5.0
+const sprint_speed: float = 6.0/5.0
 const crouch_speed: float = 3.0/5.0
 
 var mouse_sense: float = 0.03
