@@ -28,6 +28,8 @@ func reset_player(props: Array[Globals.properties], keep_stored: bool):
 	player.global_position = spawn.global_position + Vector3(0,1,0)
 	player.linear_velocity = Vector3.ZERO
 	player.neck.global_rotation.y = spawn.rotation.y
+	#if Globals.properties.invert not in props:
+	player.rotation = Vector3(0,0,0)
 	if not keep_stored: player.remove_all_stored_props()
 	player.pm.remove_all_properties()
 	player.pm.append_props(props)
