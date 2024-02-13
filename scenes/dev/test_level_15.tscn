@@ -67,7 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 10.2705, 4.19068)
 size = Vector3(4.3, 0.1, 6.045)
 
 [node name="DevTerrain14" parent="Stage" instance=ExtResource("1_cmthq")]
-transform = Transform3D(0.600657, -0.799506, 0, 0.799506, 0.600657, 0, 0, 0, 1, 14.0354, 9.35345, -1.48546)
+transform = Transform3D(0.525026, -0.851086, 0, 0.851086, 0.525026, 0, 0, 0, 1, 14.0354, 9.35345, -1.48546)
 size = Vector3(13.55, 0.1, 12.555)
 
 [node name="DevTerrain6" parent="Stage" instance=ExtResource("1_cmthq")]

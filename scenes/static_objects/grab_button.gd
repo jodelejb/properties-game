@@ -9,6 +9,7 @@ func _ready():
 	hm.held_changed.connect(released)
 
 func _process(_delta):
+	super(_delta)
 	for body in detection.get_overlapping_bodies():
 		if can_grab:
 			if body.hm.holder == null:
