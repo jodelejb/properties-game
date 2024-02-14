@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8hqmmxph81dd"]
+
+[ext_resource type="Script" path="res://scenes/static_objects/switch_platform.gd" id="1_4p3uo"]
+
+[node name="SwitchPlatform" type="PathFollow3D"]
+script = ExtResource("1_4p3uo")
