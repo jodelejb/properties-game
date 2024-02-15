@@ -67,9 +67,12 @@ base_properties = Array[int]([0])
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(0.749869, 0, -0.661587, 0, 1, 0, 0.661587, 0, 0.749869, -2.53806, 2.5963, -1.84987)
-text = "Right click to take property
-C / mouse thumb 2 to apply property to self
-V / mouse thumb 1 to remove property from self"
+text = "2 to select object mode
+Right click to take property from object
+Left click to apply property to object
+1 to select self mode
+Left click to apply property to self
+Right click to take property from self"
 
 [node name="DevTerrain" parent="." instance=ExtResource("6_d7n0j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.352589, 0, -4.5361)

@@ -176,8 +176,3 @@ button = NodePath("../FloorButton2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13789, 0, 3.8241)
 
 [node name="Props" type="Node3D" parent="."]
-
-[node name="Label3D2" type="Label3D" parent="."]
-transform = Transform3D(0.219983, 0, -0.975504, 0, 1, 0, 0.975504, 0, 0.219983, 3.73139, 1.53718, -0.852611)
-text = "This is a different variant
-of the last puzzle"

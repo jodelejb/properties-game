@@ -41,7 +41,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.586
 
 [node name="LevelLoader" parent="StaticProps" instance=ExtResource("2_opww7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7952, 4.76837e-07, -0.4686)
-level_to_load = "res://scenes/dev/test_level_12.tscn"
+level_to_load = "res://scenes/dev/test_level_13.tscn"
 
 [node name="PropertyPylon" parent="StaticProps" instance=ExtResource("7_mvbc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04768, 0.592235, -2.04534)

@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var selected_property = $MarginContainer/VBoxContainer/SelectedProperty
 @onready var property_label_container = $MarginContainer2/VBoxContainer/PropertyLabelContainer
 @onready var self_applied_props_container = $MarginContainer3/VBoxContainer/SelfAppliedPropsContainer
+@onready var equipped_tool = $MarginContainer4/VBoxContainer/EquippedTool
 
 var debug_label_settings = preload("res://scenes/dev/debug_text.tres")
 
@@ -12,8 +13,10 @@ func _ready():
 	player.held_property_changed.connect(update_held_prop)
 	player.stored_properties_changed.connect(update_stored_props)
 	player.pm.applied_properties_changed.connect(update_applied_props)
+	player.tool_changed.connect(update_tool)
 	update_stored_props()
 	update_applied_props()
+	update_tool()
 	
 func update_held_prop(prop) -> void:
 	selected_property.text = ""
@@ -65,3 +68,14 @@ func update_color(applied_properties: Array[Globals.properties]) -> String:
 	elif Globals.properties.blue in applied_properties:
 		return "Blue"
 	return ""
+	
+func update_tool() -> void:
+	match player.current_equip:
+		player.equips.self_apply:
+			equipped_tool.text = "Self-Apply"
+		player.equips.object_apply:
+			equipped_tool.text = "Object-Apply"
+		player.equips.C4:
+			equipped_tool.text = "C4-Apply"
+			pass
+	pass

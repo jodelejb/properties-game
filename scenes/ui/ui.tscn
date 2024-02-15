@@ -89,3 +89,30 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("3_enrwr")
+
+[node name="MarginContainer4" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -298.0
+offset_top = -134.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer4"]
+layout_mode = 2
+
+[node name="EquippedToolLabel" type="Label" parent="MarginContainer4/VBoxContainer"]
+layout_mode = 2
+text = "Equipped Tool:"
+label_settings = ExtResource("2_1hq0e")
+
+[node name="EquippedTool" type="Label" parent="MarginContainer4/VBoxContainer"]
+layout_mode = 2
+label_settings = ExtResource("2_1hq0e")

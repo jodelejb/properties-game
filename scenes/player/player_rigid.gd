@@ -113,16 +113,17 @@ const head_bob_intensity: Array[float] = [0.05, 0.1, 0.2]
 var head_bob_vec: Vector2 = Vector2.ZERO
 var head_bob_idx: float = 0.0
 
+#equipment
+enum equips {self_apply, object_apply, C4}
+var current_equip: equips = equips.object_apply
+signal tool_changed
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pm.applied_properties_changed.connect(check_properties)
 		
 
 func _physics_process(delta):
-	#floor_check.set_collision_layer_value(32, not floor_check.get_collision_layer_value(32))
-	#PhysicsServer3D.area_set_monitorable(floor_check, false)
-	#PhysicsServer3D.area_set_monitorable(floor_check, true)
-	#print(is_on_floor())
 	input_dir = Input.get_vector("left", "right", "forward", "backward")
 	del = delta
 	
@@ -200,12 +201,23 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("secondary_action"):
 		secondary_action()
 		
+	if Input.is_action_just_pressed("equip_self_apply"):
+		current_equip = equips.self_apply
+		tool_changed.emit()
 	
-	if Input.is_action_just_pressed("self_apply_property"):
-		apply_property(pm)
-		
-	if Input.is_action_just_pressed("self_take_property"):
-		take_property(pm)
+	if Input.is_action_just_pressed("equip_object_apply"):
+		current_equip = equips.object_apply
+		tool_changed.emit()
+	
+	if Input.is_action_just_pressed("equip_c4"):
+		current_equip = equips.C4
+		tool_changed.emit()
+	
+	#if Input.is_action_just_pressed("self_apply_property"):
+		#apply_property(pm)
+		#
+	#if Input.is_action_just_pressed("self_take_property"):
+		#take_property(pm)
 	
 	#pickup
 	if Input.is_action_just_pressed("pick_up_object"):
@@ -299,14 +311,34 @@ func is_on_wall() -> bool:
 	
 #primary action. Likely to include more functions later
 func primary_action():
+	match current_equip:
+		equips.self_apply:
+			apply_property(pm)
+		equips.object_apply:
+			cast_property()
+		equips.C4:
+			print("applying C4")
+	
+			
+func secondary_action():
+	match current_equip:
+		equips.self_apply:
+			take_property(pm)
+		equips.object_apply:
+			steal_property()
+		equips.C4:
+			print("takin C4")
+	
+			
+func cast_property() -> void:
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
 			apply_property(collider.pm)
 		else:
 			print("property manager not found")
-	
-func secondary_action():
+			
+func steal_property() -> void:
 	var collider = property_cast.get_collider()
 	if collider in get_tree().get_nodes_in_group("CanProperty"):
 		if "pm" in collider:
