@@ -19,6 +19,7 @@ func _ready():
 func _process(delta):
 	if Engine.is_editor_hint():
 		update_shape()
+		return
 	linear_velocity = (pathnode.global_position - global_position) * follow_speed * delta
 		
 func update_shape():
