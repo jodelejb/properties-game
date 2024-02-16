@@ -1,5 +1,6 @@
 extends RigidBody3D
 
+
 #node references
 @onready var standing_collider: CollisionShape3D = $Standing
 @onready var crouching_collider: CollisionShape3D = $Crouching

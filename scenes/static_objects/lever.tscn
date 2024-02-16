@@ -52,6 +52,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("PrismMesh_yj1gs")
 skeleton = NodePath("../..")
 
+[node name="Shadow" type="MeshInstance3D" parent="Base/MeshInstance3D" index="0"]
+layers = 2
+cast_shadow = 3
+mesh = SubResource("PrismMesh_yj1gs")
+skeleton = NodePath("../..")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("ConcavePolygonShape3D_mflli")
@@ -67,12 +73,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 mesh = SubResource("CylinderMesh_df0hs")
 skeleton = NodePath("")
 
+[node name="Shadow" type="MeshInstance3D" parent="Pivot/ShaftMesh" index="0"]
+layers = 2
+cast_shadow = 3
+mesh = SubResource("CylinderMesh_df0hs")
+skeleton = NodePath("")
+
 [node name="ShaftCollision" type="CollisionShape3D" parent="Pivot" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CylinderShape3D_s6fft")
 
 [node name="BallMesh" type="MeshInstance3D" parent="Pivot" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37166, 0)
+mesh = SubResource("SphereMesh_wa0d0")
+
+[node name="Shadow" type="MeshInstance3D" parent="Pivot/BallMesh" index="0"]
+layers = 2
+cast_shadow = 3
 mesh = SubResource("SphereMesh_wa0d0")
 
 [node name="BallCollision" type="CollisionShape3D" parent="Pivot" index="3"]

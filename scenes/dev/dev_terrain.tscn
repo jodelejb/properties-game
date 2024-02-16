@@ -6,6 +6,7 @@
 script/source = "@tool
 extends StaticBody3D
 
+@onready var shadow_on_2 = $ShadowOn2
 @onready var mesh = $MeshInstance3D
 @onready var collision = $CollisionShape3D
 
@@ -15,6 +16,7 @@ var prev_size: Vector3
 
 func _ready():
 	mesh.mesh = mesh.mesh.duplicate()
+	shadow_on_2.mesh = shadow_on_2.mesh.duplicate()
 	collision.shape = collision.shape.duplicate()
 	update_shape()
 	prev_size = size
@@ -30,6 +32,7 @@ func update_shape():
 	#var shape = BoxShape3D.new()
 	#shape.resource_local_to_scene = true
 	mesh.mesh.size = size
+	shadow_on_2.mesh.size = size
 	#shape.size = size
 	collision.shape.size = size
 	#add_child(collision)
@@ -44,17 +47,22 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.5
 shader_parameter/point_size = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_bx87d"]
+[sub_resource type="BoxMesh" id="BoxMesh_r7qp3"]
 material = SubResource("ShaderMaterial_kuurh")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sks45"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xijqg"]
 resource_local_to_scene = true
 
 [node name="DevTerrain" type="StaticBody3D"]
 script = SubResource("GDScript_0yfj0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_bx87d")
+mesh = SubResource("BoxMesh_r7qp3")
+
+[node name="ShadowOn2" type="MeshInstance3D" parent="."]
+layers = 2
+cast_shadow = 3
+mesh = SubResource("BoxMesh_r7qp3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_sks45")
+shape = SubResource("BoxShape3D_xijqg")

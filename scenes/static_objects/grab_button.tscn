@@ -34,6 +34,11 @@ shape = SubResource("CylinderShape3D_j85de")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 mesh = SubResource("CylinderMesh_i72ej")
 
+[node name="Shadow" type="MeshInstance3D" parent="MeshInstance3D" index="0"]
+layers = 2
+cast_shadow = 3
+mesh = SubResource("CylinderMesh_i72ej")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("ConcavePolygonShape3D_iuavy")

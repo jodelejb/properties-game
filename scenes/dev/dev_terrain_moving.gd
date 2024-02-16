@@ -1,6 +1,7 @@
 @tool
 extends RigidBody3D
 
+@onready var shadow_on_2 = $ShadowOn2
 @onready var mesh = $MeshInstance3D
 @onready var collision = $CollisionShape3D
 
@@ -12,6 +13,7 @@ var follow_speed: float = 1000
 
 func _ready():
 	mesh.mesh = mesh.mesh.duplicate()
+	shadow_on_2.mesh = shadow_on_2.mesh.duplicate()
 	collision.shape = collision.shape.duplicate()
 	update_shape()
 	prev_size = size
@@ -29,6 +31,7 @@ func update_shape():
 	#var shape = BoxShape3D.new()
 	#shape.resource_local_to_scene = true
 	mesh.mesh.size = size
+	shadow_on_2.mesh.size = size
 	#shape.size = size
 	collision.shape.size = size
 	#add_child(collision)

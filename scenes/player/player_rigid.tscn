@@ -60,7 +60,8 @@ transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="ViewModelCamera" parent="Neck/Head/Eyes/Camera3D/SubViewportContainer/SubViewport" instance=ExtResource("5_pvtj3")]
+[node name="ViewModelCamera" parent="Neck/Head/Eyes/Camera3D/SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("5_pvtj3")]
+player = NodePath("../../../../../../..")
 
 [node name="Pickup" type="RayCast3D" parent="Neck/Head"]
 target_position = Vector3(0, 0, -2.5)

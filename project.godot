@@ -140,6 +140,8 @@ equip_c4={
 
 [layer_names]
 
+3d_render/layer_1="Normal"
+3d_render/layer_2="FPV"
 3d_physics/layer_1="StaticObjects"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemies"

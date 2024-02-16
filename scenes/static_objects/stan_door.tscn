@@ -56,6 +56,11 @@ script = ExtResource("2_hom6l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 mesh = SubResource("BoxMesh_t56hb")
 
+[node name="Shadow" type="MeshInstance3D" parent="Door" index="0"]
+layers = 2
+cast_shadow = 3
+mesh = SubResource("BoxMesh_t56hb")
+
 [node name="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 shape = SubResource("BoxShape3D_72rh2")

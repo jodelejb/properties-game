@@ -24,3 +24,8 @@ shape = SubResource("SphereShape3D_x4p7v")
 
 [node name="MeshInstance3D" parent="." index="3"]
 mesh = SubResource("SphereMesh_mi6x5")
+
+[node name="Shadow" type="MeshInstance3D" parent="MeshInstance3D" index="0"]
+layers = 2
+cast_shadow = 3
+mesh = SubResource("SphereMesh_mi6x5")

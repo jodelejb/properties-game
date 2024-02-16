@@ -12,10 +12,10 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.5
 shader_parameter/point_size = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_ub56l"]
+[sub_resource type="BoxMesh" id="BoxMesh_xvy8p"]
 material = SubResource("ShaderMaterial_wy6pi")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nsjp6"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_r5x17"]
 resource_local_to_scene = true
 
 [node name="DevTerrainMoving" type="RigidBody3D"]
@@ -26,7 +26,12 @@ freeze_mode = 1
 script = ExtResource("1_bdlq5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_ub56l")
+mesh = SubResource("BoxMesh_xvy8p")
+
+[node name="ShadowOn2" type="MeshInstance3D" parent="."]
+layers = 2
+cast_shadow = 3
+mesh = SubResource("BoxMesh_xvy8p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_nsjp6")
+shape = SubResource("BoxShape3D_r5x17")

@@ -24,3 +24,8 @@ shape = SubResource("BoxShape3D_rahsx")
 
 [node name="MeshInstance3D" parent="." index="3"]
 mesh = SubResource("BoxMesh_e40dq")
+
+[node name="Shadow" type="MeshInstance3D" parent="MeshInstance3D" index="0"]
+layers = 2
+cast_shadow = 3
+mesh = SubResource("BoxMesh_e40dq")

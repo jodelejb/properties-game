@@ -1,11 +1,16 @@
 extends Camera3D
 
 @onready var fps_rig = $FpsRig
+@onready var shotgun = $FpsRig/Shotgun
+@onready var arms = $FpsRig/Arms
+@onready var self_cast = $FpsRig/SelfCast
+@export var player: RigidBody3D
 
 var sway_clamp: float = 0.08
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player.tool_changed.connect(update_view_model)
 	pass # Replace with function body.
 
 
@@ -30,3 +35,17 @@ func global_sway(sway_amount: Vector3):
 	fps_rig.position.x = clamp(fps_rig.position.x, -sway_clamp, sway_clamp)
 	fps_rig.position.y = clamp(fps_rig.position.y, -sway_clamp, sway_clamp)
 	fps_rig.position.z = clamp(fps_rig.position.z, -sway_clamp, sway_clamp)
+
+func update_view_model():
+	shotgun.visible = false
+	arms.visible = false
+	self_cast.visible = false
+	match player.current_equip:
+		player.equips.self_apply:
+			self_cast.visible = true
+		player.equips.object_apply:
+			shotgun.visible = true
+			arms.visible = true
+		player.equips.C4:
+			pass
+	pass
