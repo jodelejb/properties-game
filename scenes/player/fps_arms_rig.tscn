@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcfoips8r1dos"]
+
+[ext_resource type="PackedScene" uid="uid://bd647aioasqaj" path="res://assets/models/arms/FPS ARMS RIG.glb" id="1_bw32f"]
+
+[node name="FPS ARMS RIG" instance=ExtResource("1_bw32f")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="caucasian_male_1_Body" parent="caucasian_male_1/Skeleton3D" index="0"]
+layers = 2

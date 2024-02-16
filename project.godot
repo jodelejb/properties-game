@@ -30,6 +30,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="Properties"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
+
 [input]
 
 forward={

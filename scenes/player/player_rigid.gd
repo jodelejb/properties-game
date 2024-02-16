@@ -19,6 +19,10 @@ extends RigidBody3D
 #@onready var floor_monitor_area = $FloorMonitorArea
 @onready var thrown_timer = $ThrownTimer
 @onready var ground = $Ground
+@onready var fps_view = $Neck/Head/Eyes/Camera3D/SubViewportContainer/SubViewport
+@onready var fps_cam = $Neck/Head/Eyes/Camera3D/SubViewportContainer/SubViewport/ViewModelCamera
+
+
 
 var del: float
 
@@ -121,9 +125,15 @@ signal tool_changed
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pm.applied_properties_changed.connect(check_properties)
+	fps_view.size = DisplayServer.window_get_size()
 		
 
 func _physics_process(delta):
+	fps_cam.global_position = cam.global_position
+	fps_cam.global_rotation = cam.global_rotation
+	
+	fps_cam.global_sway(Vector3(0.0,linear_velocity.y * -8, 0.0))
+	
 	input_dir = Input.get_vector("left", "right", "forward", "backward")
 	del = delta
 	
@@ -169,6 +179,7 @@ func _physics_process(delta):
 		
 		eyes.position.y = lerp(eyes.position.y, head_bob_vec.y * head_bob_intense /2.0 , lerp_speed*delta)
 		eyes.position.x = lerp(eyes.position.x, head_bob_vec.x * head_bob_intense, lerp_speed*delta)
+		fps_cam.sway(Vector3(eyes.position.x*200,eyes.position.y*200,0.0))
 	else:
 		eyes.position = lerp(eyes.position,Vector3.ZERO,lerp_speed*delta)
 			

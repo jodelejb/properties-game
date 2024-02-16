@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cot6q6o70j5nh"]
+[gd_scene load_steps=9 format=3 uid="uid://cot6q6o70j5nh"]
 
 [ext_resource type="Script" path="res://scenes/player/player_rigid.gd" id="1_50aot"]
 [ext_resource type="Script" path="res://scenes/player/Neck.gd" id="2_cv7a3"]
 [ext_resource type="PackedScene" uid="uid://l0obxdihfmpf" path="res://scenes/properties/property_manager.tscn" id="2_rt1l4"]
 [ext_resource type="PackedScene" uid="uid://cy0wpfj4vv2g7" path="res://scenes/properties/hold_manager.tscn" id="3_ms2y1"]
+[ext_resource type="PackedScene" uid="uid://caabo435bb456" path="res://scenes/player/view_model.tscn" id="5_pvtj3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_en1wk"]
 friction = 0.0
@@ -45,6 +46,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 [node name="Eyes" type="Node3D" parent="Neck/Head"]
 
 [node name="Camera3D" type="Camera3D" parent="Neck/Head/Eyes"]
+cull_mask = 1048573
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Neck/Head/Eyes/Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Neck/Head/Eyes/Camera3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="ViewModelCamera" parent="Neck/Head/Eyes/Camera3D/SubViewportContainer/SubViewport" instance=ExtResource("5_pvtj3")]
 
 [node name="Pickup" type="RayCast3D" parent="Neck/Head"]
 target_position = Vector3(0, 0, -2.5)
