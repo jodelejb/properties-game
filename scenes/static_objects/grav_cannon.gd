@@ -91,7 +91,7 @@ func released():
 
 
 func _on_grab_range_body_entered(body):
-	if body == get_tree().get_first_node_in_group("Player"):
+	if body == get_tree().get_first_node_in_group("Player") and active:
 		Globals.ui.note.text = "Q to enter grav lift"
 
 
