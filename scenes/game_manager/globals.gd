@@ -1,6 +1,7 @@
 extends Node
 
-var lol: int = 69
+var ui: CanvasLayer
+
 var low_grav: float = 15
 
 enum properties {gravity, red, green, blue, bridge, invert}

@@ -7,6 +7,7 @@ extends Node
 var scene = null
 
 func _ready():
+	Globals.ui = $UI
 	load_level(load(starting_stage))
 	
 func load_level(stage):

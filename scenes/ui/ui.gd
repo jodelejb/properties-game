@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var property_label_container = $MarginContainer2/VBoxContainer/PropertyLabelContainer
 @onready var self_applied_props_container = $MarginContainer3/VBoxContainer/SelfAppliedPropsContainer
 @onready var equipped_tool = $MarginContainer4/VBoxContainer/EquippedTool
+@onready var note = $VBoxContainer/Notification
 
 var debug_label_settings = preload("res://scenes/dev/debug_text.tres")
 

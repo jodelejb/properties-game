@@ -63,5 +63,7 @@ one_shot = true
 wait_time = 0.25
 one_shot = true
 
+[connection signal="body_entered" from="GrabRange" to="." method="_on_grab_range_body_entered"]
+[connection signal="body_exited" from="GrabRange" to="." method="_on_grab_range_body_exited"]
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
 [connection signal="timeout" from="DisabledTimer" to="." method="_on_disabled_timer_timeout"]

@@ -54,7 +54,7 @@ func _process(_delta):
 		#if can_grab:
 			
 		if body.hm.holder == null:
-			if body in get_tree().get_nodes_in_group("Player") and not active: return
+			if body == get_tree().get_first_node_in_group("Player") and not active: return
 			grab_object(body)
 		
 	#print(hm.held_object)
@@ -63,6 +63,11 @@ func _process(_delta):
 
 func grab_object(object):
 	if hm.held_object == null and can_grab:
+		throw_timer.wait_time = 1.0
+		if object == get_tree().get_first_node_in_group("Player"): 
+			if not Input.is_action_just_pressed("activate"): return
+			throw_timer.wait_time = 0.1
+			object.linear_velocity.y += 0.2
 		hm.pick_up(object)
 		can_grab = false
 		if active:
@@ -83,3 +88,13 @@ func _on_disabled_timer_timeout():
 func released():
 	if hm.held_object == null:
 		disabled_timer.start()
+
+
+func _on_grab_range_body_entered(body):
+	if body == get_tree().get_first_node_in_group("Player"):
+		Globals.ui.note.text = "Q to enter grav lift"
+
+
+func _on_grab_range_body_exited(body):
+	if body == get_tree().get_first_node_in_group("Player"):
+		Globals.ui.note.text = ""
