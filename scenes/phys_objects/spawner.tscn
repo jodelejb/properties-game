@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2soh4pr258a3"]
+[gd_scene load_steps=4 format=3 uid="uid://d2soh4pr258a3"]
 
 [ext_resource type="Script" path="res://scenes/phys_objects/spawner.gd" id="1_eqy4g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64qnu"]
+transparency = 1
+albedo_color = Color(0.631373, 0.690196, 1, 0.85098)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3mrct"]
+material = SubResource("StandardMaterial3D_64qnu")
 
 [node name="Spawner" type="Marker3D"]
 script = ExtResource("1_eqy4g")
@@ -9,5 +16,8 @@ script = ExtResource("1_eqy4g")
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_3mrct")
 
 [connection signal="timeout" from="StartDelay" to="." method="_on_start_delay_timeout"]

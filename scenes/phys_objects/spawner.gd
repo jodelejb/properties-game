@@ -1,5 +1,7 @@
 extends Marker3D
 
+@onready var mesh_instance_3d = $MeshInstance3D
+
 @export_file("*.tscn") var object_to_spawn: String
 @export var parent_node: Node3D
 var object: PackedScene
@@ -13,6 +15,7 @@ var enabled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	mesh_instance_3d.visible = false
 	object = load(object_to_spawn)
 	if reset_button:
 		reset_button.status_changed.connect(reset)
