@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6a2m6yap0pst"]
+
+[ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="1_nj2me"]
+[ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="2_jdl3v"]
+[ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_t5j5d"]
+[ext_resource type="PackedScene" uid="uid://b1oukx7y3upvk" path="res://scenes/static_objects/stan_door.tscn" id="4_p70kf"]
+[ext_resource type="PackedScene" uid="uid://qocx0wwwvv4r" path="res://scenes/static_objects/lever.tscn" id="4_yos6i"]
+[ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="5_y3dvb"]
+[ext_resource type="PackedScene" uid="uid://c8ntq61r4ku4g" path="res://scenes/game_manager/reset.tscn" id="6_qdp8o"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="7_dxpxe"]
+
+[node name="TestStage" type="Node3D"]
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="DevTerrain" parent="Stage" instance=ExtResource("1_nj2me")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+size = Vector3(8.7, 0.1, 9.375)
+
+[node name="DevTerrain2" parent="Stage" instance=ExtResource("1_nj2me")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.88984, -0.05, -0.597163)
+size = Vector3(8.7, 0.1, 9.375)
+
+[node name="StaticProps" type="Node3D" parent="."]
+
+[node name="FloorButton" parent="StaticProps" instance=ExtResource("2_jdl3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69699, 0, -1.19325)
+
+[node name="Door" parent="StaticProps" node_paths=PackedStringArray("buttons") instance=ExtResource("4_p70kf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.19275)
+buttons = [NodePath("../FloorButton"), NodePath("../Lever")]
+
+[node name="FloorButton2" parent="StaticProps" instance=ExtResource("2_jdl3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.14039, 0, 2.07415)
+
+[node name="FloorButton3" parent="StaticProps" instance=ExtResource("2_jdl3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.04808, 0, 2.07415)
+
+[node name="Lever" parent="StaticProps" instance=ExtResource("4_yos6i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06818, 0, -0.762224)
+
+[node name="Spawns" type="Node3D" parent="."]
+
+[node name="PlayerSpawn" parent="Spawns" instance=ExtResource("3_t5j5d")]
+transform = Transform3D(0.968795, 0, 0.247861, 0, 1, 0, -0.247861, 0, 0.968795, 0, 0, 3.81707)
+
+[node name="Spawner" parent="Spawns" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_y3dvb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13419, 1.89598, 0)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("../../Props")
+reset_button = NodePath("../../StaticProps/FloorButton2")
+initially_applied_properties = Array[int]([4, 0])
+
+[node name="Reset" parent="Spawns" node_paths=PackedStringArray("button") instance=ExtResource("6_qdp8o")]
+level_to_load = "res://scenes/dev/test_level_spiller.tscn"
+button = NodePath("../../StaticProps/FloorButton3")
+
+[node name="KillBarrier" parent="Spawns" instance=ExtResource("7_dxpxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.90538, 0)
+
+[node name="Props" type="Node3D" parent="."]
