@@ -33,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.2041, 0)
 
 [node name="LevelLoader" parent="StaticProps" instance=ExtResource("4_mm117")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0506, 5.56773, 3.00287)
-level_to_load = "res://scenes/dev/test_level_15.tscn"
+level_to_load = "res://scenes/dev/test_level_15.1.tscn"
 
 [node name="Spawner" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_qm62o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85277, 1.16967)

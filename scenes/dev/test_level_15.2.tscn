@@ -1,0 +1,184 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvtali1o4x3ta"]
+
+[ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="1_rltxh"]
+[ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="2_ou7xp"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="3_twt1t"]
+[ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="4_p3h0q"]
+[ext_resource type="PackedScene" uid="uid://d2soh4pr258a3" path="res://scenes/phys_objects/spawner.tscn" id="5_6lhnu"]
+[ext_resource type="PackedScene" uid="uid://cy5qu0a6rr1mq" path="res://scenes/static_objects/grav_cannon.tscn" id="6_xmemb"]
+[ext_resource type="PackedScene" uid="uid://ykdvxuuq12ur" path="res://scenes/static_objects/floor_button.tscn" id="7_dxvlh"]
+[ext_resource type="PackedScene" uid="uid://c8ntq61r4ku4g" path="res://scenes/game_manager/reset.tscn" id="8_oaxmh"]
+[ext_resource type="PackedScene" uid="uid://dub5k407wwx12" path="res://scenes/static_objects/property_pylon.tscn" id="9_3mjua"]
+[ext_resource type="PackedScene" uid="uid://bm3wguio5pxvm" path="res://scenes/static_objects/colored_barrier_adjustable.tscn" id="12_jrxti"]
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="DevTerrain" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39029, -0.05, -0.337991)
+size = Vector3(11.065, 0.1, 18.43)
+
+[node name="DevTerrain4" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0668, -6.8149, 0.0338898)
+size = Vector3(8.585, 13.665, 6.77)
+
+[node name="DevTerrain12" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1708, -0.05, -4.3785)
+size = Vector3(0.1, 7.34, 6.77)
+
+[node name="DevTerrain13" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1708, -0.05, 4.42229)
+size = Vector3(0.1, 7.34, 6.77)
+
+[node name="DevTerrain5" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7323, 13.1988, 0)
+size = Vector3(12.71, 19.315, 6.255)
+
+[node name="DevTerrain10" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3142, 1.45543, -6.54836)
+size = Vector3(12.71, 36.975, 8.34)
+
+[node name="DevTerrain11" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3142, 1.45543, 7.29428)
+size = Vector3(12.71, 30.89, 9.1)
+
+[node name="DevTerrain15" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0045, 1.45543, 16.3346)
+size = Vector3(12.71, 30.89, 9.1)
+
+[node name="DevTerrain3" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1408, -7.4624, -19.1992)
+size = Vector3(44.445, 7.27, 20.725)
+
+[node name="DevTerrain8" parent="Stage" instance=ExtResource("1_rltxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1408, -7.4624, 19.795)
+size = Vector3(46.045, 7.27, 21.08)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4046, 2.21764, 1.31009)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4046, 2.21764, -1.15149)
+
+[node name="Spawners" type="Node3D" parent="."]
+
+[node name="PlayerSpawn" parent="Spawners" instance=ExtResource("2_ou7xp")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.15156, 0, 0)
+
+[node name="KillBarrier" parent="." instance=ExtResource("3_twt1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.2041, 0)
+
+[node name="StaticProps" type="Node3D" parent="."]
+
+[node name="LevelLoader" parent="StaticProps" instance=ExtResource("4_p3h0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8721, 0.110529, 0.022471)
+level_to_load = "res://scenes/dev/test_level_16.tscn"
+
+[node name="Spawner" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_6lhnu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9091, -2.53258, -15.8909)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("../../Props")
+reset_button = NodePath("../FloorButton2")
+initially_applied_properties = Array[int]([4])
+
+[node name="Spawner2" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_6lhnu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07043, -2.50628, -15.8953)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("../../Props")
+reset_button = NodePath("../FloorButton2")
+initially_applied_properties = Array[int]([4, 3])
+
+[node name="Spawner3" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_6lhnu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4299, -0.047745, -8.80198)
+object_to_spawn = "res://scenes/phys_objects/box.tscn"
+parent_node = NodePath("../../Props")
+reset_button = NodePath("../FloorButton2")
+initially_applied_properties = Array[int]([4, 1])
+
+[node name="GravCannon9" parent="StaticProps" instance=ExtResource("6_xmemb")]
+transform = Transform3D(0.0660391, -0.0276709, 0.997433, 0.526894, 0.849856, -0.0113084, -0.847362, 0.526288, 0.0707032, 0.354511, -3.6167, -14.3101)
+
+[node name="GravCannon11" parent="StaticProps" instance=ExtResource("6_xmemb")]
+transform = Transform3D(-0.104557, 0.051608, -0.993179, 0.526894, 0.849856, -0.0113084, 0.843476, -0.524482, -0.11605, 0.354511, -3.6167, 15.0768)
+
+[node name="GravCannon3" parent="StaticProps" instance=ExtResource("6_xmemb")]
+transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 6.44375, -3.53453, -9.55706)
+throw_speed = 25.0
+
+[node name="GravCannon4" parent="StaticProps" instance=ExtResource("6_xmemb")]
+transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 6.44375, -3.53453, 10.1472)
+throw_speed = 25.0
+
+[node name="GravCannon5" parent="StaticProps" instance=ExtResource("6_xmemb")]
+transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 10.572, -3.53453, -9.55706)
+throw_speed = 25.0
+
+[node name="GravCannon6" parent="StaticProps" instance=ExtResource("6_xmemb")]
+transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 10.572, -3.53453, 10.1472)
+throw_speed = 25.0
+
+[node name="GravCannon7" parent="StaticProps" instance=ExtResource("6_xmemb")]
+transform = Transform3D(1, 0, 0, 0, 0.553595, -0.832786, 0, 0.832786, 0.553595, 14.7719, -3.53453, -9.55706)
+throw_speed = 25.0
+
+[node name="GravCannon8" parent="StaticProps" instance=ExtResource("6_xmemb")]
+transform = Transform3D(-1, -6.37285e-08, -5.9845e-08, 1.56824e-08, 0.542676, -0.839942, 8.60047e-08, -0.839942, -0.542676, 14.7719, -3.53453, 10.1472)
+throw_speed = 25.0
+
+[node name="FloorButton2" parent="StaticProps" instance=ExtResource("7_dxvlh")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -6.50943, 3.52507, 0.0501276)
+
+[node name="Label3D" type="Label3D" parent="StaticProps"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.68412, 1.72952, 0.119687)
+text = "Reset Level"
+
+[node name="Reset" parent="StaticProps" node_paths=PackedStringArray("button") instance=ExtResource("8_oaxmh")]
+level_to_load = "res://scenes/dev/test_level_15.tscn"
+button = NodePath("../FloorButton2")
+
+[node name="ColoredBarrierAdjustable" parent="StaticProps" instance=ExtResource("12_jrxti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.77785, 1.82044, 0)
+size = Vector3(0.1, 17.25, 9.945)
+active_colors = Array[int]([2])
+
+[node name="ColoredBarrierAdjustable8" parent="StaticProps" instance=ExtResource("12_jrxti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5665, 1.82044, 0)
+size = Vector3(0.1, 17.25, 9.945)
+active_colors = Array[int]([2])
+
+[node name="ColoredBarrierAdjustable2" parent="StaticProps" instance=ExtResource("12_jrxti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9018, -0.934087, -5.01125)
+size = Vector3(4.16, 21.755, 0.1)
+active_colors = Array[int]([2])
+
+[node name="ColoredBarrierAdjustable3" parent="StaticProps" instance=ExtResource("12_jrxti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.72689, -0.934087, -5.01125)
+size = Vector3(4.16, 21.755, 0.1)
+active_colors = Array[int]([1])
+
+[node name="ColoredBarrierAdjustable4" parent="StaticProps" instance=ExtResource("12_jrxti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.55021, -0.934087, -5.01125)
+size = Vector3(4.16, 21.755, 0.1)
+active_colors = Array[int]([0])
+
+[node name="ColoredBarrierAdjustable5" parent="StaticProps" instance=ExtResource("12_jrxti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9018, -0.934087, 5.47747)
+size = Vector3(4.16, 21.755, 0.1)
+active_colors = Array[int]([2])
+
+[node name="ColoredBarrierAdjustable6" parent="StaticProps" instance=ExtResource("12_jrxti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.72689, -0.934087, 5.47747)
+size = Vector3(4.16, 21.755, 0.1)
+active_colors = Array[int]([1])
+
+[node name="ColoredBarrierAdjustable7" parent="StaticProps" instance=ExtResource("12_jrxti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.55021, -0.934087, 5.47747)
+size = Vector3(4.16, 21.755, 0.1)
+active_colors = Array[int]([0])
+
+[node name="PropertyPylon" parent="StaticProps" instance=ExtResource("9_3mjua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90253, 0.643488, -2.49682)
+base_properties = Array[int]([3, 2, 1])
+
+[node name="Props" type="Node3D" parent="."]
