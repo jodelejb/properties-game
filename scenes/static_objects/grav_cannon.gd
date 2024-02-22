@@ -12,6 +12,8 @@ extends StaticBody3D
 
 @export var buttons: Array[InteractableButton]
 
+var grab_loc: Vector3
+
 var active: bool = true
 var can_grab: bool = true
 
@@ -22,6 +24,7 @@ var grab_color: Color = Color(1,1,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	grab_loc = hold_point.global_position
 	hm.held_changed.connect(released)
 	if len(buttons) == 0:
 		active = true
@@ -65,9 +68,11 @@ func _process(_delta):
 func grab_object(object):
 	if hm.held_object == null and can_grab:
 		throw_timer.wait_time = 1.0
+		hold_point.global_position = grab_loc
 		if object == get_tree().get_first_node_in_group("Player"): 
 			if not Input.is_action_just_pressed("activate"): return
 			throw_timer.wait_time = 0.5
+			hold_point.global_position.y += 1
 			#object.linear_velocity.y += 0.2
 		
 		cyl_collision.disabled = true
@@ -80,7 +85,7 @@ func grab_object(object):
 
 func _on_throw_timer_timeout():
 	cyl_collision.disabled = false
-	hm.throw((hold_point.global_position - global_position).normalized())
+	hm.throw((grab_loc - global_position).normalized())
 	disabled_timer.start()
 	pass # Replace with function body.
 
