@@ -41,7 +41,7 @@ mesh = SubResource("CylinderMesh_f81n7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ummxm")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CylCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_3wjmy")
 

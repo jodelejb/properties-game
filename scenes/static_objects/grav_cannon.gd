@@ -6,6 +6,7 @@ extends StaticBody3D
 @onready var disabled_timer = $DisabledTimer
 @onready var hold_point = $HoldPoint
 @onready var cannon_body = $MeshInstance3D2
+@onready var cyl_collision = $CylCollision
 
 @export var throw_speed: float = 20
 
@@ -66,8 +67,10 @@ func grab_object(object):
 		throw_timer.wait_time = 1.0
 		if object == get_tree().get_first_node_in_group("Player"): 
 			if not Input.is_action_just_pressed("activate"): return
-			throw_timer.wait_time = 0.1
-			object.linear_velocity.y += 0.2
+			throw_timer.wait_time = 0.5
+			#object.linear_velocity.y += 0.2
+		
+		cyl_collision.disabled = true
 		hm.pick_up(object)
 		can_grab = false
 		if active:
@@ -76,6 +79,7 @@ func grab_object(object):
 
 
 func _on_throw_timer_timeout():
+	cyl_collision.disabled = false
 	hm.throw((hold_point.global_position - global_position).normalized())
 	disabled_timer.start()
 	pass # Replace with function body.
