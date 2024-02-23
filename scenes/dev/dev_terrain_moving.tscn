@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwpand25pdb2n"]
+[gd_scene load_steps=7 format=3 uid="uid://dwpand25pdb2n"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_37jy5"]
 [ext_resource type="Script" path="res://scenes/dev/dev_terrain_moving.gd" id="1_bdlq5"]
@@ -12,13 +12,16 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.5
 shader_parameter/point_size = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_xvy8p"]
+[sub_resource type="BoxMesh" id="BoxMesh_rso75"]
 material = SubResource("ShaderMaterial_wy6pi")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_r5x17"]
+[sub_resource type="BoxMesh" id="BoxMesh_h74cm"]
+material = SubResource("ShaderMaterial_wy6pi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wkfik"]
 resource_local_to_scene = true
 
-[node name="DevTerrainMoving" type="RigidBody3D"]
+[node name="DevTerrainMoving" type="RigidBody3D" groups=["MovingPlatform"]]
 disable_mode = 2
 collision_mask = 0
 gravity_scale = 0.0
@@ -26,12 +29,12 @@ freeze_mode = 1
 script = ExtResource("1_bdlq5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_xvy8p")
+mesh = SubResource("BoxMesh_rso75")
 
 [node name="ShadowOn2" type="MeshInstance3D" parent="."]
 layers = 2
 cast_shadow = 3
-mesh = SubResource("BoxMesh_xvy8p")
+mesh = SubResource("BoxMesh_h74cm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_r5x17")
+shape = SubResource("BoxShape3D_wkfik")

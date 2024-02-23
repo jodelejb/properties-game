@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://dm7qsc65o06uf"]
+
+[ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="1_cua72"]
+[ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_h7o52"]
+[ext_resource type="PackedScene" uid="uid://qocx0wwwvv4r" path="res://scenes/static_objects/lever.tscn" id="3_w5yrf"]
+[ext_resource type="PackedScene" uid="uid://cutm82jrd1ev8" path="res://scenes/static_objects/moving_platform.tscn" id="8_5pkeq"]
+[ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="8_8loxs"]
+[ext_resource type="PackedScene" uid="uid://c8ntq61r4ku4g" path="res://scenes/game_manager/reset.tscn" id="9_6qc2m"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="10_suptf"]
+[ext_resource type="PackedScene" uid="uid://dwpand25pdb2n" path="res://scenes/dev/dev_terrain_moving.tscn" id="12_ohqax"]
+[ext_resource type="PackedScene" uid="uid://8hqmmxph81dd" path="res://scenes/static_objects/switch_platform.tscn" id="13_uk0rt"]
+
+[sub_resource type="Curve3D" id="Curve3D_sjcl7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_apups"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="TestStage" type="Node3D"]
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="DevTerrain" parent="Stage" instance=ExtResource("1_cua72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+size = Vector3(10, 0.1, 10)
+
+[node name="DevTerrain2" parent="Stage" instance=ExtResource("1_cua72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9507, -0.05, 0)
+size = Vector3(10, 0.1, 10)
+
+[node name="DevTerrain4" parent="Stage" instance=ExtResource("1_cua72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9431, -0.05, -1.69994)
+size = Vector3(2, 0.1, 2)
+
+[node name="DevTerrain3" parent="Stage" instance=ExtResource("1_cua72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.0543, -0.05, 0)
+size = Vector3(10, 0.1, 10)
+
+[node name="StaticProps" type="Node3D" parent="."]
+
+[node name="LevelLoader" parent="StaticProps" instance=ExtResource("2_h7o52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.3221, 0.0850446, 0.0883751)
+level_to_load = "res://scenes/dev/test_level_19.tscn"
+
+[node name="Lever" parent="StaticProps" instance=ExtResource("3_w5yrf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10199, 0, -3.80596)
+
+[node name="Lever2" parent="StaticProps" instance=ExtResource("3_w5yrf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9184, 0, -1.74679)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Spawners" type="Node3D" parent="."]
+
+[node name="PlayerSpawn" parent="Spawners" instance=ExtResource("8_8loxs")]
+transform = Transform3D(-0.098156, 0, -0.995171, 0, 1, 0, 0.995171, 0, -0.098156, -3.02697, 0, 0)
+
+[node name="Reset" parent="Spawners" node_paths=PackedStringArray("button") instance=ExtResource("9_6qc2m")]
+level_to_load = "res://scenes/dev/test_level_18.tscn"
+button = NodePath("../../StaticProps/Lever")
+
+[node name="KillBarrier" parent="Spawners" instance=ExtResource("10_suptf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.41003, 0)
+
+[node name="Paths" type="Node3D" parent="."]
+
+[node name="DevTerrainMoving" parent="Paths" node_paths=PackedStringArray("pathnode") instance=ExtResource("12_ohqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+size = Vector3(2, 0.1, 2)
+pathnode = NodePath("../Path3D/MovingPlatform")
+
+[node name="DevTerrainMoving2" parent="Paths" node_paths=PackedStringArray("pathnode") instance=ExtResource("12_ohqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8617, 0, 0)
+size = Vector3(2, 0.1, 2)
+pathnode = NodePath("../Path3D2/SwitchPlatform")
+
+[node name="Path3D" type="Path3D" parent="Paths"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+curve = SubResource("Curve3D_sjcl7")
+
+[node name="MovingPlatform" parent="Paths/Path3D" instance=ExtResource("8_5pkeq")]
+speed = 2.0
+
+[node name="Path3D2" type="Path3D" parent="Paths"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0075, 0, 0)
+curve = SubResource("Curve3D_apups")
+
+[node name="SwitchPlatform" parent="Paths/Path3D2" node_paths=PackedStringArray("buttons") instance=ExtResource("13_uk0rt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+buttons = [NodePath("../../../StaticProps/Lever2")]
+speed = 1.5
+
+[node name="Labels" type="Node3D" parent="."]
+
+[node name="ResetPuzzle" type="Label3D" parent="Labels"]
+transform = Transform3D(0.867323, 0, 0.497746, 0, 1, 0, -0.497746, 0, 0.867323, -4.72327, 1.84974, -4.25414)
+text = "Reset Puzzle"

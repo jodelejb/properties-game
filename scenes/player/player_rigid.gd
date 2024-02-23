@@ -284,6 +284,7 @@ func _integrate_forces(state):
 	wall = false
 	var floor_angle: float = 0
 	var floor_direction: Vector3
+	var moving_collision: bool = false
 	for n in range(numcol):
 		var obj = state.get_contact_collider_object(n)
 		
@@ -304,7 +305,12 @@ func _integrate_forces(state):
 			floor_direction = col.normalized()
 			if curr_state == states.sprinting:
 				floor_angle += 20 * direction.normalized().dot(Vector3(floor_direction.x,0,floor_direction.z).normalized())
-	if (is_on_floor() or is_on_wall()) and not just_thrown and linear_velocity.y < 6:
+				
+		#velocity offsets for moving platforms
+		if obj in get_tree().get_nodes_in_group("MovingPlatform"):
+			velocity_offset = obj.linear_velocity
+			moving_collision = true
+	if not moving_collision and (is_on_floor() or is_on_wall()) and not just_thrown and linear_velocity.y < 6:
 		velocity_offset = Vector3.ZERO
 	if direction:
 		if floor_angle > max_floor_angle:

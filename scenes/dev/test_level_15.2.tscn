@@ -179,6 +179,6 @@ active_colors = Array[int]([0])
 
 [node name="PropertyPylon" parent="StaticProps" instance=ExtResource("9_3mjua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90253, 0.643488, -2.49682)
-base_properties = Array[int]([3, 2, 1])
+base_properties = Array[int]([3, 2])
 
 [node name="Props" type="Node3D" parent="."]

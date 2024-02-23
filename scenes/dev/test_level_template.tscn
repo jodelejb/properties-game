@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://blpbxjda6vn5a"]
+
+[ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="1_gfvpt"]
+[ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_1dfm4"]
+[ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_nwoe2"]
+[ext_resource type="PackedScene" uid="uid://c8ntq61r4ku4g" path="res://scenes/game_manager/reset.tscn" id="4_sfh15"]
+[ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="5_hkvq1"]
+
+[node name="TestStage" type="Node3D"]
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="DevTerrain" parent="Stage" instance=ExtResource("1_gfvpt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+size = Vector3(10, 0.1, 10)
+
+[node name="StaticProps" type="Node3D" parent="."]
+
+[node name="LevelLoader" parent="StaticProps" instance=ExtResource("2_1dfm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.28876, 0, 0)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Spawners" type="Node3D" parent="."]
+
+[node name="PlayerSpawn" parent="Spawners" instance=ExtResource("3_nwoe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02697, 0, 0)
+
+[node name="Reset" parent="Spawners" instance=ExtResource("4_sfh15")]
+
+[node name="KillBarrier" parent="Spawners" instance=ExtResource("5_hkvq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.41003, 0)
