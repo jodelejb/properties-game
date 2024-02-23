@@ -21,6 +21,7 @@ func _ready():
 	last_location = spawn_point.global_position
 	if "hm" in phys_body:
 		phys_body.hm.holder_changed.connect(hold_changed)
+	hold_changed()
 	pass # Replace with function body.
 
 
@@ -57,6 +58,7 @@ func _process(_delta):
 		last_location = spawn_point.global_position
 		
 func hold_changed():
+	if "hm" not in phys_body: return
 	if phys_body.hm.holder == null:
 		can_bridge = false
 		piece_delay.start()
