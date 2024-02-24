@@ -323,7 +323,7 @@ func _integrate_forces(state):
 		
 		# Handle velocity offsets for moving platforms
 		if obj in get_tree().get_nodes_in_group("MovingPlatform"):
-			velocity_offset = obj.linear_velocity
+			velocity_offset = Vector3(obj.linear_velocity.x,0.0, obj.linear_velocity.z)
 			moving_collision = true
 	
 	# Reset velocity offset if not on moving platform and not just thrown
