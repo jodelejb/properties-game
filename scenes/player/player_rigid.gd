@@ -18,7 +18,6 @@ extends RigidBody3D
 @onready var jump_timer = $JumpTimer  # Timer for tracking jump time
 @onready var thrown_timer = $ThrownTimer  # Timer for tracking thrown object
 @onready var ground = $Ground  # Reference to ground node
-@onready var fps_view = $Neck/Head/Eyes/Camera3D/SubViewportContainer/SubViewport  # First-person view sub-viewport
 @onready var fps_cam = $Neck/Head/Eyes/Camera3D/SubViewportContainer/SubViewport/ViewModelCamera  # First-person view camera
 
 # Variables for character state and behavior
@@ -131,7 +130,6 @@ signal tool_changed  # Signal emitted when tool is changed
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pm.applied_properties_changed.connect(check_properties)
-	fps_view.size = DisplayServer.window_get_size()
 		
 
 func _physics_process(delta):
