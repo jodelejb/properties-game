@@ -66,13 +66,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87042, 0.604914, -1.91687)
 base_properties = Array[int]([0])
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(0.749869, 0, -0.661587, 0, 1, 0, 0.661587, 0, 0.749869, -2.53806, 2.5963, -1.84987)
-text = "2 to select object mode
-Right click to take property from object
-Left click to apply property to object
-1 to select self mode
-Left click to apply property to self
-Right click to take property from self"
+transform = Transform3D(0.749869, 0, -0.661587, 0, 1, 0, 0.661587, 0, 0.749869, -2.53806, 2.31045, -1.84987)
+text = "Right click to take property from object and apply to self
+Left click to apply property to object"
 
 [node name="DevTerrain" parent="." instance=ExtResource("6_d7n0j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.352589, 0, -4.5361)

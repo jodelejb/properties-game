@@ -94,13 +94,6 @@ parent_node = NodePath("../../Props")
 reset_button = NodePath("../FloorButton2")
 initially_applied_properties = Array[int]([4])
 
-[node name="Spawner2" parent="StaticProps" node_paths=PackedStringArray("parent_node", "reset_button") instance=ExtResource("5_j38wl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4442, 13.0162, -9.91969)
-object_to_spawn = "res://scenes/phys_objects/box.tscn"
-parent_node = NodePath("../../Props")
-reset_button = NodePath("../FloorButton2")
-initially_applied_properties = Array[int]([4])
-
 [node name="GravCannon" parent="StaticProps" instance=ExtResource("6_udg7w")]
 transform = Transform3D(0.744102, 0.502168, -0.440613, -0.559396, 0.828901, 0, 0.365225, 0.246477, 0.897697, 1.88823, 0, 4.42121)
 throw_speed = 30.0

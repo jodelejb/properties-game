@@ -179,7 +179,5 @@ text = "Properties can be applied
 
 [node name="Label3D2" type="Label3D" parent="."]
 transform = Transform3D(0.99944, 0, -0.0334691, 0, 1, 0, 0.0334691, 0, 0.99944, 4.20645, 1.53305, -2.20021)
-text = "Exact color combinations must be 
-applied to pass through barriers
-Mouse wheel to scroll through
+text = "Mouse wheel to scroll through
 held properties"
