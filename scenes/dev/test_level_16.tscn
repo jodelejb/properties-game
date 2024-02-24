@@ -124,7 +124,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1436, 0, 0)
 level_to_load = "res://scenes/dev/test_level_18.tscn"
 
 [node name="GravCannon" parent="StaticProps" instance=ExtResource("4_cr75d")]
-transform = Transform3D(1, 0, 0, 0, 0.985408, 0.170209, 0, -0.17021, 0.985408, -5.83138, -0.138648, -3.08404)
+transform = Transform3D(1, 0, 0, 0, 0.996169, -0.0874513, 0, 0.0874513, 0.996169, -6.1038, -0.138648, -4.81163)
 throw_speed = 23.0
 
 [node name="GravCannon3" parent="StaticProps" instance=ExtResource("4_cr75d")]
