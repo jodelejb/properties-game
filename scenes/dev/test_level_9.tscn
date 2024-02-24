@@ -1,41 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl3ouk5bdtul2"]
+[gd_scene load_steps=7 format=3 uid="uid://cl3ouk5bdtul2"]
 
-[ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_q145g"]
+[ext_resource type="PackedScene" uid="uid://bd4sn0m1gvel2" path="res://scenes/dev/dev_terrain.tscn" id="1_ef2vq"]
 [ext_resource type="PackedScene" uid="uid://bff4xomm6pis7" path="res://scenes/dev/level_loader.tscn" id="2_hciyr"]
 [ext_resource type="PackedScene" uid="uid://duyg4tosl6o4d" path="res://scenes/dev/player_spawn.tscn" id="3_ydotr"]
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="4_w587k"]
-[ext_resource type="PackedScene" uid="uid://c3vb23hyx0kvu" path="res://scenes/static_objects/colored_barrier.tscn" id="5_nn1th"]
+[ext_resource type="PackedScene" uid="uid://bm3wguio5pxvm" path="res://scenes/static_objects/colored_barrier_adjustable.tscn" id="6_juxyj"]
 [ext_resource type="PackedScene" uid="uid://dub5k407wwx12" path="res://scenes/static_objects/property_pylon.tscn" id="6_y78qh"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2t7"]
-render_priority = 0
-shader = ExtResource("1_q145g")
-shader_parameter/albedo = Vector4(0.6, 0.6, 0.6, 1)
-shader_parameter/specular = null
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.5
-shader_parameter/point_size = null
-
-[sub_resource type="BoxMesh" id="BoxMesh_w7eqo"]
-material = SubResource("ShaderMaterial_iy2t7")
-size = Vector3(10, 0.1, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_egjdm"]
-size = Vector3(10, 0.1, 5)
 
 [node name="TestLevel9" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_w7eqo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_egjdm")
+[node name="DevTerrain" parent="." instance=ExtResource("1_ef2vq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.096333, -0.05, 0)
+size = Vector3(10, 0.1, 5)
 
 [node name="LevelLoader" parent="." instance=ExtResource("2_hciyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2396, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32658, 0, 0)
 level_to_load = "res://scenes/dev/test_level_10.tscn"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_ydotr")]
@@ -44,19 +23,16 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.242
 [node name="KillBarrier" parent="." instance=ExtResource("4_w587k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.47975, 0)
 
-[node name="ColoredBarrier" parent="." instance=ExtResource("5_nn1th")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.26089, 0, -0.0251412)
-active_colors = Array[int]([0, 1])
-
-[node name="PropertyPylon" parent="." instance=ExtResource("6_y78qh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09799, 0.652404, -1.22864)
-base_properties = Array[int]([1])
-
 [node name="PropertyPylon2" parent="." instance=ExtResource("6_y78qh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0425251, 0.652404, -1.22864)
-base_properties = Array[int]([2])
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03276, 0.542389, -1.22864)
+base_properties = Array[int]([2, 1])
 
 [node name="Label3D2" type="Label3D" parent="."]
-transform = Transform3D(0.723955, 0, -0.689847, 0, 1, 0, 0.689847, 0, 0.723955, 2.00754, 1.53305, -2.12769)
+transform = Transform3D(0.723955, 0, -0.689847, 0, 1, 0, 0.689847, 0, 0.723955, -0.895936, 1.53305, -2.12769)
 text = "some barriers require more 
 than one color to be applied"
+
+[node name="ColoredBarrierAdjustable" parent="." instance=ExtResource("6_juxyj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.932302, 3.40528, 0)
+size = Vector3(0.1, 6.825, 5)
+active_colors = Array[int]([0, 1])
