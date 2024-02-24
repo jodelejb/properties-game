@@ -14,7 +14,7 @@ var base_collision_mask
 #enum properties {gravity, red, green, blue}
 
 signal applied_properties_changed()
-var applied_properties: Array[Globals.properties] = []#[Globals.properties.red]:
+var applied_properties: Array[Globals.properties] = []
 func append_prop(prop: Globals.properties) -> void:
 	if pm_type != Globals.pm_types.base: return
 	if prop not in applied_properties:
@@ -59,30 +59,15 @@ func set_properties() -> void:
 			phys_body.gravity_scale *= -1
 		
 	#barrier collision properties
-	var color_col = [Globals.red,Globals.green,Globals.blue,Globals.cyan,Globals.magenta,Globals.yellow,Globals.white]
+	var color_col = [Globals.red,Globals.green,Globals.blue]
 		
 	if Globals.properties.red in applied_properties:
-		if Globals.properties.blue in applied_properties:
-			if Globals.properties.green in applied_properties:
-				color_col.erase(Globals.white)
-				property_display.text += " White"
-			else:
-				color_col.erase(Globals.magenta)
-				property_display.text += " Magenta"
-		elif Globals.properties.green in applied_properties:
-			color_col.erase(Globals.yellow)
-			property_display.text += " Yellow"
-		else:
-			color_col.erase(Globals.red)
-			property_display.text += " Red"
-	elif Globals.properties.green in applied_properties:
-		if Globals.properties.blue in applied_properties:
-			color_col.erase(Globals.cyan)
-			property_display.text += " Cyan"
-		else:
-			color_col.erase(Globals.green)
-			property_display.text += " Green"
-	elif Globals.properties.blue in applied_properties:
+		color_col.erase(Globals.red)
+		property_display.text += " Red"
+	if Globals.properties.green in applied_properties:
+		color_col.erase(Globals.green)
+		property_display.text += " Green"
+	if Globals.properties.blue in applied_properties:
 		color_col.erase(Globals.blue)
 		property_display.text += " Blue"
 	

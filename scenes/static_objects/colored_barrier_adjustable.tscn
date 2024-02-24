@@ -8,11 +8,11 @@ resource_local_to_scene = true
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.466667)
 
-[sub_resource type="BoxMesh" id="BoxMesh_aablm"]
+[sub_resource type="BoxMesh" id="BoxMesh_6snav"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_axxhh")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_avgpm"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_11wem"]
 resource_local_to_scene = true
 
 [node name="ColoredBarrierAdjustable" type="StaticBody3D"]
@@ -21,10 +21,10 @@ collision_mask = 0
 script = ExtResource("1_s0kme")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_aablm")
+mesh = SubResource("BoxMesh_6snav")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_avgpm")
+shape = SubResource("BoxShape3D_11wem")
 
 [node name="ColorCollision" parent="." node_paths=PackedStringArray("bodies", "meshes") instance=ExtResource("2_oervm")]
 bodies = [NodePath("..")]

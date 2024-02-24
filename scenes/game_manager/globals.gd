@@ -19,10 +19,10 @@ var bridge: int = 6-1
 var red: int = 7-1
 var green: int = 8-1
 var blue: int = 9-1
-var cyan: int = 10-1
-var magenta: int = 11-1
-var yellow: int = 12-1
-var white: int = 13-1
+#var cyan: int = 10-1
+#var magenta: int = 11-1
+#var yellow: int = 12-1
+#var white: int = 13-1
 
 func get_collision(col: Array) -> int:
 	var collision = 0

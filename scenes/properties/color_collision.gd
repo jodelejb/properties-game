@@ -27,21 +27,10 @@ func _ready():
 		
 	#get the proper color collision
 	if Globals.colors.red in active_colors:
-		if Globals.colors.blue in active_colors:
-			if Globals.colors.green in active_colors:
-				col.append(Globals.white)
-			else:
-				col.append(Globals.purple)
-		elif Globals.colors.green in active_colors:
-			col.append(Globals.yellow)
-		else:
-			col.append(Globals.red)
-	elif Globals.colors.green in active_colors:
-		if Globals.colors.blue in active_colors:
-			col.append(Globals.cyan)
-		else:
-			col.append(Globals.green)
-	elif Globals.colors.blue in active_colors:
+		col.append(Globals.red)
+	if Globals.colors.green in active_colors:
+		col.append(Globals.green)
+	if Globals.colors.blue in active_colors:
 		col.append(Globals.blue)
 		
 	for b in bodies:

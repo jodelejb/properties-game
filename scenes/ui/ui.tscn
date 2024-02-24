@@ -70,7 +70,6 @@ layout_mode = 2
 
 [node name="Stored" type="Label" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
-text = "Stored:"
 label_settings = ExtResource("2_1hq0e")
 
 [node name="PropertyLabelContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer"]

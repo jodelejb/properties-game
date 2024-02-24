@@ -252,6 +252,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("throw"):
 		if hm.held_object == null: return
 		for child in hm.held_object.get_children():
+			# bridges when thrown give a single high jump
 			if child is Bridge:
 				bridge_jump = true
 				bridge_jump_timer.start()
@@ -396,7 +397,7 @@ func apply_property(other_pm: PropertyManager) -> void:
 	# Check if there's a held property and it's not already applied to the property manager
 	if held_property != null and held_property not in other_pm.applied_properties:
 		other_pm.append_prop(held_property)  # Add held property to the property manager
-		remove_stored_prop(held_property)  # Remove held property from stored properties
+		pm.remove_prop(held_property)  # Remove held property from stored properties
 
 # Take property function
 func take_property(other_pm: PropertyManager) -> void:
@@ -406,7 +407,7 @@ func take_property(other_pm: PropertyManager) -> void:
 	# Iterate through applied properties and add them to stored properties
 	for p in other_pm.applied_properties:
 		if p not in stored_properties:
-			append_stored_prop(p)  # Add property to stored properties
+			pm.append_prop(p)  # Add property to stored properties
 			other_pm.remove_prop(p)  # Remove property from property manager
 			break  # Exit loop after removing one property
 
@@ -424,6 +425,10 @@ func _on_coyote_timer_timeout():
 
 # Check properties function to handle property changes
 func check_properties():
+	remove_all_stored_props()
+	for prop in pm.applied_properties:
+		if prop not in stored_properties:
+			append_stored_prop(prop)
 	# Check if the 'invert' property has been applied or removed and adjust accordingly
 	if (Globals.properties.invert in pm.applied_properties and not inverted) or (Globals.properties.invert not in pm.applied_properties and inverted):
 		set_invert_quat()

@@ -12,7 +12,7 @@ var debug_label_settings = preload("res://scenes/dev/debug_text.tres")
 
 func _ready():
 	player.held_property_changed.connect(update_held_prop)
-	player.stored_properties_changed.connect(update_stored_props)
+	#player.stored_properties_changed.connect(update_stored_props)
 	player.pm.applied_properties_changed.connect(update_applied_props)
 	player.tool_changed.connect(update_tool)
 	update_stored_props()
@@ -30,7 +30,7 @@ func update_stored_props() -> void:
 	update_props(property_label_container,player.stored_properties, false)
 	
 func update_applied_props() -> void:
-	update_props(self_applied_props_container, player.pm.applied_properties, true)
+	update_props(self_applied_props_container, player.pm.applied_properties, false)
 			
 func update_props(vbox: VBoxContainer, props: Array[Globals.properties], combine_colors: bool) -> void:
 	for lbl in vbox.get_children():
