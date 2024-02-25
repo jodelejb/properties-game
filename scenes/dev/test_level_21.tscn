@@ -81,6 +81,10 @@ throw_speed = 25.0
 [node name="Lever" parent="StaticProps" instance=ExtResource("4_wc426")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.76292, 0, -6.66356)
 
+[node name="Label3D" type="Label3D" parent="StaticProps/Lever"]
+transform = Transform3D(0.925983, 0, 0.377566, 0, 1, 0, -0.377566, 0, 0.925983, -0.452688, 2.13726, 0.093708)
+text = "Reset Puzzle"
+
 [node name="Lever2" parent="StaticProps" instance=ExtResource("4_wc426")]
 transform = Transform3D(-0.999118, 0, -0.0419803, 0, 1, 0, 0.0419803, 0, -0.999118, -1.68216, 0, 4.27337)
 
