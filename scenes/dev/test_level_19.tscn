@@ -73,7 +73,7 @@ size = Vector3(2.425, 3.25, 1)
 
 [node name="LevelLoader" parent="StaticProps" instance=ExtResource("2_q3mhg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0790283, 0.160423, -23.2252)
-level_to_load = "res://scenes/dev/test_level_20.tscn"
+level_to_load = "res://scenes/dev/test_level_21.tscn"
 
 [node name="Lever" parent="StaticProps" instance=ExtResource("3_cb0fc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10199, 0, -3.80596)
@@ -103,7 +103,7 @@ base_properties = Array[int]([4])
 transform = Transform3D(0.588942, 0, -0.808175, 0, 1, 0, 0.808175, 0, 0.588942, -3.02697, 0, 0)
 
 [node name="Reset" parent="Spawners" node_paths=PackedStringArray("button") instance=ExtResource("4_ecnnq")]
-level_to_load = "res://scenes/dev/test_level_18.tscn"
+level_to_load = "res://scenes/dev/test_level_19.tscn"
 button = NodePath("../../StaticProps/Lever")
 
 [node name="KillBarrier" parent="Spawners" instance=ExtResource("5_q3plc")]
