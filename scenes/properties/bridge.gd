@@ -17,6 +17,8 @@ var can_bridge: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bridge_node = get_tree().get_first_node_in_group("Bridge")
+	if phys_body == get_tree().get_first_node_in_group("Player"):
+		position.y -= 0.99
 	spawn_point = self
 	last_location = spawn_point.global_position
 	if "hm" in phys_body:
