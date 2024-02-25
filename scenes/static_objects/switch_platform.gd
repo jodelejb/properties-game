@@ -20,7 +20,7 @@ func _process(delta):
 	if active:
 		progress_ratio = lerp(progress_ratio,1.0,speed*delta)
 		#progress_ratio = 1
-		print(progress_ratio)
+		#print(progress_ratio)
 	else:
 		progress_ratio = lerp(progress_ratio,0.0,speed*delta)
 		#progress_ratio = 0

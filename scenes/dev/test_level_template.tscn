@@ -24,7 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.28876, 0, 0)
 [node name="Spawners" type="Node3D" parent="."]
 
 [node name="PlayerSpawn" parent="Spawners" instance=ExtResource("3_nwoe2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02697, 0, 0)
+transform = Transform3D(0.0229317, 0, -0.999737, 0, 1, 0, 0.999737, 0, 0.0229317, -3.02697, 0, 0)
 
 [node name="Reset" parent="Spawners" instance=ExtResource("4_sfh15")]
 
