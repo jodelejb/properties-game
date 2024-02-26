@@ -10,6 +10,9 @@ extends StaticBody3D
 @onready var mesh = $MeshInstance3D
 @onready var collision = $CollisionShape3D
 @onready var checkpoint: Area3D = $Checkpoint
+
+# checkpoints on top of and below the block
+# these are used for the player's dynamic spawn points
 @onready var chk_shape: CollisionShape3D = $Checkpoint/CollisionShape3D
 @onready var invert_chk_shape: CollisionShape3D = $Checkpoint/CollisionShape3D2
 
@@ -70,34 +73,34 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.5
 shader_parameter/point_size = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_dp6ee"]
+[sub_resource type="BoxMesh" id="BoxMesh_ciw2n"]
 material = SubResource("ShaderMaterial_kuurh")
 
-[sub_resource type="BoxMesh" id="BoxMesh_kxx38"]
+[sub_resource type="BoxMesh" id="BoxMesh_dent3"]
 material = SubResource("ShaderMaterial_kuurh")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lop8w"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wh1pl"]
 resource_local_to_scene = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_65mu5"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3sia6"]
 size = Vector3(0.333, 0.1, 0.333)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fhm8n"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8etp"]
 size = Vector3(0.333, 0.1, 0.333)
 
 [node name="DevTerrain" type="StaticBody3D" groups=["StaticTerrain"]]
 script = SubResource("GDScript_0yfj0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_dp6ee")
+mesh = SubResource("BoxMesh_ciw2n")
 
 [node name="ShadowOn2" type="MeshInstance3D" parent="."]
 layers = 2
 cast_shadow = 3
-mesh = SubResource("BoxMesh_kxx38")
+mesh = SubResource("BoxMesh_dent3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_lop8w")
+shape = SubResource("BoxShape3D_wh1pl")
 
 [node name="Checkpoint" type="Area3D" parent="."]
 visible = false
@@ -106,8 +109,8 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
-shape = SubResource("BoxShape3D_65mu5")
+shape = SubResource("BoxShape3D_3sia6")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Checkpoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
-shape = SubResource("BoxShape3D_fhm8n")
+shape = SubResource("BoxShape3D_y8etp")

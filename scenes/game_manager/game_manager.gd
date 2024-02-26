@@ -34,6 +34,7 @@ func reset_player_custom_spawn(props: Array[Globals.properties], keep_stored: bo
 	reset_player(props,keep_stored,true)
 
 # Reset player function to respawn the player at a spawn point with optional properties
+# custom spawn is dealing with a saved spawn point at the player's last acceptable location
 func reset_player(props: Array[Globals.properties], keep_stored: bool, custom_spawn: bool):
 	var spawn = get_tree().get_first_node_in_group("PlayerSpawn")  # Get the player spawn point
 	if player.dynamic_spawn_point == spawn.global_position: 

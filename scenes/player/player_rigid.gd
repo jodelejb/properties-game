@@ -309,6 +309,7 @@ func _integrate_forces(state):
 		if col.y > 0.5 and Vector2(col.x, col.z).length() > 0.49:
 			wall = true
 			
+		# Set the dynamic spawn point to the last good location according to the following criteria
 		if col.y < 0.01 and obj in get_tree().get_nodes_in_group("StaticTerrain") and obj.can_checkpoint and self in obj.checkpoint.get_overlapping_bodies():
 			dynamic_spawn_point = ground.global_position
 			#print(dynamic_spawn_point)
