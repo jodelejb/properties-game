@@ -28,6 +28,7 @@ point_count = 2
 [node name="DevTerrain" parent="Stage" instance=ExtResource("1_r8wq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.53967, -0.05, 0)
 size = Vector3(20, 0.1, 15)
+can_checkpoint = false
 
 [node name="DevTerrain2" parent="Stage" instance=ExtResource("1_r8wq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.68206, 9.62419, 0)

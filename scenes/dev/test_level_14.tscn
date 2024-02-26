@@ -16,10 +16,12 @@
 [node name="DevTerrain" parent="Stage" instance=ExtResource("1_i55iq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 size = Vector3(10, 0.1, 5)
+can_checkpoint = false
 
 [node name="DevTerrain2" parent="Stage" instance=ExtResource("1_i55iq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 5.46436, 3.47147)
 size = Vector3(4.3, 0.1, 3.925)
+can_checkpoint = false
 
 [node name="Spawners" type="Node3D" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd4sn0m1gvel2"]
+[gd_scene load_steps=9 format=3 uid="uid://bd4sn0m1gvel2"]
 
 [ext_resource type="Shader" path="res://scenes/dev/checker.gdshader" id="1_3blli"]
 
@@ -9,8 +9,12 @@ extends StaticBody3D
 @onready var shadow_on_2 = $ShadowOn2
 @onready var mesh = $MeshInstance3D
 @onready var collision = $CollisionShape3D
+@onready var checkpoint: Area3D = $Checkpoint
+@onready var chk_shape: CollisionShape3D = $Checkpoint/CollisionShape3D
+@onready var invert_chk_shape: CollisionShape3D = $Checkpoint/CollisionShape3D2
 
 @export var size: Vector3 = Vector3(1,1,1)
+@export var can_checkpoint: bool = true
 
 var prev_size: Vector3
 
@@ -18,6 +22,8 @@ func _ready():
 	mesh.mesh = mesh.mesh.duplicate()
 	shadow_on_2.mesh = shadow_on_2.mesh.duplicate()
 	collision.shape = collision.shape.duplicate()
+	chk_shape.shape = chk_shape.shape.duplicate()
+	invert_chk_shape.shape = invert_chk_shape.shape.duplicate()
 	update_shape()
 	prev_size = size
 	
@@ -35,6 +41,23 @@ func update_shape():
 	shadow_on_2.mesh.size = size
 	#shape.size = size
 	collision.shape.size = size
+	
+	chk_shape.position.y = size.y/2 + 0.05
+	invert_chk_shape.position.y = -1*(size.y/2 + 0.05)
+	var x: float = 0
+	var z: float = 0
+	if size.x < 3:
+		x = 0.333*size.x
+	else:
+		x = size.x - 2
+	if size.z < 3:
+		z = 0.333*size.z
+	else:
+		z = size.z - 2
+	chk_shape.shape.size = Vector3(x,0.1,z)
+	invert_chk_shape.shape.size = Vector3(x,0.1,z)
+	
+	
 	#add_child(collision)
 "
 
@@ -47,22 +70,44 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.5
 shader_parameter/point_size = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_r7qp3"]
+[sub_resource type="BoxMesh" id="BoxMesh_dp6ee"]
 material = SubResource("ShaderMaterial_kuurh")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xijqg"]
+[sub_resource type="BoxMesh" id="BoxMesh_kxx38"]
+material = SubResource("ShaderMaterial_kuurh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lop8w"]
 resource_local_to_scene = true
 
-[node name="DevTerrain" type="StaticBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_65mu5"]
+size = Vector3(0.333, 0.1, 0.333)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fhm8n"]
+size = Vector3(0.333, 0.1, 0.333)
+
+[node name="DevTerrain" type="StaticBody3D" groups=["StaticTerrain"]]
 script = SubResource("GDScript_0yfj0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_r7qp3")
+mesh = SubResource("BoxMesh_dp6ee")
 
 [node name="ShadowOn2" type="MeshInstance3D" parent="."]
 layers = 2
 cast_shadow = 3
-mesh = SubResource("BoxMesh_r7qp3")
+mesh = SubResource("BoxMesh_kxx38")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_xijqg")
+shape = SubResource("BoxShape3D_lop8w")
+
+[node name="Checkpoint" type="Area3D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_65mu5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Checkpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
+shape = SubResource("BoxShape3D_fhm8n")

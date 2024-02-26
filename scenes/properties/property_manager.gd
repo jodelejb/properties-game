@@ -26,6 +26,13 @@ func append_props(props: Array[Globals.properties]) -> void:
 	for prop in props:
 		append_prop(prop)
 		
+	#if pm_type != Globals.pm_types.base: return
+	#for prop in props:
+		#if prop not in applied_properties:
+			#applied_properties.append(prop)
+	#set_properties()
+	#applied_properties_changed.emit()
+		
 func remove_prop(prop: Globals.properties) -> void:
 	if pm_type != Globals.pm_types.base: return
 	if prop in applied_properties:
@@ -86,6 +93,7 @@ func set_properties() -> void:
 	else:
 		for child in phys_body.get_children():
 			if child is Bridge:
+				phys_body.remove_child(child)
 				child.queue_free()
 				break
 		bridge_col.append(Globals.bridge)

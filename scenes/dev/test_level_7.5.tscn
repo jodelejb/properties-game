@@ -12,6 +12,7 @@
 [node name="DevTerrain" parent="." instance=ExtResource("1_inu5o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04586, -0.05, 0)
 size = Vector3(8, 0.1, 5)
+can_checkpoint = false
 
 [node name="LevelLoader" parent="." instance=ExtResource("2_4nikq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4466, 0, 0)

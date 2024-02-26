@@ -127,6 +127,9 @@ enum equips {self_apply, object_apply, C4}
 var current_equip: equips = equips.object_apply  # Default equipment
 signal tool_changed  # Signal emitted when tool is changed
 
+#spawns the player at the last surface they fully stopped upon
+var dynamic_spawn_point: Vector3
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pm.applied_properties_changed.connect(check_properties)
@@ -305,6 +308,10 @@ func _integrate_forces(state):
 			on_floor = true
 		if col.y > 0.5 and Vector2(col.x, col.z).length() > 0.49:
 			wall = true
+			
+		if col.y < 0.01 and obj in get_tree().get_nodes_in_group("StaticTerrain") and obj.can_checkpoint and self in obj.checkpoint.get_overlapping_bodies():
+			dynamic_spawn_point = ground.global_position
+			#print(dynamic_spawn_point)
 		
 		# Handle object collision with held object
 		if obj == hm.held_object and (col.y < 0.45 and Vector2(col.x, col.z).length() < 0.45):

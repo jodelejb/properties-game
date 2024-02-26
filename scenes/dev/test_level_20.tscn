@@ -35,6 +35,7 @@ size = Vector3(7.715, 7.19, 0.1)
 [node name="DevTerrain4" parent="Stage" instance=ExtResource("1_j7xtl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2497, -9.39762, 0)
 size = Vector3(3.67, 0.1, 3.725)
+can_checkpoint = false
 
 [node name="DevTerrain3" parent="Stage" instance=ExtResource("1_j7xtl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.3087, 1.54681, 0)
