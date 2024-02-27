@@ -8,6 +8,10 @@ extends Node
 
 var scene = null
 
+#prevents a race condition on computers where _process runs less often than _physics_process
+var move_player: bool = false
+var spawnpos: Vector3
+
 func _ready():
 	# Assign the UI node to the global UI variable and load the starting stage
 	Globals.ui = $UI
@@ -18,8 +22,9 @@ func load_level(stage):
 	if scene != null:
 		scene.queue_free()  # Free the current scene if it exists
 		await scene.tree_exited  # Wait for the scene to exit
-	scene = stage.instantiate()  # Instantiate the new scene
+	scene = stage.instantiate() as Node3D # Instantiate the new scene
 	add_child(scene)  # Add the new scene as a child of this node
+	await scene.is_node_ready() # prevents race condition where the player
 	reset_player([], false, false)  # Reset the player when loading a new level
 
 	# Connect all loaders in the scene to the load_level function
@@ -37,12 +42,16 @@ func reset_player_custom_spawn(props: Array[Globals.properties], keep_stored: bo
 # custom spawn is dealing with a saved spawn point at the player's last acceptable location
 func reset_player(props: Array[Globals.properties], keep_stored: bool, custom_spawn: bool):
 	var spawn = get_tree().get_first_node_in_group("PlayerSpawn")  # Get the player spawn point
+	print(spawn)
+	print(spawn.global_position)
 	if player.dynamic_spawn_point == spawn.global_position: 
 		custom_spawn = false
 	if custom_spawn:
-		player.global_position = player.dynamic_spawn_point + (player.global_position - player.ground.global_position)
+		spawnpos = player.dynamic_spawn_point + (player.global_position - player.ground.global_position)
+		move_player = true
 	else:
-		player.global_position = spawn.global_position + Vector3(0, 1, 0)  # Set player position slightly above spawn point
+		spawnpos = spawn.global_position + Vector3(0, 1, 0)  # Set player position slightly above spawn point
+		move_player = true
 		player.dynamic_spawn_point = spawn.global_position
 	player.linear_velocity = Vector3.ZERO  # Reset player velocity
 	if not custom_spawn:
@@ -54,3 +63,7 @@ func reset_player(props: Array[Globals.properties], keep_stored: bool, custom_sp
 	player.pm.remove_all_properties()
 	player.pm.append_props(props)  # Append new properties to the player
 
+func _physics_process(delta):
+	if move_player:
+		player.global_position = spawnpos
+		move_player = false

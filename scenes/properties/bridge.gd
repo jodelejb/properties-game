@@ -28,7 +28,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _physics_process(delta):
 	if (spawn_point.global_position-last_location).length() > piece_length:
 		if "hm" in phys_body:
 			if phys_body.hm.holder != null: return

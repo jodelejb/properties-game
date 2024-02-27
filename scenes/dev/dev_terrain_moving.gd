@@ -22,8 +22,10 @@ func _process(delta):
 	if Engine.is_editor_hint():
 		update_shape()
 		return
-	linear_velocity = (pathnode.global_position - global_position) * follow_speed * delta
 		
+func _physics_process(delta):
+	linear_velocity = (pathnode.global_position - global_position) * follow_speed * delta
+	
 func update_shape():
 	if size == prev_size: return
 	prev_size = size

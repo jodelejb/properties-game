@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var self_applied_props_container = $MarginContainer3/VBoxContainer/SelfAppliedPropsContainer
 @onready var equipped_tool = $MarginContainer4/VBoxContainer/EquippedTool
 @onready var note = $VBoxContainer/Notification
+@onready var stored = $MarginContainer2/VBoxContainer/Stored
 
 var debug_label_settings = preload("res://scenes/dev/debug_text.tres")
 
@@ -80,3 +81,6 @@ func update_tool() -> void:
 			equipped_tool.text = "C4-Apply"
 			pass
 	pass
+
+func _process(delta):
+	stored.text = "FPS: " + str(Engine.get_frames_per_second())
