@@ -36,7 +36,7 @@ adjustment_contrast = 1.05
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_fk1w3")
-starting_stage = "res://scenes/dev/test_level_20.tscn"
+starting_stage = "res://scenes/dev/test_stage.tscn"
 
 [node name="Lighting" type="Node3D" parent="."]
 
