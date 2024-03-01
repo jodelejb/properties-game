@@ -8,6 +8,8 @@ extends Node
 
 var scene = null
 
+var scenes = null
+
 #prevents a race condition on computers where _process runs less often than _physics_process
 var move_player: bool = false
 var spawnpos: Vector3
@@ -30,10 +32,48 @@ func load_level(stage):
 	# Connect all loaders in the scene to the load_level function
 	for loader in get_tree().get_nodes_in_group("Loader"):
 		loader.load_level.connect(load_level)
+		
+	for end in get_tree().get_nodes_in_group("Joiner"):
+		if not end.starting_point:
+			end.attach_level.connect(attach_level)
 
 	# Connect all KillBarrier nodes in the scene to the reset_player function
 	for kb in get_tree().get_nodes_in_group("KillBarrier"):
 		kb.player_reset.connect(reset_player_custom_spawn)
+		
+#for loading levels seamlessly
+func attach_level(stage):
+	var newstage = stage.instantiate() as Node3D
+	await newstage.is_node_ready()
+	var joins = []
+	for child in newstage.get_children():
+		for j in child.get_children():
+			if j is Joiner:
+				joins.append(j)
+	
+	var start: Vector3 = Vector3.ZERO
+	var start_rotation: Vector3 = Vector3.ZERO
+	var end: Vector3 = Vector3.ZERO
+	var end_rotation: Vector3 = Vector3.ZERO
+	for child in scene.get_children():
+		for j in child.get_children():
+			if j is Joiner and not j.starting_point:
+				end = j.global_position
+				end_rotation = j.global_rotation
+				break
+	for child in newstage.get_children():
+		for j in child.get_children():
+			if j in joins and j.starting_point:
+				start = j.position
+				start_rotation = j.rotation
+			if j in joins and not j.starting_point:
+				j.attach_level.connect(attach_level)
+	var del_rotate: Vector3 = end_rotation - start_rotation
+	newstage.rotation = del_rotate
+	var del_origin: Vector2 = Vector2(cos(del_rotate.y),sin(del_rotate.y)) * start.length()
+	newstage.position = end + Vector3(del_origin.x,0,-del_origin.y)
+	add_child(newstage)
+	scene = newstage
 
 func reset_player_custom_spawn(props: Array[Globals.properties], keep_stored: bool):
 	reset_player(props,keep_stored,true)
