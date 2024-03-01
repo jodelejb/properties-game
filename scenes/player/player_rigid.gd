@@ -310,9 +310,14 @@ func _integrate_forces(state):
 			wall = true
 			
 		# Set the dynamic spawn point to the last good location according to the following criteria
+		#if obj in get_tree().get_nodes_in_group("StaticTerrain"):
+			#print(obj.checkpoint.get_overlapping_bodies())
 		if col.y < 0.01 and obj in get_tree().get_nodes_in_group("StaticTerrain") and obj.can_checkpoint and self in obj.checkpoint.get_overlapping_bodies():
 			dynamic_spawn_point = ground.global_position
-			#print(dynamic_spawn_point)
+			print(dynamic_spawn_point)
+		if col.y < 0.01 and obj in get_tree().get_nodes_in_group("CyclopsTerrain") and obj.get_parent().can_checkpoint and self in obj.get_parent().checkpoint.get_overlapping_bodies():
+			dynamic_spawn_point = ground.global_position
+			print(dynamic_spawn_point)
 		
 		# Handle object collision with held object
 		if obj == hm.held_object and (col.y < 0.45 and Vector2(col.x, col.z).length() < 0.45):

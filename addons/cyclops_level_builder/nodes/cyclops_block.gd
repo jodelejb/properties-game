@@ -27,6 +27,8 @@ class_name CyclopsBlock
 
 signal mesh_changed
 
+@export var can_checkpoint: bool = true
+
 @export var collision_type:Collision.Type = Collision.Type.STATIC:
 	get:
 		return collision_type
@@ -35,6 +37,9 @@ signal mesh_changed
 		update_physics_body()
 
 var mesh_instance:MeshInstance3D
+var mesh_shadow:MeshInstance3D
+var checkpoint:Area3D
+var checkpoint_shape:CollisionShape3D
 var mesh_wire:MeshInstance3D
 var collision_body:PhysicsBody3D
 var collision_shape:CollisionShape3D
@@ -60,7 +65,7 @@ var control_mesh:ConvexVolume
 	
 @export var materials:Array[Material]
 
-var default_material:Material = preload("res://addons/cyclops_level_builder/materials/grid.tres")
+var default_material:Material = preload("res://scenes/dev/checker_material.tres")
 var display_mode:DisplayMode.Type = DisplayMode.Type.MATERIAL
 
 @export_flags_3d_physics var collision_layer:int = 1:
@@ -81,8 +86,26 @@ var display_mode:DisplayMode.Type = DisplayMode.Type.MATERIAL
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("StaticTerrain",true)
 	mesh_instance = MeshInstance3D.new()
+	mesh_shadow = MeshInstance3D.new()
+	checkpoint = Area3D.new()
+	checkpoint_shape = CollisionShape3D.new()
+	
+	mesh_shadow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+	mesh_shadow.set_layer_mask_value(1,false)
+	mesh_shadow.set_layer_mask_value(2,true)
+	#mesh_shadow.layers = 2^2
+	checkpoint.scale = Vector3(1.005,1.005,1.005)
+	#checkpoint.position = Vector3(0,1,0)
+	checkpoint.set_collision_layer_value(1,false)
+	checkpoint.set_collision_layer_value(5,true)
+	checkpoint.set_collision_mask_value(1,false)
+	checkpoint.set_collision_mask_value(2,true)
+	checkpoint.add_child(checkpoint_shape)
 	add_child(mesh_instance)
+	add_child(mesh_shadow)
+	add_child(checkpoint)
 	mesh_instance.gi_mode = GeometryInstance3D.GI_MODE_STATIC
 
 	#print("block owner path %s" % owner.get_path())
@@ -109,6 +132,7 @@ func update_physics_body():
 	match collision_type:
 		Collision.Type.STATIC:
 			collision_body = StaticBody3D.new()
+			collision_body.add_to_group("CyclopsTerrain",true)
 		Collision.Type.KINEMATIC:
 			collision_body = CharacterBody3D.new()
 		Collision.Type.RIGID:
@@ -127,7 +151,9 @@ func build_from_block():
 	dirty = false
 	
 	mesh_instance.mesh = null
+	mesh_shadow.mesh = null
 	collision_shape.shape = null
+	checkpoint_shape.shape = null
 
 	if Engine.is_editor_hint():
 #		var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
@@ -162,10 +188,13 @@ func build_from_block():
 		mesh = vol.create_mesh(materials, default_material)
 	
 	mesh_instance.mesh = mesh
+	mesh_shadow.mesh = mesh
+	
 	
 	var shape:ConvexPolygonShape3D = ConvexPolygonShape3D.new()
 	shape.points = vol.get_points()
 	collision_shape.shape = shape
+	checkpoint_shape.shape = shape
 	
 	#if !Engine.is_editor_hint():
 		##Disabling this in the editor for now since this is causing slowdown
