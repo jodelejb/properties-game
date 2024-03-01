@@ -17,17 +17,20 @@ var spawnpos: Vector3
 func _ready():
 	# Assign the UI node to the global UI variable and load the starting stage
 	Globals.ui = $UI
+	scenes = []
 	load_level(load(starting_stage))
 
 # Load level function to instantiate and set up the scene
 func load_level(stage):
-	if scene != null:
-		scene.queue_free()  # Free the current scene if it exists
-		await scene.tree_exited  # Wait for the scene to exit
+	for s in scenes:
+		s.queue_free() # Free the current scene if it exists
+		await s.tree_exited  # Wait for the scene to exit
+	scenes = []
 	scene = stage.instantiate() as Node3D # Instantiate the new scene
 	add_child(scene)  # Add the new scene as a child of this node
 	await scene.is_node_ready() # prevents race condition where the player
 	reset_player([], false, false)  # Reset the player when loading a new level
+	scenes.append(scene)
 
 	# Connect all loaders in the scene to the load_level function
 	for loader in get_tree().get_nodes_in_group("Loader"):
@@ -43,37 +46,53 @@ func load_level(stage):
 		
 #for loading levels seamlessly
 func attach_level(stage):
+	#instantiate the new stage
 	var newstage = stage.instantiate() as Node3D
 	await newstage.is_node_ready()
-	var joins = []
-	for child in newstage.get_children():
-		for j in child.get_children():
-			if j is Joiner:
-				joins.append(j)
 	
+	#record all pertinent positions and rotations to spawn the new stage in the right location
 	var start: Vector3 = Vector3.ZERO
 	var start_rotation: Vector3 = Vector3.ZERO
 	var end: Vector3 = Vector3.ZERO
 	var end_rotation: Vector3 = Vector3.ZERO
+	
+	#Get the position and rotation of the end point of the current stage
+	#to be noted that this assumes it exists on a subnode of the current scene
 	for child in scene.get_children():
 		for j in child.get_children():
 			if j is Joiner and not j.starting_point:
 				end = j.global_position
 				end_rotation = j.global_rotation
 				break
+	#same but for the start point of the next scene
 	for child in newstage.get_children():
 		for j in child.get_children():
-			if j in joins and j.starting_point:
+			if j is Joiner and j.starting_point:
 				start = j.position
 				start_rotation = j.rotation
-			if j in joins and not j.starting_point:
+			if j is Joiner and not j.starting_point:
 				j.attach_level.connect(attach_level)
+				
+	#apply all rotations and positions to the new stage
 	var del_rotate: Vector3 = end_rotation - start_rotation
 	newstage.rotation = del_rotate
 	var del_origin: Vector2 = Vector2(cos(del_rotate.y),sin(del_rotate.y)) * start.length()
 	newstage.position = end + Vector3(del_origin.x,0,-del_origin.y)
 	add_child(newstage)
 	scene = newstage
+	scenes.append(newstage)
+	
+	# Connect all loaders in the scene to the load_level function
+	for loader in get_tree().get_nodes_in_group("Loader"):
+		loader.load_level.connect(load_level)
+		
+	#for end in get_tree().get_nodes_in_group("Joiner"):
+		#if not end.starting_point:
+			#end.attach_level.connect(attach_level)
+
+	# Connect all KillBarrier nodes in the scene to the reset_player function
+	for kb in get_tree().get_nodes_in_group("KillBarrier"):
+		kb.player_reset.connect(reset_player_custom_spawn)
 
 func reset_player_custom_spawn(props: Array[Globals.properties], keep_stored: bool):
 	reset_player(props,keep_stored,true)

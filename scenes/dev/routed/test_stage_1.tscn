@@ -63,7 +63,7 @@ text = "Reset Level"
 transform = Transform3D(0.0229317, 0, -0.999737, 0, 1, 0, 0.999737, 0, 0.0229317, -3.02697, 0, 0)
 
 [node name="Reset" parent="Spawners" node_paths=PackedStringArray("button") instance=ExtResource("6_oqrdo")]
-level_to_load = "res://scenes/dev/cyclops_test_stage.tscn"
+level_to_load = "res://scenes/dev/routed/test_stage_1.tscn"
 button = NodePath("../../StaticProps/Lever")
 
 [node name="KillBarrier" parent="Spawners" instance=ExtResource("7_6xkdv")]

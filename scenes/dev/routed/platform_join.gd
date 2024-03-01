@@ -3,7 +3,7 @@ class_name Joiner
 
 @export_file("*.tscn") var level_to_load: String
 @onready var area_3d: Area3D = $Area3D
-@onready var delayed_start = $DelayedStart
+#@onready var delayed_start = $DelayedStart
 @onready var direction = $Direction
 
 
