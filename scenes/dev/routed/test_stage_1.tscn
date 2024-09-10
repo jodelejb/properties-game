@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://budev5tfnj1dp" path="res://scenes/static_objects/kill_barrier.tscn" id="7_6xkdv"]
 [ext_resource type="PackedScene" uid="uid://df6n2gjtliy0y" path="res://scenes/dev/routed/platform_join.tscn" id="8_1cx65"]
 
-[sub_resource type="Resource" id="Resource_o3cq4"]
+[sub_resource type="Resource" id="Resource_k5ph2"]
 script = ExtResource("2_puslp")
 selected = false
 active = false
@@ -40,7 +40,7 @@ face_ids = PackedInt32Array(0, 1, 2, 3, 4, 5)
 [node name="Block_0" type="Node3D" parent="Cyclops" groups=["StaticTerrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.125, -8)
 script = ExtResource("1_2erac")
-block_data = SubResource("Resource_o3cq4")
+block_data = SubResource("Resource_k5ph2")
 
 [node name="StaticProps" type="Node3D" parent="."]
 

@@ -121,4 +121,3 @@ func _process(_delta):
 	if not phys_body == player:
 		property_rotation.look_at(player.head.global_position)
 	
-

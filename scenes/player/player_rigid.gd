@@ -456,5 +456,3 @@ func set_invert_quat():
 	if Globals.properties.invert in pm.applied_properties: rot = PI
 	invert_quat = Quaternion(invert_axis, rot)
 	
-
-
