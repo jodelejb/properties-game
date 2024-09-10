@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://4siqre3jhe80"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/cyclops_global_scene.gd" id="1_nu1d3"]
-[ext_resource type="FontFile" uid="uid://dejaio63tyi02" path="res://addons/cyclops_level_builder/art/fonts/Roboto/Roboto-Regular.ttf" id="2_savc6"]
+[ext_resource type="FontFile" uid="uid://bsqmwahkl8gya" path="res://addons/cyclops_level_builder/art/fonts/Roboto/Roboto-Regular.ttf" id="2_savc6"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/cyclops_overlay.gd" id="3_uf260"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sl0cw"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_7cfi3"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nrm8a"]
 
 [node name="CyclopsGlobals" type="Node3D"]
 script = ExtResource("1_nu1d3")
@@ -17,7 +17,7 @@ visible = false
 mesh = SubResource("PlaneMesh_sl0cw")
 
 [node name="ToolInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("ImmediateMesh_7cfi3")
+mesh = SubResource("ImmediateMesh_nrm8a")
 
 [node name="VertexGroup" type="Node3D" parent="."]
 unique_name_in_owner = true

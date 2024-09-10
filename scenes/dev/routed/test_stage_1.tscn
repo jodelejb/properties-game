@@ -77,4 +77,4 @@ starting_point = true
 
 [node name="End" parent="Endpoints" instance=ExtResource("8_1cx65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0009, 0, 0)
-level_to_load = "res://scenes/dev/routed/test_stage_1.tscn"
+level_to_load = "res://scenes/dev/routed/test_stage_2.tscn"
